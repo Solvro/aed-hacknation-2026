@@ -144,12 +144,11 @@ class TestValidation:
     def test_comma_decimal_and_types(self):
         nr = self._row({
             "id_aed": "A1", "szerokosc_geogr": "50,0619", "dlugosc_geogr": "19,9368", "wewnatrz_budynku": "TAK",
-            "zamkniety_w_szafce": "nie", "data_weryfikacji": "01.10.2026", "dostep": "ogólnodostępny",
-            "kod_pocztowy": "31042",
+            "data_weryfikacji": "01.10.2026", "dostep": "ogólnodostępny", "kod_pocztowy": "31042",
         })
         v = nr.values
         assert v["szerokosc_geogr"] == pytest.approx(50.0619)
-        assert v["wewnatrz_budynku"] is True and v["zamkniety_w_szafce"] is False
+        assert v["wewnatrz_budynku"] is True
         assert v["data_weryfikacji"] == "2026-10-01"
         assert v["dostep"] == "publiczny"
         assert v["kod_pocztowy"] == "31-042"
@@ -172,7 +171,7 @@ class TestValidation:
         rich = self._row({
             "id_aed": "1", "lat": "50.06", "lon": "19.93", "miejscowosc": "Kraków", "nr_budynku": "1",
             "kod_pocztowy": "31-042", "nazwa_obiektu": "Sukiennice", "opis_lokalizacji": "hol", "dostep": "publiczny",
-            "godziny_dostepnosci": "24/7", "wewnatrz_budynku": "tak", "dysponent": "UMK", "telefon": "123",
+            "wewnatrz_budynku": "tak", "dysponent": "UMK", "telefon": "123",
             "data_weryfikacji": "2099-01-01",
         })
         assert rich.quality_score() > poor.quality_score()
@@ -228,10 +227,14 @@ class TestGeocoding:
         monkeypatch.setattr(geocoding, "forward", lambda q: {"lat": 50.0630, "lon": 19.9370, "simc": "0950463", "kod_pocztowy": "31-042"})
         monkeypatch.setattr(geocoding, "commune", lambda lat, lon: {"teryt_gminy": "1261011", "gmina": "Kraków",
                                                                      "powiat": "Kraków", "wojewodztwo": "małopolskie"})
-        near = self._row({"id_aed": "1", "lat": "50.0610", "lon": "19.9370", "miejscowosc": "Kraków", "nr_budynku": "1"})
+        monkeypatch.setattr(geocoding, "reverse", lambda lat, lon: {"simc": "0950463", "miejscowosc": "Kraków"})
+        near = self._row({"id_aed": "1", "lat": "50.0610", "lon": "19.9370", "miejscowosc": "Kraków", "nr_budynku": "1",
+                          "teryt_terc": "0201011"})
         geocoding.enrich(near)
         assert not near.is_critical and "ADDRESS_MISMATCH" in codes(near)
+        # TERYT zawsze wyliczany ze współrzędnych – wartość dostawcy nadpisana z informacją
         assert near.geo["teryt_gminy"] == "1261011" and near.values["teryt_terc"] == "1261011"
+        assert near.values["teryt_simc"] == "0950463" and "TERYT_RECOMPUTED" in codes(near)
 
         address_only = self._row({"id_aed": "2", "miejscowosc": "Kraków", "ulica": "Rynek Główny", "nr_budynku": "1"})
         geocoding.enrich(address_only)
@@ -249,3 +252,25 @@ def test_exported_example_passes_validation(tmp_path):
     assert set(mapping.fields) == set(__import__("mcod.aed.schema", fromlist=["x"]).field_names())
     assert rows and not any(r.is_critical for r in rows)
     assert all(not r.local_id_generated for r in rows)
+
+
+def test_dispatcher_instruction_built_from_row():
+    from mcod.aed.aggregate import dispatcher_instruction
+
+    text = dispatcher_instruction({
+        "nazwa_obiektu": "Szkoła Podstawowa nr 1", "ulica": "Okólna", "nr_budynku": "14", "kod_pocztowy": "05-270",
+        "miejscowosc": "Marki", "wewnatrz_budynku": True, "pietro": "0", "opis_lokalizacji": "hol przy portierni",
+        "dostep": "klienci", "sposob_dostepu": "klucz w portierni", "telefon_kontaktowy": "22 123 45 67",
+    }, provider="Urząd Miasta Marki")
+    assert text.startswith("AED: Szkoła Podstawowa nr 1, Okólna 14, 05-270 Marki.")
+    assert "Wewnątrz budynku, piętro 0." in text and "klucz w portierni" in text
+    assert "Odpowiada: Urząd Miasta Marki, tel. 22 123 45 67." in text
+
+
+def test_removed_fields_are_not_in_schema():
+    from mcod.aed import schema
+
+    names = schema.field_names()
+    for removed in ("godziny_dostepnosci", "zamkniety_w_szafce", "dostepny_dla_niepelnosprawnych"):
+        assert removed not in names
+    assert schema.computed_fields() == ["teryt_terc", "teryt_simc"]

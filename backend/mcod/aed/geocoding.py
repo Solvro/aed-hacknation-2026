@@ -16,7 +16,7 @@ from typing import Optional
 import requests
 from django.conf import settings
 
-from mcod.aed.validation import CRITICAL, INFO, WARNING, NormalizedRow
+from mcod.aed.validation import CRITICAL, INFO, WARNING, NormalizedRow, clean_street
 
 logger = logging.getLogger("mcod")
 
@@ -189,19 +189,17 @@ def enrich(nr: NormalizedRow) -> None:
                             f"Według GUGiK adres leży w punkcie {hit['lat']:.6f}, {hit['lon']:.6f} – "
                             "sprawdź, które dane są poprawne.",
                         )
-                    for key, src in (("kod_pocztowy", "kod_pocztowy"), ("teryt_simc", "simc")):
-                        if not v.get(key) and hit.get(src):
-                            v[key] = hit[src]
+                    if not v.get("kod_pocztowy") and hit.get("kod_pocztowy"):
+                        v["kod_pocztowy"] = hit["kod_pocztowy"]
             else:
                 hit = reverse(lat, lon)
                 if hit and hit.get("miejscowosc"):
                     filled = False
                     for key in ("miejscowosc", "ulica", "nr_budynku", "kod_pocztowy"):
                         if not v.get(key) and hit.get(key):
-                            v[key] = hit[key]
+                            # UUG zwraca np. „ulica Marszałkowska” – we wzorcowym zakresie nazwa ulicy bez przedrostka
+                            v[key] = clean_street(hit[key]) if key == "ulica" else hit[key]
                             filled = True
-                    if not v.get("teryt_simc") and hit.get("simc"):
-                        v["teryt_simc"] = hit["simc"]
                     if filled:
                         nr.address_source = "geokodowanie"
                         nr.add("GEOCODED_ADDRESS", INFO, "miejscowosc", f"{lat}, {lon}")
@@ -211,18 +209,25 @@ def enrich(nr: NormalizedRow) -> None:
                 v["szerokosc_geogr"], v["dlugosc_geogr"] = hit["lat"], hit["lon"]
                 nr.coords_source = "geokodowanie"
                 nr.add("GEOCODED_COORDS", INFO, "szerokosc_geogr", nr.address_query())
-                for key, src in (("kod_pocztowy", "kod_pocztowy"), ("teryt_simc", "simc")):
-                    if not v.get(key) and hit.get(src):
-                        v[key] = hit[src]
+                if not v.get("kod_pocztowy") and hit.get("kod_pocztowy"):
+                    v["kod_pocztowy"] = hit["kod_pocztowy"]
             else:
                 nr.add("GEOCODE_FAILED", WARNING, "miejscowosc", nr.address_query(),
                        "Nie znaleziono adresu w rejestrze GUGiK – urządzenie nie pojawi się na mapie. Sprawdź adres "
                        "lub dodaj współrzędne.")
         if nr.has_coords:
-            geo = commune(v["szerokosc_geogr"], v["dlugosc_geogr"])
+            # Kody TERYT wyliczane ze współrzędnych (wzorcowy zakres: „wyliczyć ze współrzędnych”)
+            lat, lon = v["szerokosc_geogr"], v["dlugosc_geogr"]
+            provided = (str(v.get("teryt_terc") or ""), str(v.get("teryt_simc") or ""))
+            geo = commune(lat, lon)
             if geo:
                 nr.geo = geo
-                if not v.get("teryt_terc"):
-                    v["teryt_terc"] = geo["teryt_gminy"]
+                v["teryt_terc"] = geo["teryt_gminy"]
+            rev = reverse(lat, lon)
+            if rev and rev.get("simc"):
+                v["teryt_simc"] = rev["simc"]
+            computed = (str(v.get("teryt_terc") or ""), str(v.get("teryt_simc") or ""))
+            if (provided[0] and provided[0][:6] != computed[0][:6]) or (provided[1] and provided[1] != computed[1]):
+                nr.add("TERYT_RECOMPUTED", INFO, "teryt_terc", f"{provided[0]}/{provided[1]}")
     except Exception:  # noqa: BLE001
         nr.add("GEOCODE_FAILED", INFO, "", "", "Usługa GUGiK była niedostępna – lokalizacji nie zweryfikowano.")

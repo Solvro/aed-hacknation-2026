@@ -106,3 +106,15 @@ media-breakpoint-down
 media-breakpoint-between
 media-breakpoint-only
 */
+
+
+/* Ogólnopolski zbiór AED: informacja o zgłaszaniu uwag do dostawców (zamiast przycisku zgłoszenia) */
+.aed-feedback-info {
+  max-width: 34rem;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  border-left: 4px solid #0865c9;
+  background: #eef5fc;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}

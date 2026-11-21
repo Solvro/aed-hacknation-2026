@@ -80,7 +80,12 @@ check "GET /aed/aggregate → HTTP $c: zbiór #$ds_id, CSV #$csv_id, GeoJSON #$g
 get "$API/datasets/$ds_id?include=institution" "$TMP/aggds.json" >/dev/null
 owner=$(jq -r '[.included[]? | select(.type=="institution") | .attributes.title][0]' "$TMP/aggds.json")
 check "właścicielem agregatu jest „Ministerstwo Cyfryzacji” (jest: $owner)" test "$owner" = "Ministerstwo Cyfryzacji"
-c=$(get "$API/resources/$csv_id/data?per_page=1" "$TMP/tab.json")
+# API portalu cache'uje odpowiedzi – parametr _ omija cache; po przebudowie agregatu portal reindeksuje dane (ponawiamy)
+for _try in $(seq 1 12); do
+  c=$(get "$API/resources/$csv_id/data?per_page=1&_=$(date +%s)$_try" "$TMP/tab.json")
+  jqt '.meta.count > 0' "$TMP/tab.json" && break
+  sleep 5
+done
 check "dane tabelaryczne zasobu CSV agregatu dostępne w API portalu (HTTP $c, wierszy: $(jq '.meta.count' "$TMP/tab.json"))" \
   jqt '.meta.count > 0' "$TMP/tab.json"
 file_url=$(curl -sk "$API/resources/$csv_id" | jq -r '.data.attributes.file_url')
@@ -88,9 +93,10 @@ curl -sk -m 60 -o "$TMP/agg.csv" "$file_url"
 header=$(head -1 "$TMP/agg.csv" | tr -d '\r\357\273\277')
 missing=""
 for col in aed_uid id_aed szerokosc_geogr dlugosc_geogr miejscowosc ulica nr_budynku kod_pocztowy nazwa_obiektu \
-  opis_lokalizacji dostep godziny_dostepnosci dysponent data_weryfikacji wewnatrz_budynku zamkniety_w_szafce \
-  teryt_terc teryt_simc zdjecie_url dostawca dostawca_regon zbior_zrodlowy zasob_zrodlowy data_aktualizacji \
-  wspolrzedne_zrodlo teryt_gminy gmina jakosc_danych; do
+  opis_lokalizacji dostep dysponent data_weryfikacji wewnatrz_budynku pietro sposob_dostepu telefon_kontaktowy \
+  teryt_terc teryt_simc producent model data_przegladu waznosc_elektrod waznosc_baterii zdjecie_url \
+  dostawca dostawca_regon zbior_zrodlowy zasob_zrodlowy data_aktualizacji wspolrzedne_zrodlo teryt_gminy gmina \
+  jakosc_danych instrukcja_dla_dyspozytora; do
   [[ ",$header," == *",$col,"* ]] || missing="$missing $col"
 done
 check "CSV agregatu zawiera kolumny wzorcowego zakresu i odpowiedzialności${missing:+ (brakuje:$missing)}" test -z "$missing"

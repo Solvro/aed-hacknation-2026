@@ -122,6 +122,34 @@
     color: #4a4f55;
   }
 
+  &__instruction {
+    display: block;
+    max-width: 28rem;
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #4a4f55;
+  }
+
+  &__device {
+    min-width: 10rem;
+  }
+
+  &__device-name {
+    display: block;
+    font-weight: 600;
+  }
+
+  &__device-line {
+    display: block;
+    font-size: 0.85rem;
+  }
+
+  &__muted {
+    font-size: 0.85rem;
+    color: #4a4f55;
+  }
+
   &__coords {
     white-space: nowrap;
   }

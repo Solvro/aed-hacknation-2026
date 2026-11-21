@@ -13,7 +13,7 @@ logger = logging.getLogger("mcod")
 
 def on_resource_processed(resource) -> None:
     try:
-        from mcod.aed.aggregate import ensure_geo_mapping
+        from mcod.aed.aggregate import ensure_tabular_schema
         from mcod.aed.models import AedAggregateInfo
         from mcod.aed.tasks import aed_process_dataset_task
 
@@ -25,7 +25,7 @@ def on_resource_processed(resource) -> None:
         info = AedAggregateInfo.get()
         if info and resource.pk == info.csv_resource_id:
             # Pierwsze przetworzenie zasobu agregatu: włącz natywną mapę portalu (kolumny lat/lon + etykieta)
-            if ensure_geo_mapping(resource):
+            if ensure_tabular_schema(resource):
                 resource.revalidate(update_verification_date=False)
             return
         if info and resource.dataset_id == info.dataset_id:

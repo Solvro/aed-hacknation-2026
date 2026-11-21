@@ -268,16 +268,12 @@
         <!-- other actions -->
         <span class="d-flex flex-column flex-lg-row align-items-start mt-1 mt-lg-0 ml-0 ml-lg-1 ml-lg-auto">
           <!-- feedback: w Ogólnopolskim zbiorze AED uwagi trafiają do dostawców (sekcja „Dane według dostawców”) -->
-          <button
-            *ngIf="isAedAggregate"
-            type="button"
-            class="btn btn-danger btn-sm mb-1 mb-lg-0 ml-0 ml-lg-1"
-            (click)="scrollToAedProviders()">
-            {{ 'Aed.ProvidersTable.ReportToProvider' | translate }}
-            <svg class="icon icon-chevrons-right" role="img" aria-hidden="true">
-              <use href="/assets/icomoon/sprite/sprite.svg#icon-chevrons-right"></use>
-            </svg>
-          </button>
+<p *ngIf="isAedAggregate" class="aed-feedback-info mb-1 mb-lg-0 ml-0 ml-lg-1" role="note">
+            {{ 'Aed.FeedbackInfoShort' | translate }}
+            <button type="button" class="btn btn-link btn-sm p-0 align-baseline" (click)="scrollToAedProviders()">
+              {{ 'Aed.GoToProviders' | translate }}
+            </button>
+          </p>
           <a
             *ngIf="!isAedAggregate"
             class="btn btn-danger btn-sm mb-1 mb-lg-0 ml-0 ml-lg-1"
@@ -306,7 +302,6 @@
 
   <!-- Ogólnopolski zbiór AED: dane według dostawców, zgłoszenia uwag do dostawców -->
   <div class="container" *ngIf="isAedAggregate">
-    <p class="alert alert-info" role="note">{{ 'Aed.FeedbackInfo' | translate }}</p>
     <app-aed-providers-table></app-aed-providers-table>
   </div>
 

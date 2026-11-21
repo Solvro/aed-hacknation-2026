@@ -19,6 +19,16 @@ wskazuje dostawcę odpowiedzialnego za rekord.
 6. `AedImportRun`: raport dla dostawcy.
 7. `aggregate.rebuild`: publikacja agregatu.
 
+## Wzorcowy zakres (wersja 1.1)
+- **Obowiązkowe:** współrzędne (`szerokosc_geogr`, `dlugosc_geogr`) LUB pełny adres (`miejscowosc`, `ulica`, `nr_budynku`, `kod_pocztowy`).
+- **Uzupełnianie brakującej części** przez geokodowanie GUGiK:
+  - adres na współrzędne: UUG GetAddress,
+  - współrzędne na adres: UUG GetAddressReverse.
+- **Gdy podano oba**, moduł sprawdza ich zgodność. Powyżej 150 m dostawca dostaje ostrzeżenie, powyżej 5 km wiersz jest wstrzymany.
+- **`teryt_terc` i `teryt_simc`** są zawsze wyliczane ze współrzędnych (ULDK i UUG). Wartość podana przez dostawcę jest nadpisywana z informacją w raporcie.
+- **Pola podnoszące ocenę jakości:** `nazwa_obiektu`, `opis_lokalizacji`, `dostep`, `dysponent`, `data_weryfikacji`, `wewnatrz_budynku`.
+- **Kolumna agregatu `instrukcja_dla_dyspozytora`** jest składana automatycznie z danych w wierszu.
+
 ## Komendy
 ```bash
 python manage.py aed_schema_export        # data/aed/export: aed_wzorcowy_zakres.xlsx, aed_szablon.csv, aed_przyklad.csv, aed_schema.json
@@ -29,7 +39,7 @@ python manage.py aed_demo_update krosno   # nowa wersja pliku Krosna (−1 wiers
 Konta demo: `krosno|przemysl|marki|legionowo@mcod.local`, hasło `Aed2026!demo`.
 
 ## API (tylko odczyt, `https://api.mcod.local/1.4`)
-- `/aed/stats`: liczba AED, dostawców i gmin, % 24/7, % w zamkniętej szafce, % zweryfikowanych ≤ 12 mies., średnia jakość.
+- `/aed/stats`: liczba AED, dostawców i gmin, % dostępnych całodobowo (szacunek: dostęp publiczny i na zewnątrz budynku), % z ograniczonym dostępem (z pola `sposob_dostepu` lub dostęp dla personelu), % zweryfikowanych ≤ 12 mies., średnia jakość.
 - `/aed/records?bbox=&teryt=&dostawca=&status=&q=&page=&per_page=` i `/aed/records/{uid}` (z historią zmian).
 - `/aed/records.geojson`, `/aed/providers`, `/aed/aggregate`.
 - Filtr zbiorów: `/datasets?is_aed_dataset=true`.

@@ -34,6 +34,40 @@ def _base_url() -> str:
     return getattr(settings, "BASE_URL", "").rstrip("/")
 
 
+ACCESS_LABELS = {
+    "publiczny": "dostępny dla każdego",
+    "klienci": "dostępny dla klientów obiektu",
+    "pracownicy": "dostępny tylko dla personelu",
+}
+
+
+def dispatcher_instruction(row: dict, provider: str = "") -> str:
+    """Opis dla dyspozytora 112 składany z danych w wierszu (opcjonalna kolumna agregatu)."""
+    parts = []
+    place = row.get("nazwa_obiektu") or "Defibrylator AED"
+    street = " ".join(str(x) for x in (row.get("ulica"), row.get("nr_budynku")) if x)
+    city = " ".join(str(x) for x in (row.get("kod_pocztowy"), row.get("miejscowosc")) if x)
+    address = ", ".join(x for x in (street, city) if x)
+    parts.append(f"AED: {place}" + (f", {address}" if address else "") + ".")
+    if row.get("wewnatrz_budynku") is True:
+        floor = row.get("pietro")
+        parts.append("Wewnątrz budynku" + (f", piętro {floor}" if floor not in (None, "") else "") + ".")
+    elif row.get("wewnatrz_budynku") is False:
+        parts.append("Na zewnątrz budynku.")
+    if row.get("opis_lokalizacji"):
+        parts.append(f"Miejsce: {str(row['opis_lokalizacji']).rstrip('.')}.")
+    if row.get("dostep"):
+        parts.append(f"Dostęp: {ACCESS_LABELS.get(row['dostep'], row['dostep'])}.")
+    if row.get("sposob_dostepu"):
+        parts.append(f"Jak uzyskać dostęp: {str(row['sposob_dostepu']).rstrip('.')}.")
+    contact = row.get("telefon_kontaktowy")
+    owner = row.get("dysponent") or provider
+    if owner or contact:
+        who = ", ".join(str(x).strip() for x in (owner, f"tel. {contact}" if contact else None) if x)
+        parts.append("Odpowiada: " + who.rstrip(".") + ".")
+    return " ".join(parts)
+
+
 def record_row(record: AedRecord) -> dict:
     row = {name: record.attributes.get(name) for name in schema.field_names()}
     row["szerokosc_geogr"] = record.lat
@@ -58,6 +92,7 @@ def record_row(record: AedRecord) -> dict:
             "jakosc_danych": record.quality_score,
         }
     )
+    row["instrukcja_dla_dyspozytora"] = dispatcher_instruction(row, org.title)
     return row
 
 
@@ -101,6 +136,35 @@ def build_geojson(records) -> bytes:
         )
     payload = {"type": "FeatureCollection", "name": "aed_ogolnopolski", "features": features}
     return json.dumps(payload, ensure_ascii=False).encode("utf-8")
+
+
+NUMBER_COLUMNS = {"szerokosc_geogr", "dlugosc_geogr"}
+INTEGER_COLUMNS = {"jakosc_danych"}
+GEO_ROLES = {"szerokosc_geogr": "b", "dlugosc_geogr": "l", "nazwa_obiektu": "label"}
+
+
+def build_tabular_schema(resource) -> dict:
+    """Schemat tabeli zasobu CSV agregatu z jawnymi typami (numery budynków, kody TERYT i pocztowe jako tekst –
+    zgadywanie typów przez portal odrzucało np. numer „1E”) i mapowaniem mapy portalu (szerokość, długość, etykieta)."""
+    fields_, geo = [], {}
+    for idx, name in enumerate(output_columns()):
+        ftype = "number" if name in NUMBER_COLUMNS else "integer" if name in INTEGER_COLUMNS else "string"
+        field_ = {"name": name, "type": ftype, "format": "default"}
+        if name in GEO_ROLES:
+            field_["geo"] = GEO_ROLES[name]
+            geo[GEO_ROLES[name]] = {"col_name": name, "col_index": idx}
+        fields_.append(field_)
+    return {"fields": fields_, "missingValues": list(resource.special_signs_symbols_list), "geo": geo}
+
+
+def ensure_tabular_schema(resource) -> bool:
+    Resource = apps.get_model("resources", "Resource")
+    wanted = build_tabular_schema(resource)
+    if resource.tabular_data_schema == wanted:
+        return False
+    Resource.raw.filter(pk=resource.pk).update(tabular_data_schema=wanted)
+    resource.tabular_data_schema = wanted
+    return True
 
 
 def ensure_geo_mapping(resource) -> bool:
@@ -159,11 +223,13 @@ def rebuild(publish: bool = True) -> AedAggregateInfo:
     info.providers_count = len({r.organization_id for r in records})
     if publish:
         Resource = apps.get_model("resources", "Resource")
+        if info.csv_resource_id:
+            # Agregat podaje portalowi własny schemat tabeli (typy kolumn + mapa) – portal go zachowa przy walidacji
+            ensure_tabular_schema(info.csv_resource)
         Resource.raw.filter(pk__in=[pk for pk in (info.csv_resource_id, info.geojson_resource_id) if pk]).update(
             data_date=timezone.localdate()
         )
         if info.csv_resource_id:
-            ensure_geo_mapping(info.csv_resource)
             replace_main_file(info.csv_resource, CSV_FILENAME, build_csv(records))
         if info.geojson_resource_id:
             replace_main_file(info.geojson_resource, GEOJSON_FILENAME, build_geojson(records))

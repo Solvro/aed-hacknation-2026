@@ -11,7 +11,9 @@ from django.db.models import Avg, Count, Q
 
 from mcod.aed.aggregate import build_geojson, record_row
 from mcod.aed.models import STATUS_ACTIVE, STATUS_WITHDRAWN, AedAggregateInfo, AedRecord
-from mcod.aed.validation import is_always_open
+import re
+
+RESTRICTED_RE = re.compile(r"klucz|kod|zamkni|szafk.*zamk|portier|ochron|recepcj", re.IGNORECASE)
 
 MAX_PER_PAGE = 500
 
@@ -96,15 +98,17 @@ class AedStatsView:
         active = AedRecord.objects.filter(status=STATUS_ACTIVE)
         total = active.count()
         year_ago = (datetime.date.today() - datetime.timedelta(days=365)).isoformat()
-        always_open = locked_known = locked = verified = 0
+        # Wzorcowy zakres nie zawiera godzin ani pola „zamknięty”: dostępność całodobową szacujemy jako
+        # „publiczny i na zewnątrz budynku”, a ograniczony dostęp – z pola sposob_dostepu lub dostępu dla personelu.
+        always_open = locked = verified = 0
         for attrs in active.values_list("attributes", flat=True):
-            if is_always_open(attrs.get("godziny_dostepnosci")):
+            if attrs.get("dostep") == "publiczny" and attrs.get("wewnatrz_budynku") is False:
                 always_open += 1
-            if attrs.get("zamkniety_w_szafce") is not None:
-                locked_known += 1
-                locked += 1 if attrs.get("zamkniety_w_szafce") else 0
+            if attrs.get("dostep") == "pracownicy" or RESTRICTED_RE.search(str(attrs.get("sposob_dostepu") or "")):
+                locked += 1
             if attrs.get("data_weryfikacji") and attrs["data_weryfikacji"] >= year_ago:
                 verified += 1
+        locked_known = total
 
         def pct(part, whole):
             return round(100.0 * part / whole, 1) if whole else 0.0
@@ -142,6 +146,7 @@ class AedProvidersView:
                 withdrawn=Count("id", filter=Q(status=STATUS_WITHDRAWN)),
                 avg_quality=Avg("quality_score", filter=Q(status=STATUS_ACTIVE)),
             )
+            .filter(active__gt=0)  # tylko dostawcy z aktywnymi urządzeniami w agregacie
             .order_by("organization__title")
         )
         data = []

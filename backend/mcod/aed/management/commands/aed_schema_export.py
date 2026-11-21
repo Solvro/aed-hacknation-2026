@@ -24,6 +24,7 @@ REQUIRED_LABELS = {
     "alt-location": "obowiązkowe (współrzędne LUB adres)",
     "recommended": "zalecane",
     "optional": "opcjonalne",
+    "computed": "wyliczane ze współrzędnych przez portal",
 }
 TYPE_LABELS = {"string": "tekst", "number": "liczba dziesiętna", "boolean": "tak/nie", "date": "data RRRR-MM-DD"}
 HEADER_FILL = PatternFill("solid", fgColor="C8102E")
@@ -34,19 +35,16 @@ EXAMPLE_ROWS = [
         "id_aed": "AED-0001", "szerokosc_geogr": "50.061947", "dlugosc_geogr": "19.936856", "miejscowosc": "Kraków",
         "ulica": "Rynek Główny", "nr_budynku": "1", "kod_pocztowy": "31-042", "nazwa_obiektu": "Sukiennice",
         "opis_lokalizacji": "Wejście od strony ul. Szewskiej, przy punkcie informacji", "dostep": "publiczny",
-        "godziny_dostepnosci": "24/7", "wewnatrz_budynku": "nie", "pietro": "0", "zamkniety_w_szafce": "nie",
-        "sposob_dostepu": "", "dostepny_dla_niepelnosprawnych": "tak", "dysponent": "Urząd Miasta Krakowa",
-        "telefon_kontaktowy": "+48 12 616 12 00", "data_weryfikacji": "2026-10-01", "teryt_terc": "1261011",
-        "teryt_simc": "0950463", "producent": "Philips", "model": "HeartStart FRx", "data_przegladu": "2026-03-15",
+        "wewnatrz_budynku": "nie", "pietro": "0", "sposob_dostepu": "Szafka otwarta, bez klucza", "dysponent": "Urząd Miasta Krakowa",
+        "telefon_kontaktowy": "+48 12 616 12 00", "data_weryfikacji": "2026-10-01", "teryt_terc": "",
+        "producent": "Philips", "model": "HeartStart FRx", "data_przegladu": "2026-03-15",
         "waznosc_elektrod": "2028-05-31", "waznosc_baterii": "2029-12-31", "zdjecie_url": "",
     },
     {
         "id_aed": "AED-0002", "szerokosc_geogr": "", "dlugosc_geogr": "", "miejscowosc": "Kraków",
         "ulica": "Floriańska", "nr_budynku": "3", "kod_pocztowy": "31-019", "nazwa_obiektu": "Biblioteka miejska",
         "opis_lokalizacji": "Hol główny przy recepcji", "dostep": "klienci",
-        "godziny_dostepnosci": "Mo-Fr 08:00-20:00; Sa 09:00-14:00", "wewnatrz_budynku": "tak", "pietro": "0",
-        "zamkniety_w_szafce": "tak", "sposob_dostepu": "Klucz w recepcji", "dostepny_dla_niepelnosprawnych": "tak",
-        "dysponent": "", "telefon_kontaktowy": "", "data_weryfikacji": "2026-09-12", "teryt_terc": "", "teryt_simc": "",
+        "wewnatrz_budynku": "tak", "pietro": "0", "sposob_dostepu": "Klucz w recepcji", "dysponent": "", "telefon_kontaktowy": "", "data_weryfikacji": "2026-09-12", "teryt_terc": "", "teryt_simc": "",
         "producent": "", "model": "", "data_przegladu": "", "waznosc_elektrod": "", "waznosc_baterii": "", "zdjecie_url": "",
     },
 ]
@@ -72,8 +70,8 @@ class Command(BaseCommand):
         ws.append([meta["description"]])
         ws.append([meta.get("x-location-rule", "")])
         ws.append([])
-        header = ["Lp.", "Nazwa kolumny", "Opis pola", "Grupa", "Obowiązkowość", "Typ", "Format / dozwolone wartości",
-                  "Przykład", "Opis szczegółowy", "Nazwy kolumn rozpoznawane automatycznie"]
+        header = ["Lp.", "Nazwa kolumny", "Opis pola", "Grupa", "Obowiązkowość", "Podnosi ocenę jakości", "Typ",
+                  "Format / dozwolone wartości", "Przykład", "Opis szczegółowy", "Nazwy kolumn rozpoznawane automatycznie"]
         ws.append(header)
         header_row = ws.max_row
         for idx, f in enumerate(schema.fields(), start=1):
@@ -92,13 +90,14 @@ class Command(BaseCommand):
                 allowed = "tak / nie"
             ws.append([
                 idx, f["name"], f.get("title", ""), f.get("x-group", ""), REQUIRED_LABELS.get(f.get("x-required"), ""),
+                "tak" if (f.get("x-quality") or f.get("x-required") == "recommended") else "",
                 TYPE_LABELS.get(f.get("type"), f.get("type")), allowed, f.get("example", ""), f.get("description", ""),
                 ", ".join(f.get("x-synonyms", [])),
             ])
         for cell in ws[header_row]:
             cell.fill, cell.font = HEADER_FILL, HEADER_FONT
             cell.alignment = Alignment(wrap_text=True, vertical="center")
-        widths = [5, 30, 34, 16, 22, 16, 34, 22, 70, 50]
+        widths = [5, 30, 34, 16, 26, 12, 16, 34, 22, 70, 50]
         for i, w in enumerate(widths, start=1):
             ws.column_dimensions[get_column_letter(i)].width = w
         for row in ws.iter_rows(min_row=header_row + 1):

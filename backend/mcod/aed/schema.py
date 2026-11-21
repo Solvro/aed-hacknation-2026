@@ -36,7 +36,13 @@ def field(name: str) -> dict:
 
 
 def recommended_fields() -> list:
-    return [f["name"] for f in fields() if f.get("x-required") == "recommended"]
+    """Pola liczone do oceny jakości: identyfikator + pola oznaczone w zakresie jako podnoszące jakość."""
+    return [f["name"] for f in fields() if f.get("x-required") == "recommended" or f.get("x-quality")]
+
+
+def computed_fields() -> list:
+    """Pola wyliczane przez portal ze współrzędnych (TERYT) – dostawca nie musi ich podawać."""
+    return [f["name"] for f in fields() if f.get("x-required") == "computed"]
 
 
 def aux_columns() -> dict:

@@ -123,8 +123,14 @@
             </a>
           </li>
 
-          <!-- institution -->
-          <li class="vertical-list__item" *ngIf="institution">
+          <!-- institution: Ogólnopolski zbiór AED – dane współdzielone przez wielu dostawców -->
+          <li class="vertical-list__item" *ngIf="institution && isAedAggregate">
+            <span class="vertical-list__item-label"> {{ 'Institutions.Single' | translate }}: </span>
+            <button type="button" class="btn btn-link p-0 align-baseline" (click)="scrollToAedProviders()">
+              {{ 'Aed.SharedProvider' | translate: { count: aedProvidersCount } }}
+            </button>
+          </li>
+          <li class="vertical-list__item" *ngIf="institution && !isAedAggregate">
             <span class="vertical-list__item-label"> {{ 'Institutions.Single' | translate }}: </span>
             <a
               [routerLink]="['/!institution' | localize, institution.id + ',' + institution.attributes.slug]"
@@ -258,16 +264,12 @@
             [item]="dataset"></app-subscribe-button>
 
           <!-- feedback: w Ogólnopolskim zbiorze AED uwagi trafiają do dostawców (sekcja „Dane według dostawców”) -->
-          <button
-            *ngIf="isAedAggregate"
-            type="button"
-            class="btn btn-danger btn-sm ml-auto"
-            (click)="scrollToAedProviders()">
-            {{ 'Aed.ProvidersTable.ReportToProvider' | translate }}
-            <svg class="icon icon-chevrons-right" role="img" aria-hidden="true">
-              <use href="/assets/icomoon/sprite/sprite.svg#icon-chevrons-right"></use>
-            </svg>
-          </button>
+<p *ngIf="isAedAggregate" class="aed-feedback-info ml-auto" role="note">
+            {{ 'Aed.FeedbackInfoShort' | translate }}
+            <button type="button" class="btn btn-link btn-sm p-0 align-baseline" (click)="scrollToAedProviders()">
+              {{ 'Aed.GoToProviders' | translate }}
+            </button>
+          </p>
           <a
             *ngIf="!isAedAggregate"
             class="btn btn-danger btn-sm ml-auto"
@@ -285,7 +287,6 @@
 
         <!-- Ogólnopolski zbiór AED: dane według dostawców, zgłoszenia uwag do dostawców -->
         <ng-container *ngIf="isAedAggregate">
-          <p class="alert alert-info mt-3" role="note">{{ 'Aed.FeedbackInfo' | translate }}</p>
           <app-aed-providers-table></app-aed-providers-table>
         </ng-container>
 

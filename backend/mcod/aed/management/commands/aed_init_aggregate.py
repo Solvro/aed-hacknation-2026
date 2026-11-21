@@ -51,7 +51,7 @@ class Command(BaseCommand):
             user,
             cc_by=True,
             is_aed=False,
-            frequency="daily",
+            frequency="monthly",
             tags=("AED", "defibrylatory", "ratownictwo", "zdrowie"),
         )
         records = list(aggregate.active_records())

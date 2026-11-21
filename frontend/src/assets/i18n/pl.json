@@ -1656,7 +1656,6 @@
       "Loading": "Wczytywanie danych…",
       "Error": "Nie udało się pobrać danych. Spróbuj ponownie później.",
       "Devices": "{count} AED",
-      "Quality": "jakość danych {score}/100",
       "Updated": "aktualizacja",
       "ReportToProvider": "Zgłoś uwagi do dostawcy",
       "Caption": "Urządzenia AED udostępniane przez: {provider}",
@@ -1668,18 +1667,29 @@
         "Address": "Adres",
         "Municipality": "Gmina",
         "Access": "Dostęp",
-        "Hours": "Godziny dostępności",
         "Coordinates": "Współrzędne",
-        "Quality": "Jakość",
-        "Updated": "Aktualizacja"
+        "Updated": "Aktualizacja",
+        "Placement": "Umiejscowienie",
+        "Device": "Urządzenie"
       },
       "Access": {
         "publiczny": "publiczny",
         "klienci": "dla klientów",
         "pracownicy": "dla pracowników"
-      }
+      },
+      "Inside": "wewnątrz budynku",
+      "Outside": "na zewnątrz budynku",
+      "Floor": "piętro {floor}",
+      "Instruction": "Instrukcja dla dyspozytora",
+      "Inspection": "przegląd",
+      "Electrodes": "elektrody ważne do",
+      "Battery": "bateria ważna do",
+      "NoDeviceData": "brak danych od dostawcy"
     },
     "FeedbackInfo": "Ten zbiór łączy dane wielu dostawców. Uwagi do danych zgłaszaj bezpośrednio do instytucji odpowiedzialnej za dane – przyciskiem „Zgłoś uwagi do dostawcy” w sekcji „Dane według dostawców”.",
-    "GoToProviders": "Przejdź do listy dostawców"
+    "GoToProviders": "Przejdź do listy dostawców",
+    "FeedbackInfoShort": "Uwagi do danych zgłaszasz bezpośrednio do dostawcy – przyciskiem przy każdej instytucji w sekcji „Dane według dostawców”.",
+    "SharedProvider": "Współdzielone – {count, plural, =1 {1 dostawca} few {{count} dostawcy} other {{count} dostawców}}",
+    "AggregateMaintainer": "zbiór prowadzi:"
   }
 }

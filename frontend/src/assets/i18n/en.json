@@ -1653,7 +1653,6 @@
       "Loading": "Loading data…",
       "Error": "Could not load data. Please try again later.",
       "Devices": "{count} AED",
-      "Quality": "data quality {score}/100",
       "Updated": "updated",
       "ReportToProvider": "Send feedback to provider",
       "Caption": "AED devices published by: {provider}",
@@ -1665,18 +1664,29 @@
         "Address": "Address",
         "Municipality": "Municipality",
         "Access": "Access",
-        "Hours": "Availability hours",
         "Coordinates": "Coordinates",
-        "Quality": "Quality",
-        "Updated": "Updated"
+        "Updated": "Updated",
+        "Placement": "Placement",
+        "Device": "Device"
       },
       "Access": {
         "publiczny": "public",
         "klienci": "customers",
         "pracownicy": "staff only"
-      }
+      },
+      "Inside": "inside the building",
+      "Outside": "outside the building",
+      "Floor": "floor {floor}",
+      "Instruction": "Instructions for the dispatcher",
+      "Inspection": "inspection",
+      "Electrodes": "electrodes valid until",
+      "Battery": "battery valid until",
+      "NoDeviceData": "no data from the provider"
     },
     "FeedbackInfo": "This dataset combines data from many providers. Send feedback directly to the institution responsible for the data – use the “Send feedback to provider” button in the “Data by provider” section.",
-    "GoToProviders": "Go to the list of providers"
+    "GoToProviders": "Go to the list of providers",
+    "FeedbackInfoShort": "Send feedback directly to the data provider – using the button next to each institution in the “Data by provider” section.",
+    "SharedProvider": "Shared – {count, plural, =1 {1 provider} other {{count} providers}}",
+    "AggregateMaintainer": "dataset maintained by:"
   }
 }

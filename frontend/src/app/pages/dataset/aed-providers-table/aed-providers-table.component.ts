@@ -99,6 +99,25 @@ export class AedProvidersTableComponent implements OnInit {
     return [street, city].filter(Boolean).join(', ') || '—';
   }
 
+  hasDeviceData(record: AedRecord): boolean {
+    return ['producent', 'model', 'data_przegladu', 'waznosc_elektrod', 'waznosc_baterii'].some((key) => !!record[key]);
+  }
+
+  placement(record: AedRecord): string {
+    const inside = record['wewnatrz_budynku'];
+    if (inside === true || inside === 'tak') {
+      const floor = record['pietro'];
+      const base = this.translate.instant('Aed.ProvidersTable.Inside');
+      return floor !== null && floor !== undefined && floor !== ''
+        ? `${base}, ${this.translate.instant('Aed.ProvidersTable.Floor', { floor })}`
+        : base;
+    }
+    if (inside === false || inside === 'nie') {
+      return this.translate.instant('Aed.ProvidersTable.Outside');
+    }
+    return '—';
+  }
+
   access(record: AedRecord): string {
     const value = record['dostep'];
     return value ? this.translate.instant(`Aed.ProvidersTable.Access.${value}`) : '—';

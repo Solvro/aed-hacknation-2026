@@ -51,6 +51,7 @@ ISSUE_MESSAGES = {
     "GEOCODED_COORDS": "Współrzędne uzupełniono na podstawie adresu (geokodowanie GUGiK).",
     "GEOCODED_ADDRESS": "Adres uzupełniono na podstawie współrzędnych (geokodowanie odwrotne GUGiK).",
     "GEOCODE_FAILED": "Nie udało się zweryfikować adresu w usłudze GUGiK.",
+    "TERYT_RECOMPUTED": "Kod TERYT podany przez dostawcę różni się od wyliczonego ze współrzędnych – w agregacie użyto kodu wyliczonego.",
 }
 
 

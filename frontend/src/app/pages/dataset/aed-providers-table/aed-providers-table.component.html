@@ -34,8 +34,6 @@
             <span class="aed-group__name">{{ group.dostawca }}</span>
             <span class="aed-group__meta">
               {{ 'Aed.ProvidersTable.Devices' | translate: { count: group.aktywne } }}
-              <span aria-hidden="true">·</span>
-              {{ 'Aed.ProvidersTable.Quality' | translate: { score: (group.srednia_jakosc | number: '1.0-0') } }}
               <ng-container *ngIf="group.ostatnia_aktualizacja">
                 <span aria-hidden="true">·</span>
                 {{ 'Aed.ProvidersTable.Updated' | translate }} {{ group.ostatnia_aktualizacja | date: 'dd.MM.yyyy' }}
@@ -69,9 +67,9 @@
                 <th scope="col">{{ 'Aed.ProvidersTable.Col.Address' | translate }}</th>
                 <th scope="col">{{ 'Aed.ProvidersTable.Col.Municipality' | translate }}</th>
                 <th scope="col">{{ 'Aed.ProvidersTable.Col.Access' | translate }}</th>
-                <th scope="col">{{ 'Aed.ProvidersTable.Col.Hours' | translate }}</th>
+                <th scope="col">{{ 'Aed.ProvidersTable.Col.Placement' | translate }}</th>
                 <th scope="col">{{ 'Aed.ProvidersTable.Col.Coordinates' | translate }}</th>
-                <th scope="col">{{ 'Aed.ProvidersTable.Col.Quality' | translate }}</th>
+                <th scope="col">{{ 'Aed.ProvidersTable.Col.Device' | translate }}</th>
                 <th scope="col">{{ 'Aed.ProvidersTable.Col.Updated' | translate }}</th>
               </tr>
             </thead>
@@ -80,18 +78,40 @@
                 <th scope="row">
                   {{ record['nazwa_obiektu'] || ('Aed.ProvidersTable.NoName' | translate) }}
                   <span class="aed-table__uid">{{ record['aed_uid'] }}</span>
+                  <span class="aed-table__instruction" *ngIf="record['instrukcja_dla_dyspozytora']">
+                    <span class="visually-hidden">{{ 'Aed.ProvidersTable.Instruction' | translate }}:</span>
+                    {{ record['instrukcja_dla_dyspozytora'] }}
+                  </span>
                 </th>
                 <td>{{ address(record) }}</td>
                 <td>{{ record['gmina'] || '—' }}</td>
                 <td>{{ access(record) }}</td>
-                <td>{{ record['godziny_dostepnosci'] || '—' }}</td>
+                <td>{{ placement(record) }}</td>
                 <td class="aed-table__coords">
                   {{ record['szerokosc_geogr'] | number: '1.5-5' }}, {{ record['dlugosc_geogr'] | number: '1.5-5' }}
                   <span *ngIf="record['wspolrzedne_zrodlo'] === 'geokodowanie'" class="aed-table__badge">
                     {{ 'Aed.ProvidersTable.Geocoded' | translate }}
                   </span>
                 </td>
-                <td>{{ record['jakosc_danych'] }}/100</td>
+                <td class="aed-table__device">
+                  <ng-container *ngIf="hasDeviceData(record); else noDeviceData">
+                    <span *ngIf="record['producent'] || record['model']" class="aed-table__device-name">
+                      {{ [record['producent'], record['model']].join(' ').trim() }}
+                    </span>
+                    <span *ngIf="record['data_przegladu']" class="aed-table__device-line">
+                      {{ 'Aed.ProvidersTable.Inspection' | translate }}: {{ record['data_przegladu'] }}
+                    </span>
+                    <span *ngIf="record['waznosc_elektrod']" class="aed-table__device-line">
+                      {{ 'Aed.ProvidersTable.Electrodes' | translate }}: {{ record['waznosc_elektrod'] }}
+                    </span>
+                    <span *ngIf="record['waznosc_baterii']" class="aed-table__device-line">
+                      {{ 'Aed.ProvidersTable.Battery' | translate }}: {{ record['waznosc_baterii'] }}
+                    </span>
+                  </ng-container>
+                  <ng-template #noDeviceData>
+                    <span class="aed-table__muted">{{ 'Aed.ProvidersTable.NoDeviceData' | translate }}</span>
+                  </ng-template>
+                </td>
                 <td>{{ record['data_aktualizacji'] }}</td>
               </tr>
             </tbody>

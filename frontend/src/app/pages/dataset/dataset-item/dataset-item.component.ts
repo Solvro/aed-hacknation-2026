@@ -96,6 +96,11 @@ export class DatasetItemComponent implements OnInit, OnDestroy {
   isAedAggregate = false;
 
   /**
+   * Liczba dostawców danych w Ogólnopolskim zbiorze AED
+   */
+  aedProvidersCount = 0;
+
+  /**
    * Przewija do sekcji „Dane według dostawców” i ustawia na niej fokus (WCAG)
    */
   scrollToAedProviders() {
@@ -263,6 +268,7 @@ export class DatasetItemComponent implements OnInit, OnDestroy {
     this.selfApi = this.dataset.links.self;
     this.aedService.getAggregate().subscribe((aggregate) => {
       this.isAedAggregate = !!aggregate && aggregate.dataset_id === Number(this.dataset.id);
+      this.aedProvidersCount = aggregate?.providers_count ?? 0;
     });
     this.isExistsZipFileForDownload = !!this.dataset.attributes.archived_resources_files_url;
 
