@@ -1,0 +1,72 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+  <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a> <span class="divider">&raquo;</span></li>
+  <li><a href="{% url 'admin:aed_aedimportrun_changelist' %}">Raporty AED</a> <span class="divider">&raquo;</span></li>
+  <li class="active">#{{ run.pk }}</li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div id="content-main" class="aed-report">
+  <h2>Raport jakości danych AED #{{ run.pk }}</h2>
+
+  <table class="table table-bordered table-condensed" style="max-width:980px">
+    <tr><th style="width:260px">Dostawca</th><td>{{ run.organization }}</td></tr>
+    <tr><th>Zbiór</th><td>{% if run.dataset %}<a href="{% url 'admin:datasets_dataset_change' run.dataset.pk %}">{{ run.dataset.title }}</a>{% else %}—{% endif %}</td></tr>
+    <tr><th>Zasób źródłowy</th><td>{% if run.resource %}#{{ run.resource.pk }} {{ run.resource.title }} ({{ run.file_format|upper }}){% else %}—{% endif %}</td></tr>
+    <tr><th>Status</th><td><strong>{{ run.get_status_display }}</strong></td></tr>
+    <tr><th>Komunikat</th><td>{{ run.message }}</td></tr>
+    <tr><th>Wiersze</th><td>{{ run.rows_total }} w pliku · <strong>{{ run.rows_accepted }}</strong> przyjęte · <strong>{{ run.rows_rejected }}</strong> odrzucone</td></tr>
+    <tr><th>Zmiany w Ogólnopolskim zbiorze AED</th><td>+{{ run.added }} dodane · {{ run.updated }} zmienione · {{ run.withdrawn }} wycofane · {{ run.restored }} przywrócone · {{ run.unchanged }} bez zmian</td></tr>
+    <tr><th>Ocena jakości danych</th><td><strong>{{ run.quality_score }}/100</strong> (błędy krytyczne: {{ run.critical_count }}, ostrzeżenia: {{ run.warning_count }})</td></tr>
+    <tr><th>Przebieg</th><td>{{ run.started_at }} – {{ run.finished_at|default:"w toku" }}</td></tr>
+  </table>
+
+  <p>
+    <a class="btn" href="{% url 'admin:aed_aedimportrun_issues_csv' run.pk %}">Pobierz raport CSV</a>
+    {% if can_reprocess and run.dataset %}<a class="btn" href="{% url 'admin:aed_aedimportrun_reprocess' run.pk %}">Przetwórz ponownie</a>{% endif %}
+  </p>
+
+  <h3>Mapowanie kolumn na wzorcowy zakres danych</h3>
+  {% if mapping %}
+  <table class="table table-bordered table-condensed table-striped" style="max-width:980px">
+    <thead><tr><th>Pole wzorcowe</th><th>Kolumna w pliku dostawcy</th></tr></thead>
+    <tbody>{% for field, column in mapping %}<tr><td><code>{{ field }}</code></td><td>{{ column }}</td></tr>{% endfor %}</tbody>
+  </table>
+  {% else %}<p>Brak – plik nie został odczytany.</p>{% endif %}
+  {% if run.unmapped_columns %}<p><strong>Kolumny pominięte (brak odpowiednika we wzorcowym zakresie):</strong> {{ run.unmapped_columns|join:", " }}</p>{% endif %}
+  {% if missing_fields %}<p><strong>Pola wzorcowe nieobecne w pliku:</strong> {% for f in missing_fields %}<code>{{ f }}</code>{% if not forloop.last %}, {% endif %}{% endfor %}</p>{% endif %}
+  {% if run.skipped_resources %}
+  <p><strong>Zasoby pominięte:</strong></p>
+  <ul>{% for s in run.skipped_resources %}<li>#{{ s.id }} {{ s.title }} ({{ s.format|upper }}) – {{ s.powod }}</li>{% endfor %}</ul>
+  {% endif %}
+
+  <h3>Uwagi ogólne</h3>
+  {% if general_issues %}
+  <ul>{% for i in general_issues %}<li><strong>{% if i.severity == 'critical' %}Błąd krytyczny:{% elif i.severity == 'warning' %}Ostrzeżenie:{% else %}Informacja:{% endif %}</strong> {{ i.message }}</li>{% endfor %}</ul>
+  {% else %}<p>Brak.</p>{% endif %}
+
+  <h3>Problemy w wierszach ({{ row_issues_total }})</h3>
+  {% if row_issues %}
+  <table class="table table-bordered table-condensed table-striped">
+    <thead><tr><th>Wiersz</th><th>Pole</th><th>Waga</th><th>Kod</th><th>Komunikat</th><th>Wartość</th></tr></thead>
+    <tbody>
+    {% for i in row_issues %}
+      <tr class="{% if i.severity == 'critical' %}error{% elif i.severity == 'warning' %}warning{% endif %}">
+        <td>{{ i.row }}</td><td><code>{{ i.field }}</code></td>
+        <td>{% if i.severity == 'critical' %}błąd krytyczny{% elif i.severity == 'warning' %}ostrzeżenie{% else %}informacja{% endif %}</td>
+        <td>{{ i.code }}</td><td>{{ i.message }}</td><td>{{ i.value }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% if row_issues_total > row_issues|length %}<p>Pokazano pierwsze {{ row_issues|length }} problemów – pełna lista w raporcie CSV.</p>{% endif %}
+  {% else %}<p>Brak problemów w wierszach.</p>{% endif %}
+
+  <p style="margin-top:24px;color:#57606a">Błędy krytyczne blokują włączenie wiersza do Ogólnopolskiego zbioru AED. Ostrzeżenia obniżają ocenę
+  jakości. Wzorcowy zakres danych: plik <code>aed_wzorcowy_zakres.xlsx</code>.</p>
+</div>
+{% endblock %}

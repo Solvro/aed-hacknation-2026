@@ -1,0 +1,305 @@
+{
+  "name": "aed-wzorcowy-zakres",
+  "title": "Wzorcowy zakres danych o defibrylatorach AED",
+  "version": "1.0.0",
+  "description": "Wzorcowy zakres danych o automatycznych defibrylatorach zewnętrznych (AED) do udostępniania w portalu dane.gov.pl. Obowiązkowe są współrzędne geograficzne (WGS84) LUB pełny adres (miejscowość i numer budynku). Pozostałe pola są zalecane lub opcjonalne i podnoszą ocenę jakości danych.",
+  "x-location-rule": "Obowiązkowe: (szerokosc_geogr ORAZ dlugosc_geogr) LUB (miejscowosc ORAZ nr_budynku). Jeżeli podano oba, portal sprawdza ich zgodność.",
+  "fields": [
+    {
+      "name": "id_aed",
+      "title": "Identyfikator AED u dostawcy",
+      "type": "string",
+      "description": "Stały, unikalny w obrębie zbioru identyfikator urządzenia nadany przez dostawcę. Nie zmienia się przy aktualizacjach – na jego podstawie portal rozpoznaje zmiany.",
+      "example": "AED-0001",
+      "x-group": "identyfikacja",
+      "x-required": "recommended",
+      "x-synonyms": ["id_aed", "aed_id", "id", "numer_id", "nr_id", "identyfikator", "kod_aed", "numer_aed", "id_urzadzenia"]
+    },
+    {
+      "name": "szerokosc_geogr",
+      "title": "Szerokość geograficzna",
+      "type": "number",
+      "description": "Szerokość geograficzna w układzie WGS84 (EPSG:4326), stopnie dziesiętne, separator dziesiętny – kropka.",
+      "example": "50.061947",
+      "x-group": "lokalizacja",
+      "x-required": "alt-location",
+      "constraints": {"minimum": 49.0, "maximum": 54.9},
+      "x-synonyms": ["szerokosc_geogr", "szerokosc_geograficzna", "szerokosc", "lat", "latitude", "y", "wsp_y", "wspolrzedna_y", "geo_lat"]
+    },
+    {
+      "name": "dlugosc_geogr",
+      "title": "Długość geograficzna",
+      "type": "number",
+      "description": "Długość geograficzna w układzie WGS84 (EPSG:4326), stopnie dziesiętne, separator dziesiętny – kropka.",
+      "example": "19.936856",
+      "x-group": "lokalizacja",
+      "x-required": "alt-location",
+      "constraints": {"minimum": 14.1, "maximum": 24.2},
+      "x-synonyms": ["dlugosc_geogr", "dlugosc_geograficzna", "dlugosc", "lon", "lng", "long", "longitude", "x", "wsp_x", "wspolrzedna_x", "geo_lon"]
+    },
+    {
+      "name": "miejscowosc",
+      "title": "Miejscowość",
+      "type": "string",
+      "description": "Nazwa miejscowości zgodna z rejestrem TERYT.",
+      "example": "Kraków",
+      "x-group": "lokalizacja",
+      "x-required": "alt-location",
+      "x-synonyms": ["miejscowosc", "miasto", "city", "town", "locality", "nazwa_miejscowosci"]
+    },
+    {
+      "name": "ulica",
+      "title": "Ulica",
+      "type": "string",
+      "description": "Nazwa ulicy bez przedrostka (np. „Floriańska”, nie „ul. Floriańska”). Puste dla miejscowości bez ulic.",
+      "example": "Floriańska",
+      "x-group": "lokalizacja",
+      "x-required": "alt-location",
+      "x-synonyms": ["ulica", "nazwa_ulicy", "street", "ul", "ulica_nazwa"]
+    },
+    {
+      "name": "nr_budynku",
+      "title": "Numer budynku",
+      "type": "string",
+      "description": "Numer porządkowy budynku (bez numeru lokalu).",
+      "example": "12A",
+      "x-group": "lokalizacja",
+      "x-required": "alt-location",
+      "x-synonyms": ["nr_budynku", "numer_budynku", "nr_domu", "numer_domu", "home_number", "house_number", "nr_porzadkowy"]
+    },
+    {
+      "name": "kod_pocztowy",
+      "title": "Kod pocztowy",
+      "type": "string",
+      "description": "Kod pocztowy w formacie NN-NNN.",
+      "example": "31-019",
+      "x-group": "lokalizacja",
+      "x-required": "recommended",
+      "constraints": {"pattern": "^[0-9]{2}-[0-9]{3}$"},
+      "x-synonyms": ["kod_pocztowy", "postcode", "postal_code", "zip", "kod_poczt"]
+    },
+    {
+      "name": "nazwa_obiektu",
+      "title": "Nazwa obiektu",
+      "type": "string",
+      "description": "Nazwa budynku lub miejsca, w którym znajduje się AED – ułatwia odnalezienie urządzenia.",
+      "example": "Urząd Miasta – budynek A",
+      "x-group": "lokalizacja",
+      "x-required": "recommended",
+      "x-synonyms": ["nazwa_obiektu", "obiekt", "nazwa_miejsca", "nazwa", "name", "lokalizacja", "miejsce"]
+    },
+    {
+      "name": "opis_lokalizacji",
+      "title": "Opis lokalizacji",
+      "type": "string",
+      "description": "Gdzie dokładnie znajduje się urządzenie (np. „hol główny, przy recepcji”).",
+      "example": "Hol główny, przy recepcji, parter",
+      "x-group": "lokalizacja",
+      "x-required": "recommended",
+      "x-synonyms": ["opis_lokalizacji", "opis_miejsca", "umiejscowienie", "location_description", "lokalizacja_opis", "gdzie"]
+    },
+    {
+      "name": "dostep",
+      "title": "Dostęp",
+      "type": "string",
+      "description": "Kto może skorzystać z urządzenia.",
+      "example": "publiczny",
+      "x-group": "dostępność",
+      "x-required": "recommended",
+      "constraints": {"enum": ["publiczny", "klienci", "pracownicy"]},
+      "x-enum-labels": {"publiczny": "dostępny dla każdego", "klienci": "dostępny dla klientów / odwiedzających obiekt", "pracownicy": "dostępny tylko dla personelu"},
+      "x-synonyms": ["dostep", "dostepnosc", "access", "typ_dostepu", "rodzaj_dostepu"]
+    },
+    {
+      "name": "godziny_dostepnosci",
+      "title": "Godziny dostępności",
+      "type": "string",
+      "description": "Godziny, w których urządzenie jest dostępne, w formacie OpenStreetMap opening_hours (np. „24/7”, „Mo-Fr 08:00-16:00”).",
+      "example": "24/7",
+      "x-group": "dostępność",
+      "x-required": "recommended",
+      "x-synonyms": ["godziny_dostepnosci", "godziny", "godziny_otwarcia", "opening_hours", "dostepny_w_godzinach"]
+    },
+    {
+      "name": "wewnatrz_budynku",
+      "title": "Wewnątrz budynku",
+      "type": "boolean",
+      "description": "Czy urządzenie znajduje się wewnątrz budynku (tak/nie).",
+      "example": "tak",
+      "x-group": "dostępność",
+      "x-required": "recommended",
+      "x-synonyms": ["wewnatrz_budynku", "wewnatrz", "indoor", "w_budynku"]
+    },
+    {
+      "name": "pietro",
+      "title": "Piętro",
+      "type": "string",
+      "description": "Kondygnacja, na której znajduje się urządzenie (0 – parter).",
+      "example": "0",
+      "x-group": "dostępność",
+      "x-required": "optional",
+      "x-synonyms": ["pietro", "kondygnacja", "level", "floor"]
+    },
+    {
+      "name": "zamkniety_w_szafce",
+      "title": "Zamknięty w szafce",
+      "type": "boolean",
+      "description": "Czy urządzenie jest zamknięte w szafce wymagającej klucza lub kodu (tak/nie).",
+      "example": "nie",
+      "x-group": "dostępność",
+      "x-required": "optional",
+      "x-synonyms": ["zamkniety_w_szafce", "szafka_zamknieta", "zamkniety", "locked"]
+    },
+    {
+      "name": "sposob_dostepu",
+      "title": "Sposób dostępu",
+      "type": "string",
+      "description": "Jak uzyskać dostęp, jeżeli urządzenie jest zamknięte (np. „klucz w portierni”, „kod podaje dyspozytor 112”).",
+      "example": "Klucz w portierni",
+      "x-group": "dostępność",
+      "x-required": "optional",
+      "x-synonyms": ["sposob_dostepu", "jak_uzyskac_dostep", "access_instructions", "klucz"]
+    },
+    {
+      "name": "dostepny_dla_niepelnosprawnych",
+      "title": "Dostępny dla osób z niepełnosprawnościami",
+      "type": "boolean",
+      "description": "Czy do urządzenia można dotrzeć bez barier architektonicznych (tak/nie).",
+      "example": "tak",
+      "x-group": "dostępność",
+      "x-required": "optional",
+      "x-synonyms": ["dostepny_dla_niepelnosprawnych", "dostepnosc_dla_niepelnosprawnych", "wheelchair", "niepelnosprawni"]
+    },
+    {
+      "name": "dysponent",
+      "title": "Dysponent urządzenia",
+      "type": "string",
+      "description": "Podmiot odpowiedzialny za urządzenie (właściciel lub zarządca), jeżeli inny niż dostawca danych.",
+      "example": "Miejski Ośrodek Sportu i Rekreacji",
+      "x-group": "odpowiedzialność",
+      "x-required": "recommended",
+      "x-synonyms": ["dysponent", "wlasciciel", "operator", "wlasciciel_urzadzenia", "zarzadca", "podmiot"]
+    },
+    {
+      "name": "telefon_kontaktowy",
+      "title": "Telefon kontaktowy",
+      "type": "string",
+      "description": "Telefon do osoby odpowiedzialnej za urządzenie lub obiekt.",
+      "example": "+48 12 345 67 89",
+      "x-group": "odpowiedzialność",
+      "x-required": "recommended",
+      "x-synonyms": ["telefon_kontaktowy", "telefon", "tel", "phone", "nr_telefonu"]
+    },
+    {
+      "name": "data_weryfikacji",
+      "title": "Data weryfikacji",
+      "type": "date",
+      "description": "Data ostatniego sprawdzenia, że urządzenie jest na miejscu i działa (RRRR-MM-DD).",
+      "example": "2026-10-01",
+      "x-group": "odpowiedzialność",
+      "x-required": "recommended",
+      "x-synonyms": ["data_weryfikacji", "zweryfikowano", "verified", "last_verified", "data_sprawdzenia"]
+    },
+    {
+      "name": "teryt_terc",
+      "title": "Kod TERC gminy",
+      "type": "string",
+      "description": "Kod gminy z rejestru TERC (7 znaków z rodzajem gminy, np. 1261011, lub 6 znaków).",
+      "example": "1261011",
+      "x-group": "lokalizacja",
+      "x-required": "optional",
+      "x-synonyms": ["teryt_terc", "kod_terc", "terc", "teryt"]
+    },
+    {
+      "name": "teryt_simc",
+      "title": "Kod SIMC miejscowości",
+      "type": "string",
+      "description": "Identyfikator miejscowości z rejestru SIMC (7 cyfr).",
+      "example": "0950463",
+      "x-group": "lokalizacja",
+      "x-required": "optional",
+      "x-synonyms": ["teryt_simc", "kod_simc", "simc"]
+    },
+    {
+      "name": "producent",
+      "title": "Producent",
+      "type": "string",
+      "description": "Producent urządzenia.",
+      "example": "Philips",
+      "x-group": "urządzenie",
+      "x-required": "optional",
+      "x-synonyms": ["producent", "manufacturer", "marka"]
+    },
+    {
+      "name": "model",
+      "title": "Model",
+      "type": "string",
+      "description": "Model urządzenia.",
+      "example": "HeartStart FRx",
+      "x-group": "urządzenie",
+      "x-required": "optional",
+      "x-synonyms": ["model", "model_urzadzenia"]
+    },
+    {
+      "name": "data_przegladu",
+      "title": "Data przeglądu",
+      "type": "date",
+      "description": "Data ostatniego przeglądu technicznego (RRRR-MM-DD).",
+      "example": "2026-03-15",
+      "x-group": "urządzenie",
+      "x-required": "optional",
+      "x-synonyms": ["data_przegladu", "przeglad", "ostatni_przeglad"]
+    },
+    {
+      "name": "waznosc_elektrod",
+      "title": "Ważność elektrod",
+      "type": "date",
+      "description": "Data ważności elektrod (RRRR-MM-DD).",
+      "example": "2028-05-31",
+      "x-group": "urządzenie",
+      "x-required": "optional",
+      "x-synonyms": ["waznosc_elektrod", "data_waznosci_elektrod", "elektrody_waznosc"]
+    },
+    {
+      "name": "waznosc_baterii",
+      "title": "Ważność baterii",
+      "type": "date",
+      "description": "Data ważności baterii (RRRR-MM-DD).",
+      "example": "2029-12-31",
+      "x-group": "urządzenie",
+      "x-required": "optional",
+      "x-synonyms": ["waznosc_baterii", "data_waznosci_baterii", "bateria_waznosc"]
+    },
+    {
+      "name": "zdjecie_url",
+      "title": "Zdjęcie (URL)",
+      "type": "string",
+      "format": "uri",
+      "description": "Adres URL zdjęcia pokazującego umiejscowienie urządzenia.",
+      "example": "https://example.gov.pl/aed/0001.jpg",
+      "x-group": "lokalizacja",
+      "x-required": "optional",
+      "x-synonyms": ["zdjecie_url", "zdjecie", "foto", "photo", "image", "gallery", "url_zdjecia"]
+    }
+  ],
+  "x-aux-columns": {
+    "adres": ["adres", "address", "adres_pelny", "pelny_adres"],
+    "cecha_ulicy": ["cecha_ulicy", "typ_ulicy", "street_type"],
+    "nr_lokalu": ["nr_lokalu", "numer_lokalu", "flat_number"]
+  },
+  "x-aggregate-columns": [
+    {"name": "aed_uid", "title": "Identyfikator w ogólnopolskim zbiorze", "description": "PL-AED-{REGON dostawcy}-{id_aed}"},
+    {"name": "dostawca", "title": "Dostawca danych", "description": "Instytucja odpowiedzialna za rekord – do niej należy zgłaszać zmiany."},
+    {"name": "dostawca_regon", "title": "REGON dostawcy"},
+    {"name": "zbior_zrodlowy", "title": "Zbiór źródłowy (URL)"},
+    {"name": "zasob_zrodlowy", "title": "Zasób źródłowy (URL)"},
+    {"name": "data_aktualizacji", "title": "Data ostatniej zmiany rekordu"},
+    {"name": "wspolrzedne_zrodlo", "title": "Źródło współrzędnych", "description": "dostawca / geokodowanie (GUGiK)"},
+    {"name": "adres_zrodlo", "title": "Źródło adresu", "description": "dostawca / geokodowanie (GUGiK)"},
+    {"name": "teryt_gminy", "title": "TERC gminy (wyznaczony z położenia)"},
+    {"name": "gmina", "title": "Gmina"},
+    {"name": "powiat", "title": "Powiat"},
+    {"name": "wojewodztwo", "title": "Województwo"},
+    {"name": "jakosc_danych", "title": "Ocena jakości rekordu (0–100)"}
+  ]
+}

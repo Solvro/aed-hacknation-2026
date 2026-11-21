@@ -1,0 +1,6 @@
+# Lokalny obraz testów: bazuje na gotowym mcod-app:local (te same pakiety systemowe i zależności),
+# doinstalowuje tylko zależności deweloperskie z Pipfile.lock.
+FROM mcod-app:local
+WORKDIR /usr/src/mcod_backend
+RUN pipenv install --deploy --system --dev
+RUN mkdir -p /usr/src/mcod_backend/logs /usr/src/mcod_backend/data

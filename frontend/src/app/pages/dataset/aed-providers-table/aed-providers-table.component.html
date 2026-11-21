@@ -1,0 +1,109 @@
+<section class="aed-providers" aria-labelledby="aed-providers-heading">
+  <header class="aed-providers__header">
+    <h2 id="aed-providers-heading" class="heading heading--sm heading--separator">
+      {{ 'Aed.ProvidersTable.Title' | translate }}
+    </h2>
+    <p class="aed-providers__lead">{{ 'Aed.ProvidersTable.Lead' | translate }}</p>
+    <div class="aed-providers__actions" *ngIf="providers.length">
+      <span class="aed-providers__summary">
+        {{ 'Aed.ProvidersTable.Summary' | translate: { providers: providers.length, devices: totalActive } }}
+      </span>
+      <button type="button" class="btn btn-link btn-sm" (click)="expandAll(true)">
+        {{ 'Aed.ProvidersTable.ExpandAll' | translate }}
+      </button>
+      <button type="button" class="btn btn-link btn-sm" (click)="expandAll(false)">
+        {{ 'Aed.ProvidersTable.CollapseAll' | translate }}
+      </button>
+    </div>
+  </header>
+
+  <p *ngIf="loading" role="status" class="aed-providers__status">{{ 'Aed.ProvidersTable.Loading' | translate }}</p>
+  <p *ngIf="error" role="alert" class="alert alert-danger">{{ 'Aed.ProvidersTable.Error' | translate }}</p>
+
+  <ul class="aed-providers__list">
+    <li *ngFor="let group of providers; trackBy: trackById" class="aed-group" [class.aed-group--open]="group.expanded">
+      <div class="aed-group__header">
+        <h3 class="aed-group__title">
+          <button
+            type="button"
+            class="aed-group__toggle"
+            [attr.aria-expanded]="group.expanded"
+            [attr.aria-controls]="'aed-group-' + group.id"
+            (click)="toggle(group)">
+            <span class="aed-group__chevron" aria-hidden="true"></span>
+            <span class="aed-group__name">{{ group.dostawca }}</span>
+            <span class="aed-group__meta">
+              {{ 'Aed.ProvidersTable.Devices' | translate: { count: group.aktywne } }}
+              <span aria-hidden="true">·</span>
+              {{ 'Aed.ProvidersTable.Quality' | translate: { score: (group.srednia_jakosc | number: '1.0-0') } }}
+              <ng-container *ngIf="group.ostatnia_aktualizacja">
+                <span aria-hidden="true">·</span>
+                {{ 'Aed.ProvidersTable.Updated' | translate }} {{ group.ostatnia_aktualizacja | date: 'dd.MM.yyyy' }}
+              </ng-container>
+            </span>
+          </button>
+        </h3>
+        <a
+          class="btn btn-danger btn-sm aed-group__feedback"
+          [routerLink]="['/!dataset', '!feedback'] | localize"
+          [queryParams]="{ datasetUrl: feedbackUrl(group) }">
+          {{ 'Aed.ProvidersTable.ReportToProvider' | translate }}
+          <span class="visually-hidden">: {{ group.dostawca }}</span>
+          <svg class="icon icon-chevrons-right" role="img" aria-hidden="true">
+            <use href="/assets/icomoon/sprite/sprite.svg#icon-chevrons-right"></use>
+          </svg>
+        </a>
+      </div>
+
+      <div class="aed-group__body" [id]="'aed-group-' + group.id" [hidden]="!group.expanded">
+        <p *ngIf="group.loading" role="status">{{ 'Aed.ProvidersTable.Loading' | translate }}</p>
+        <p *ngIf="group.error" role="alert" class="alert alert-danger">{{ 'Aed.ProvidersTable.Error' | translate }}</p>
+        <div class="table-responsive" *ngIf="group.records">
+          <table class="table aed-table">
+            <caption class="visually-hidden">
+              {{ 'Aed.ProvidersTable.Caption' | translate: { provider: group.dostawca } }}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{{ 'Aed.ProvidersTable.Col.Object' | translate }}</th>
+                <th scope="col">{{ 'Aed.ProvidersTable.Col.Address' | translate }}</th>
+                <th scope="col">{{ 'Aed.ProvidersTable.Col.Municipality' | translate }}</th>
+                <th scope="col">{{ 'Aed.ProvidersTable.Col.Access' | translate }}</th>
+                <th scope="col">{{ 'Aed.ProvidersTable.Col.Hours' | translate }}</th>
+                <th scope="col">{{ 'Aed.ProvidersTable.Col.Coordinates' | translate }}</th>
+                <th scope="col">{{ 'Aed.ProvidersTable.Col.Quality' | translate }}</th>
+                <th scope="col">{{ 'Aed.ProvidersTable.Col.Updated' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let record of group.records; trackBy: trackByUid">
+                <th scope="row">
+                  {{ record['nazwa_obiektu'] || ('Aed.ProvidersTable.NoName' | translate) }}
+                  <span class="aed-table__uid">{{ record['aed_uid'] }}</span>
+                </th>
+                <td>{{ address(record) }}</td>
+                <td>{{ record['gmina'] || '—' }}</td>
+                <td>{{ access(record) }}</td>
+                <td>{{ record['godziny_dostepnosci'] || '—' }}</td>
+                <td class="aed-table__coords">
+                  {{ record['szerokosc_geogr'] | number: '1.5-5' }}, {{ record['dlugosc_geogr'] | number: '1.5-5' }}
+                  <span *ngIf="record['wspolrzedne_zrodlo'] === 'geokodowanie'" class="aed-table__badge">
+                    {{ 'Aed.ProvidersTable.Geocoded' | translate }}
+                  </span>
+                </td>
+                <td>{{ record['jakosc_danych'] }}/100</td>
+                <td>{{ record['data_aktualizacji'] }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="aed-group__source" *ngIf="group.zbior_zrodlowy_id">
+          {{ 'Aed.ProvidersTable.Source' | translate }}
+          <a [routerLink]="['/!dataset', group.zbior_zrodlowy_id] | localize">
+            {{ group.zbior_zrodlowy_tytul || group.dostawca }}
+          </a>
+        </p>
+      </div>
+    </li>
+  </ul>
+</section>

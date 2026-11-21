@@ -1,0 +1,41 @@
+<div class="aed-tab" style="max-width:960px">
+{% if not dataset %}
+  <p>Zapisz zbiór, aby zobaczyć raport AED.</p>
+{% elif is_aggregate %}
+  <h3>To jest Ogólnopolski zbiór AED (agregat)</h3>
+  <p>Zbiór jest budowany automatycznie z danych dostawców. Każdy wiersz wskazuje instytucję odpowiedzialną
+     za rekord (kolumny <code>dostawca</code>, <code>zbior_zrodlowy</code>). Rekordów: <strong>{{ info.records_count }}</strong>,
+     dostawców: <strong>{{ info.providers_count }}</strong>, ostatnia przebudowa: {{ info.last_built|default:"—" }}.</p>
+{% elif not dataset.is_aed_dataset and not last_run %}
+  <h3>Dołącz do Ogólnopolskiego zbioru AED</h3>
+  <p>Jeżeli ten zbiór zawiera dane o defibrylatorach AED, zaznacz w zakładce <em>Ogólne</em> pole
+     <strong>„zbiór danych o defibrylatorach AED”</strong>. Po zapisaniu portal zwaliduje zasoby względem
+     wzorcowego zakresu danych AED, pokaże raport jakości i włączy poprawne wiersze do ogólnopolskiego zbioru.
+     Zbiór pozostaje własnością Twojej instytucji.</p>
+{% else %}
+  <h3>Raport AED</h3>
+  {% if not dataset.is_aed_dataset %}<p><strong>Flaga AED jest wyłączona – rekordy zbioru zostały wycofane z agregatu.</strong></p>{% endif %}
+  <p>W agregacie: <strong>{{ active }}</strong> aktywnych urządzeń, {{ withdrawn }} wycofanych.</p>
+  {% if last_run %}
+  <table class="table table-bordered table-condensed">
+    <tr><th>Ostatni przebieg</th><td>{{ last_run.finished_at|default:last_run.started_at }} – <strong>{{ last_run.get_status_display }}</strong></td></tr>
+    <tr><th>Zasób źródłowy</th><td>{% if last_run.resource %}#{{ last_run.resource.id }} {{ last_run.resource.title }} ({{ last_run.file_format|upper }}){% else %}—{% endif %}</td></tr>
+    <tr><th>Wiersze</th><td>{{ last_run.rows_total }} w pliku · {{ last_run.rows_accepted }} przyjęte · {{ last_run.rows_rejected }} odrzucone</td></tr>
+    <tr><th>Zmiany w agregacie</th><td>+{{ last_run.added }} dodane · {{ last_run.updated }} zmienione · {{ last_run.withdrawn }} wycofane · {{ last_run.restored }} przywrócone</td></tr>
+    <tr><th>Ocena jakości</th><td><strong>{{ last_run.quality_score }}/100</strong> · błędy krytyczne: {{ last_run.critical_count }} · ostrzeżenia: {{ last_run.warning_count }}</td></tr>
+    <tr><th>Komunikat</th><td>{{ last_run.message }}</td></tr>
+  </table>
+  <p>
+    <a class="btn btn-primary" href="{% url 'admin:aed_aedimportrun_change' last_run.pk %}">Pełny raport (mapowanie kolumn, problemy w wierszach)</a>
+    <a class="btn" href="{% url 'admin:aed_aedimportrun_issues_csv' last_run.pk %}">Pobierz raport CSV</a>
+    <a class="btn" href="{% url 'admin:aed_aedimportrun_reprocess' last_run.pk %}">Przetwórz ponownie</a>
+  </p>
+  {% if runs|length > 1 %}
+  <h4>Poprzednie przebiegi</h4>
+  <ul>{% for r in runs %}<li><a href="{% url 'admin:aed_aedimportrun_change' r.pk %}">{{ r.started_at }}</a> – {{ r.get_status_display }} ({{ r.rows_accepted }}/{{ r.rows_total }})</li>{% endfor %}</ul>
+  {% endif %}
+  {% else %}
+  <p>Zbiór czeka na przetworzenie – raport pojawi się po walidacji zasobu.</p>
+  {% endif %}
+{% endif %}
+</div>

@@ -1,0 +1,29 @@
+# Override dla macOS / Docker Desktop (skopiuj jako docker-compose.override.yml):
+#   cp docker-compose.override.yml.example docker-compose.override.yml
+# Lokalny override dla macOS (Docker Desktop)
+# - host.docker.internal musi wskazywać na hosta
+# - Dockerfile.local: szybki mirror deb.debian.org zamiast snapshot.debian.org
+x-fast-build: &fast-build
+  image: mcod-app:local
+  build:
+    context: .
+    dockerfile: docker/app/Dockerfile.local
+    tags:
+      - "mcod-app:local"
+
+services:
+  mcod-nginx:
+    extra_hosts: !override
+      - "host.docker.internal:host-gateway"
+  mcod-local-admin: *fast-build
+  mcod-local-api: *fast-build
+  mcod-local-cms: *fast-build
+  mcod-local-celery: *fast-build
+  mcod-local-ws: *fast-build
+  mcod-local-tests:
+    image: mcod-app:local-tests
+    build:
+      context: .
+      dockerfile: docker/tests/Dockerfile.local
+      tags:
+        - "mcod-app:local-tests"
