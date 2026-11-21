@@ -93,7 +93,7 @@ const steps: AedStep[] = [
       "Jeśli jesteś sam, nie odchodź od poszkodowanego na poszukiwanie AED. Prowadź RKO i słuchaj dyspozytora.",
     ],
     sceneDescription:
-      "Dłonie ratownika uciskają środek klatki piersiowej. Obok unosi się telefon z wybranym numerem 112.",
+      "Ratowniczka klęczy przy poszkodowanym, ramiona ma wyprostowane i ustawione pionowo nad mostkiem. Uciska środek klatki piersiowej splecionymi dłońmi. Obok unosi się telefon z wybranym numerem 112.",
   },
   {
     id: "wlacz-aed",
@@ -124,7 +124,7 @@ const steps: AedStep[] = [
     aedPrompt: "Naklej elektrody zgodnie z rysunkiem.",
     task: { type: "place-pads", label: "Naklej obie elektrody" },
     sceneDescription:
-      "Odsłonięta klatka piersiowa z dwoma podświetlonymi miejscami na elektrody: pod prawym obojczykiem i na lewym boku pod pachą.",
+      "Odsłonięta klatka piersiowa poszkodowanego z dwoma podświetlonymi miejscami na elektrody: pod prawym obojczykiem, obok mostka, i na lewym boku w linii pachowej, poniżej pachy.",
   },
   {
     id: "analiza",
@@ -175,7 +175,7 @@ const steps: AedStep[] = [
     ],
     aedPrompt: "Rozpocznij resuscytację krążeniowo-oddechową.",
     sceneDescription:
-      "Dłonie ratownika ponownie uciskają klatkę piersiową. Licznik odlicza uciśnięcia od 1 do 30.",
+      "Ratowniczka ponownie uciska klatkę piersiową, między naklejonymi elektrodami. Licznik odlicza uciśnięcia od 1 do 30.",
   },
 ];
 

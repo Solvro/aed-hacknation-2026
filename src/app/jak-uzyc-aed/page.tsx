@@ -38,7 +38,7 @@ export default async function Page() {
       </h1>
       <p className="mt-2 max-w-2xl text-muted">
         Przejdź przez kolejne kroki. W scenie możesz kliknąć podświetlone
-        elementy, a widok obrócisz myszką.
+        elementy, a na komputerze obrócić widok myszką.
       </p>
       <div className="mt-6">
         <Suspense

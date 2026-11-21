@@ -42,3 +42,6 @@ next-env.d.ts
 
 # AED data cache
 /data/.cache/
+
+# kopiowany z node_modules (postinstall)
+/public/vendor/

@@ -4,9 +4,7 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Html, RoundedBox } from "@react-three/drei";
 import type { Group, Mesh, MeshBasicMaterial } from "three";
-import { HEAD_PIVOT } from "./config";
-
-const HEAD_CENTER: [number, number, number] = [HEAD_PIVOT[0] + 0.13, HEAD_PIVOT[1], 0];
+import type { Vec3 } from "./config";
 
 /*
  * Uwaga: komponenty z drei <Html> muszą pozostać zamontowane (React 19 + drei:
@@ -14,7 +12,7 @@ const HEAD_CENTER: [number, number, number] = [HEAD_PIVOT[0] + 0.13, HEAD_PIVOT[
  */
 
 /** Rozchodzące się fale: „Czy wszystko w porządku?” */
-export function SoundWaves({ active, reducedMotion }: { active: boolean; reducedMotion: boolean }) {
+export function SoundWaves({ active, head, reducedMotion }: { active: boolean; head: Vec3; reducedMotion: boolean }) {
   const rings = useRef<(Mesh | null)[]>([]);
   useFrame(({ clock }) => {
     if (!active) return;
@@ -27,23 +25,23 @@ export function SoundWaves({ active, reducedMotion }: { active: boolean; reduced
     });
   });
   return (
-    <group position={[HEAD_CENTER[0], 0.01, 0]} visible={active}>
+    <group position={[head[0], 0.01, head[2]]} visible={active}>
       {[0, 1, 2].map((i) => (
         <mesh key={i} ref={(m) => { rings.current[i] = m; }} rotation={[-Math.PI / 2, 0, 0]}>
           <ringGeometry args={[0.92, 1, 64]} />
           <meshBasicMaterial color="#087a40" transparent depthWrite={false} />
         </mesh>
       ))}
-      <Html position={[0.05, 0.45, 0]} center zIndexRange={[20, 0]}>
+      <Html position={[-0.3, 0.42, 0]} center zIndexRange={[20, 0]}>
         <div aria-hidden="true" className="scene-bubble" hidden={!active}>„Czy wszystko w porządku?”</div>
       </Html>
     </group>
   );
 }
 
-export function BreathCheck({ active }: { active: boolean }) {
+export function BreathCheck({ active, head }: { active: boolean; head: Vec3 }) {
   return (
-    <Html position={[HEAD_CENTER[0] + 0.02, 0.36, 0]} center zIndexRange={[20, 0]}>
+    <Html position={[head[0] + 0.05, head[1] + 0.3, head[2]]} center zIndexRange={[20, 0]}>
       <div aria-hidden="true" className="scene-bubble" hidden={!active}>Patrz · słuchaj · wyczuwaj (max 10 s)</div>
     </Html>
   );
@@ -57,7 +55,7 @@ export function Phone112({ active, reducedMotion }: { active: boolean; reducedMo
     ref.current.position.y = 0.42 + Math.sin(clock.getElapsedTime() * 2) * 0.015;
   });
   return (
-    <group ref={ref} position={[0.8, 0.42, -0.18]} rotation={[-0.2, -0.3, 0]} visible={active}>
+    <group ref={ref} position={[1.08, 0.42, 0.05]} rotation={[-0.2, -0.6, 0]} visible={active}>
       <RoundedBox args={[0.075, 0.15, 0.01]} radius={0.008}>
         <meshStandardMaterial color="#1b1f22" roughness={0.4} />
       </RoundedBox>

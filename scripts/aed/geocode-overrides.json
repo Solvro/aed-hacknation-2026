@@ -1,0 +1,60 @@
+{
+  "_info": "Ręczne poprawki geokodowania, sprawdzane PRZED geokoderem. Klucz dopasowania: city + address (dokładnie jak w źródle, bez względu na wielkość liter i spacje). Pola: lat/lon/accuracy/note albo skip (powód pominięcia).",
+  "overrides": [
+    {
+      "city": "Toruń",
+      "address": "ul. Kard. S. Wyszyńskiego1/5, 87-100 Toruń",
+      "lat": 53.0251021,
+      "lon": 18.6828539,
+      "accuracy": 0.9,
+      "note": "SP nr 18, ul. Kardynała Stefana Wyszyńskiego 1/5 — budynek szkoły wg OSM (brak adresu 1/5 w PRG)"
+    },
+    {
+      "city": "Gdańsk",
+      "address": "ul.3-go Maja",
+      "lat": 54.3569739,
+      "lon": 18.6434334,
+      "accuracy": 0.6,
+      "note": "„przy dworcu PKS” — Dworzec PKS, ul. 3 Maja wg OSM; postument obok dworca, dokładne miejsce niepotwierdzone"
+    },
+    {
+      "city": "Kraków",
+      "address": "Plac Imbramowski 179, 31-212 Kraków",
+      "lat": 50.0879496,
+      "lon": 19.9508249,
+      "accuracy": 0.6,
+      "note": "plac targowy Imbramowski (OSM); adresu 179 brak w PRG — AED w pomieszczeniu obsługi placu"
+    },
+    {
+      "city": "Chełm",
+      "address": "al. Marsz. J. Piłsudskiego",
+      "lat": 51.1377191,
+      "lon": 23.4949584,
+      "accuracy": 0.8,
+      "note": "Targowisko Piłsudskiego (OSM, amenity=marketplace) — budynek na targowisku"
+    },
+    {
+      "city": "Chełm",
+      "address": "ul. Lwowskiej",
+      "lat": 51.1269692,
+      "lon": 23.4739651,
+      "accuracy": 0.4,
+      "note": "targowisko na os. XXX-lecia przy ul. Lwowskiej — brak targowiska w OSM, użyto środka osiedla (do weryfikacji)"
+    },
+    {
+      "city": "Gdańsk",
+      "address": "Ochotnicza Straż Pożarna Sobieszewo",
+      "skip": "AED w pojeździe OSP (mobilny); stacjonarny AED OSP Sobieszewo jest osobną pozycją: ul. Turystyczna 28"
+    },
+    {
+      "city": "Gdańsk",
+      "address": "Centrala Ruchu",
+      "skip": "AED w pojazdach (mobilne, 4 szt.) — brak stałej lokalizacji"
+    },
+    {
+      "city": "Gdańsk",
+      "address": "Żaglowiec STS Generał Zaruski",
+      "skip": "AED na jednostce pływającej (mobilny)"
+    }
+  ]
+}

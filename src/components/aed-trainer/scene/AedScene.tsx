@@ -1,16 +1,17 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
 import { CameraControls, ContactShadows } from "@react-three/drei";
 import type { Group, PointLight } from "three";
 import gsap from "gsap";
 import type { StepId } from "@/lib/aed-steps";
-import { CAMERA_PRESETS, COMPRESSION_POINT, getSceneState, type PadSide, type PadState } from "./config";
+import { CAMERA_PRESETS, getSceneState, type PadSide, type PadState } from "./config";
+import type { BodyAnchors } from "./humans/anchors";
 import { Victim } from "./Victim";
 import { AedDevice } from "./AedDevice";
 import { Pads } from "./Pads";
-import { RescuerHands } from "./RescuerHands";
+import { Rescuer } from "./Rescuer";
 import { BreathCheck, DangerZone, Phone112, SoundWaves } from "./Effects";
 
 export type AedSceneProps = {
@@ -50,6 +51,12 @@ function SceneContents({
   const s = getSceneState(stepId, shockCount > 0);
   const patientRef = useRef<Group>(null);
   const flashRef = useRef<PointLight>(null);
+  const [anchors, setAnchors] = useState<BodyAnchors | null>(null);
+  // Wspólny zegar RKO dla ratowniczki i ugięcia klatki piersiowej.
+  const cprStart = useRef(0);
+  useEffect(() => {
+    if (s.compress) cprStart.current = performance.now() / 1000;
+  }, [stepId, s.compress]);
   const placed: PadState = {
     right: padsPlaced.right || s.padsForcedOn,
     left: padsPlaced.left || s.padsForcedOn,
@@ -81,7 +88,7 @@ function SceneContents({
       <directionalLight position={[-2, 1.5, -1]} intensity={0.4} />
       <pointLight
         ref={flashRef}
-        position={[COMPRESSION_POINT[0], 0.5, 0.2]}
+        position={[anchors?.compression[0] ?? 0.3, 0.5, 0.2]}
         intensity={0}
         distance={2}
         color="#fff3c4"
@@ -96,18 +103,36 @@ function SceneContents({
       </mesh>
       <ContactShadows position={[0, 0.001, 0]} scale={4} resolution={512} blur={2.4} opacity={0.45} far={0.6} />
 
-      <group ref={patientRef}>
-        <Victim headTilt={s.headTilt} shirtOff={s.shirtOff} reducedMotion={reducedMotion} />
-        <Pads
-          placed={placed}
-          showTargets={s.padTargets}
-          showCables={s.cables}
-          reducedMotion={reducedMotion}
-          onPlace={onPlacePad}
-        />
-      </group>
-
-      <RescuerHands active={s.compress} reducedMotion={reducedMotion} />
+      <Suspense fallback={null}>
+        <group ref={patientRef}>
+          <Victim
+            headTilt={s.headTilt}
+            shirtOff={s.shirtOff}
+            compress={s.compress}
+            cprStart={cprStart}
+            reducedMotion={reducedMotion}
+            onReady={setAnchors}
+          />
+          {anchors && (
+            <Pads
+              targets={anchors.padTargets}
+              placed={placed}
+              showTargets={s.padTargets}
+              showCables={s.cables}
+              reducedMotion={reducedMotion}
+              onPlace={onPlacePad}
+            />
+          )}
+        </group>
+        {anchors && (
+          <Rescuer
+            active={s.compress}
+            anchors={anchors}
+            cprStart={cprStart}
+            reducedMotion={reducedMotion}
+          />
+        )}
+      </Suspense>
 
       <AedDevice
         lidOpen={s.lidOpen}
@@ -119,8 +144,12 @@ function SceneContents({
         onShock={onShock}
       />
 
-      <SoundWaves active={s.waves} reducedMotion={reducedMotion} />
-      <BreathCheck active={s.breathCheck} />
+      {anchors && (
+        <>
+          <SoundWaves active={s.waves} head={anchors.head} reducedMotion={reducedMotion} />
+          <BreathCheck active={s.breathCheck} head={anchors.head} />
+        </>
+      )}
       <Phone112 active={s.phone} reducedMotion={reducedMotion} />
       {s.dangerZone && <DangerZone reducedMotion={reducedMotion} />}
     </>

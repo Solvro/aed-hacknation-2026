@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { aedInstructionQuery } from "@/lib/queries";
@@ -8,6 +8,7 @@ import { STEP_IDS } from "@/lib/aed-steps";
 import { useMediaQuery, usePrefersReducedMotion, useWebGLSupport } from "@/hooks/useMediaQuery";
 import { useSpeech } from "@/hooks/useSpeech";
 import type { PadSide, PadState } from "./scene/config";
+import { getCprPhase } from "./cpr";
 
 const AedScene = dynamic(() => import("./scene/AedScene"), {
   ssr: false,
@@ -88,7 +89,7 @@ export function AedTrainer() {
         <div
           role="img"
           aria-label={`Ilustracja kroku ${step.number}: ${step.sceneDescription}`}
-          className="scene-bg relative h-[46vh] min-h-[300px] overflow-hidden rounded-2xl border border-border lg:h-[620px]"
+          className="scene-bg sticky top-0 z-10 h-[44vh] min-h-[280px] overflow-hidden rounded-2xl border border-border shadow-sm lg:relative lg:h-[620px] lg:shadow-none"
         >
           {canRender3d ? (
             <AedScene
@@ -108,6 +109,9 @@ export function AedTrainer() {
                   ? "Ładowanie sceny 3D…"
                   : "Widok 3D jest wyłączony. Instrukcja tekstowa obok jest kompletna."}
             </SceneMessage>
+          )}
+          {canRender3d && (step.id === "wezwij-pomoc" || step.id === "rko") && (
+            <CprCounter key={step.id} reducedMotion={reducedMotion} />
           )}
           <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-surface/90 px-3 py-1 text-sm font-semibold shadow-sm">
             Krok {step.number} z {steps.length}
@@ -257,6 +261,39 @@ export function AedTrainer() {
         {data.source} Treść ma charakter edukacyjny i nie zastępuje szkolenia z pierwszej pomocy.
       </p>
     </section>
+  );
+}
+
+/** Licznik uciśnięć zsynchronizowany z animacją dłoni (ten sam zegar co w scenie). */
+function CprCounter({ reducedMotion }: { reducedMotion: boolean }) {
+  const valueRef = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    const el = valueRef.current;
+    if (!el) return;
+    if (reducedMotion) {
+      el.textContent = "30 : 2";
+      return;
+    }
+    const start = performance.now() / 1000;
+    let raf = 0;
+    let last = "";
+    const tick = () => {
+      const p = getCprPhase(performance.now() / 1000 - start);
+      const label = p.kind === "compress" ? `${p.count} / 30` : "2 oddechy";
+      if (label !== last) el.textContent = last = label;
+      raf = requestAnimationFrame(tick);
+    };
+    tick();
+    return () => cancelAnimationFrame(raf);
+  }, [reducedMotion]);
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute right-3 top-3 min-w-28 rounded-xl bg-surface/95 px-3 py-2 text-center shadow-sm"
+    >
+      <span className="block text-[11px] font-semibold uppercase tracking-wide text-muted">Uciśnięcia</span>
+      <span ref={valueRef} className="block text-xl font-bold tabular-nums" />
+    </div>
   );
 }
 

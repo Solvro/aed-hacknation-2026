@@ -1,0 +1,355 @@
+{
+  "at": "2026-11-21T12:34:35.902Z",
+  "http": {
+    "requests": 17,
+    "cacheHits": 457,
+    "notModified": 5,
+    "retries": 0,
+    "bytes": 299280
+  },
+  "sources": [
+    {
+      "source": "openaedmap",
+      "count": 18297,
+      "seconds": 0.184,
+      "fetchedAt": "2026-11-21T12:34:31.750Z",
+      "meta": {
+        "title": "OpenAEDMap (OpenStreetMap Polska)",
+        "url": "https://openaedmap.org/api/v1/countries/PL.geojson",
+        "fallbackUrl": "https://overpass-api.de/api/interpreter",
+        "format": "GeoJSON",
+        "coords": "natywne WGS84",
+        "license": "ODbL — © OpenStreetMap contributors",
+        "attribution": "© OpenStreetMap contributors",
+        "licenseUrl": "https://www.openstreetmap.org/copyright",
+        "refresh": "co godzinę (cache Cloudflare); OSM aktualizowany na bieżąco"
+      }
+    },
+    {
+      "source": "dane.gov.pl",
+      "count": 74,
+      "seconds": 4.335,
+      "fetchedAt": "2026-11-21T12:34:35.901Z",
+      "subSources": [
+        {
+          "title": "Defibrylatory zlokalizowane na terenie Miasta Marki",
+          "id": "4955",
+          "page": "https://dane.gov.pl/pl/dataset/4955",
+          "url": "https://api.dane.gov.pl/media/resources/20250710/Defibrylator_GminaMiastoMarki_1.csv",
+          "format": "csv",
+          "modified": "2025-07-10T12:13:16Z",
+          "count": 8
+        },
+        {
+          "title": "Defibrylatory zlokalizowane w Mieście Krosno",
+          "id": "3624",
+          "page": "https://dane.gov.pl/pl/dataset/3624",
+          "url": "https://api.dane.gov.pl/media/resources/20240219/Defibrylator_jAmxQcp.csv",
+          "format": "csv",
+          "modified": "2024-02-19T17:32:25Z",
+          "count": 21
+        },
+        {
+          "title": "Lokalizacja defibrylatorów (AED)",
+          "id": "39512",
+          "skipped": "brak CSV/GeoJSON/JSON albo źródło obsługiwane osobno"
+        },
+        {
+          "title": "Lokalizacje AED – Automatycznych Defibrylatorów Zewnętrznych w Przemyślu",
+          "id": "4581",
+          "page": "https://dane.gov.pl/pl/dataset/4581",
+          "url": "https://api.dane.gov.pl/media/resources/20241106/1730818801_b50R6UVxPgoVdBbq.geojson",
+          "format": "geojson",
+          "modified": "2024-11-06T06:45:11Z",
+          "count": 21
+        },
+        {
+          "title": "Wykaz defibrylatorów AED wraz z ich lokalizacją w Legionowie.",
+          "id": "40593/2625221",
+          "page": "https://dane.gov.pl/pl/dataset/40593",
+          "url": "https://api.dane.gov.pl/media/resources/20260914/aed.csv",
+          "format": "csv",
+          "modified": "2026-09-14T13:23:23Z",
+          "count": 24
+        }
+      ],
+      "meta": {
+        "title": "Portal otwartych danych dane.gov.pl — zbiory gmin",
+        "url": "https://api.dane.gov.pl/1.4/search?q=<fraza>",
+        "format": "CSV / GeoJSON / JSON (wybierany najlepszy dostępny format zbioru)",
+        "coords": "natywne (naprawiane zamienione lat/lon)",
+        "license": "zgodnie z warunkami każdego zbioru (zwykle bez ograniczeń)",
+        "attribution": "dane.gov.pl + nazwa gminy",
+        "refresh": "zależnie od gminy; wykrywanie nowych zbiorów przy każdym uruchomieniu"
+      }
+    },
+    {
+      "source": "um.warszawa.pl",
+      "count": 0,
+      "seconds": 0.017,
+      "fetchedAt": "2026-11-21T12:34:31.583Z",
+      "skipped": "brak WARSAW_API_TOKEN",
+      "meta": {
+        "title": "API m.st. Warszawy — Lokalizacja defibrylatorów (AED)",
+        "url": "https://dane.um.warszawa.pl/api/action/get_scb_lokalizacja_defibrylatorow",
+        "docs": "https://dane.um.warszawa.pl/pl/catalogue/7bc32ffc-c2ac-4d32-83c9-b6f7a0b38de8",
+        "format": "JSON (POST, nagłówek Authorization: <token>)",
+        "coords": "natywne WGS84 ([[lon, lat]])",
+        "license": "CC BY — Stołeczne Centrum Bezpieczeństwa m.st. Warszawy",
+        "attribution": "Urząd m.st. Warszawy / Stołeczne Centrum Bezpieczeństwa",
+        "refresh": "codziennie",
+        "requires": "WARSAW_API_TOKEN (darmowy: https://dane.um.warszawa.pl/key-api)"
+      }
+    },
+    {
+      "source": "krakow.pl",
+      "count": 78,
+      "seconds": 0.06,
+      "fetchedAt": "2026-11-21T12:34:31.626Z",
+      "meta": {
+        "title": "Kraków — program „Krakowski IMPULS ŻYCIA AED”",
+        "url": "https://krakow.pl/instcbi/3992/2432/{0..N}",
+        "docs": "https://krakow.pl/3992,artykul,gdzie-znalezc-defibrylator-.html",
+        "format": "HTML (tabela paginowana od 0 + strony szczegółów)",
+        "coords": "BRAK — geokodowane z adresu (GUGiK UUG, fallback Nominatim)",
+        "license": "informacja publiczna (Urząd Miasta Krakowa)",
+        "attribution": "Urząd Miasta Krakowa",
+        "refresh": "ręcznie przez UMK (stan podawany na stronie)"
+      }
+    },
+    {
+      "source": "inpost-aed",
+      "count": 137,
+      "seconds": 0.028,
+      "fetchedAt": "2026-11-21T12:34:31.594Z",
+      "meta": {
+        "coords": "natywne WGS84",
+        "license": "brak deklaracji licencji — informacja publiczna wydawcy (do potwierdzenia przed publikacją)",
+        "attribution": "InPost",
+        "refresh": "zależnie od wydawcy",
+        "title": "InPost — AED w paczkomatach „Helpbox 365” (cała Polska)",
+        "docs": "https://inpost.pl/aed",
+        "url": "https://inpost.pl/aed-points",
+        "format": "GeoJSON"
+      }
+    },
+    {
+      "source": "lodz",
+      "count": 136,
+      "seconds": 0.028,
+      "fetchedAt": "2026-11-21T12:34:31.594Z",
+      "meta": {
+        "coords": "natywne WGS84",
+        "license": "brak deklaracji licencji — informacja publiczna wydawcy (do potwierdzenia przed publikacją)",
+        "attribution": "Łódź",
+        "refresh": "zależnie od wydawcy",
+        "title": "Łódź — mapa defibrylatorów AED (UMŁ, Google My Maps)",
+        "docs": "https://uml.lodz.pl/dla-mieszkancow/zdrowie/mapa-defibrylatorow-aed/",
+        "url": "https://www.google.com/maps/d/kml?mid=1FMKFbebKJPYqD4C87pXWPqNjEHuEswE&forcekml=1",
+        "format": "KML"
+      }
+    },
+    {
+      "source": "olsztyn",
+      "count": 43,
+      "seconds": 0.028,
+      "fetchedAt": "2026-11-21T12:34:31.594Z",
+      "meta": {
+        "coords": "natywne WGS84",
+        "license": "brak deklaracji licencji — informacja publiczna wydawcy (do potwierdzenia przed publikacją)",
+        "attribution": "Olsztyn",
+        "refresh": "zależnie od wydawcy",
+        "title": "Olsztyn — mapa AED (olsztyn.eu, Google My Maps)",
+        "docs": "https://olsztyn.eu",
+        "url": "https://www.google.com/maps/d/kml?mid=1J5zJj9kL49uq8799g5qNgfl21NoztwzK&forcekml=1",
+        "format": "KML"
+      }
+    },
+    {
+      "source": "koszalin",
+      "count": 35,
+      "seconds": 0.028,
+      "fetchedAt": "2026-11-21T12:34:31.594Z",
+      "meta": {
+        "coords": "natywne WGS84",
+        "license": "brak deklaracji licencji — informacja publiczna wydawcy (do potwierdzenia przed publikacją)",
+        "attribution": "Koszalin",
+        "refresh": "zależnie od wydawcy",
+        "title": "Koszalin — „Punkty Życia” (koszalin.pl, Google My Maps)",
+        "docs": "https://koszalin.pl",
+        "url": "https://www.google.com/maps/d/kml?mid=1AQwJAfeZsGGB7fhz0-yBSxab83DwyIw&forcekml=1",
+        "format": "KML"
+      }
+    },
+    {
+      "source": "gliwice-gama",
+      "count": 95,
+      "seconds": 0.027,
+      "fetchedAt": "2026-11-21T12:34:31.594Z",
+      "meta": {
+        "coords": "natywne WGS84",
+        "license": "brak deklaracji licencji — informacja publiczna wydawcy (do potwierdzenia przed publikacją)",
+        "attribution": "Gliwice",
+        "refresh": "zależnie od wydawcy",
+        "title": "Gliwice — aplikacja miejska GAMA (kategoria 90 = AED)",
+        "docs": "https://gliwice.eu/aktualnosci/bezpieczne-gliwice/aed-w-gliwicach-gdzie-sprawdzic-lokalizacje-i-jak-skorzystac-z",
+        "url": "https://gama.gliwice.eu/map/json",
+        "format": "JSON (filtr cat == 90)"
+      }
+    },
+    {
+      "source": "arcgis-krakow-2022",
+      "count": 150,
+      "seconds": 0.027,
+      "fetchedAt": "2026-11-21T12:34:31.594Z",
+      "meta": {
+        "coords": "natywne WGS84",
+        "license": "brak deklaracji licencji — informacja publiczna wydawcy (do potwierdzenia przed publikacją)",
+        "attribution": "Kraków",
+        "refresh": "zależnie od wydawcy",
+        "title": "Kraków — warstwa ArcGIS Online „AED_zestawy” (konto prywatne, 2022)",
+        "url": "https://services6.arcgis.com/w8Sm3ehkmwzR6bQc/arcgis/rest/services/AED_zestawy/FeatureServer/0/query?where=1%3D1&outFields=*&f=geojson",
+        "format": "GeoJSON (ArcGIS FeatureServer)"
+      }
+    },
+    {
+      "source": "arcgis-mikolow",
+      "count": 20,
+      "seconds": 0.027,
+      "fetchedAt": "2026-11-21T12:34:31.594Z",
+      "meta": {
+        "coords": "natywne WGS84",
+        "license": "brak deklaracji licencji — informacja publiczna wydawcy (do potwierdzenia przed publikacją)",
+        "attribution": "Mikołów i okolice",
+        "refresh": "zależnie od wydawcy",
+        "title": "Mikołów i okolice — warstwa ArcGIS Online „Defibrylatory_AED”",
+        "url": "https://services9.arcgis.com/E1ZsJFZqsk2tR9yK/arcgis/rest/services/Defibrylatory_AED/FeatureServer/0/query?where=1%3D1&outFields=*&f=geojson",
+        "format": "GeoJSON (ArcGIS FeatureServer)"
+      }
+    },
+    {
+      "source": "umap-jelenia-gora",
+      "count": 21,
+      "seconds": 0.027,
+      "fetchedAt": "2026-11-21T12:34:31.594Z",
+      "meta": {
+        "coords": "natywne WGS84",
+        "license": "WTFPL",
+        "attribution": "Jelenia Góra",
+        "refresh": "zależnie od wydawcy",
+        "title": "Jelenia Góra — uMap „Lokalizacja AED w Jeleniej Górze”",
+        "docs": "https://umap.openstreetmap.fr/pl/map/lokalizacja-aed-w-jeleniej-gorze_1253792",
+        "url": "https://umap.openstreetmap.fr/pl/datalayer/1253792/1a6f3fba-bb95-4dfd-8be3-8d01b5b9f22c/",
+        "format": "GeoJSON (uMap)"
+      }
+    },
+    {
+      "source": "umap-wejherowo",
+      "count": 18,
+      "seconds": 0.027,
+      "fetchedAt": "2026-11-21T12:34:31.594Z",
+      "meta": {
+        "coords": "natywne WGS84",
+        "license": "brak deklaracji licencji — informacja publiczna wydawcy (do potwierdzenia przed publikacją)",
+        "attribution": "Wejherowo",
+        "refresh": "zależnie od wydawcy",
+        "title": "Wejherowo — uMap „Interaktywna mapa AED Wejherowo”",
+        "docs": "https://umap.openstreetmap.fr/pl/map/interaktywna-mapa-aed-wejherowo_1469464",
+        "url": "https://umap.openstreetmap.fr/pl/datalayer/1469464/fd5ec717-3b9c-4931-b44f-3c1e98dfb0ec/",
+        "format": "GeoJSON (uMap)"
+      }
+    },
+    {
+      "source": "gdansk",
+      "count": 108,
+      "seconds": 0.059,
+      "fetchedAt": "2026-11-21T12:34:31.626Z",
+      "meta": {
+        "coords": "BRAK — geokodowane z adresu (GUGiK UUG, fallback Nominatim)",
+        "license": "brak deklaracji licencji — informacja publiczna urzędu (do potwierdzenia przed publikacją)",
+        "attribution": "Urząd Miasta Gdańsk",
+        "refresh": "ręcznie przez urząd",
+        "title": "Gdańsk — wykaz defibrylatorów (gdansk.pl, stan 25.02.2022)",
+        "url": "https://www.gdansk.pl/wiadomosci/Defibrylatory,a,216952",
+        "format": "HTML (tabela)"
+      }
+    },
+    {
+      "source": "torun",
+      "count": 46,
+      "seconds": 0.052,
+      "fetchedAt": "2026-11-21T12:34:31.619Z",
+      "meta": {
+        "coords": "BRAK — geokodowane z adresu (GUGiK UUG, fallback Nominatim)",
+        "license": "brak deklaracji licencji — informacja publiczna urzędu (do potwierdzenia przed publikacją)",
+        "attribution": "Urząd Miasta Toruń",
+        "refresh": "ręcznie przez urząd",
+        "title": "Toruń — wykaz miejskich defibrylatorów AED (torun.pl)",
+        "url": "https://torun.pl/pl/zdrowie/defibrylatory-aed-wykaz-lokalizacji",
+        "format": "HTML (lista <ol>)"
+      }
+    },
+    {
+      "source": "lublin",
+      "count": 47,
+      "seconds": 0.047,
+      "fetchedAt": "2026-11-21T12:34:31.614Z",
+      "meta": {
+        "coords": "BRAK — geokodowane z adresu (GUGiK UUG, fallback Nominatim)",
+        "license": "brak deklaracji licencji — informacja publiczna urzędu (do potwierdzenia przed publikacją)",
+        "attribution": "Urząd Miasta Lublin",
+        "refresh": "ręcznie przez urząd",
+        "title": "Lublin — wykaz defibrylatorów AED (lublin.eu, PDF)",
+        "url": "https://lublin.eu/mieszkancy/zdrowie/aktualnosci/aed-w-lublinie,748,1345,1.html",
+        "format": "PDF (link pobierany ze strony artykułu — nazwa pliku zawiera datę stanu)"
+      }
+    },
+    {
+      "source": "sopot",
+      "count": 0,
+      "seconds": 0.161,
+      "fetchedAt": "2026-11-21T12:30:44.163Z",
+      "meta": {
+        "coords": "BRAK — geokodowane z adresu (GUGiK UUG, fallback Nominatim)",
+        "license": "brak deklaracji licencji — informacja publiczna urzędu (do potwierdzenia przed publikacją)",
+        "attribution": "Urząd Miasta Sopotu",
+        "refresh": "ręcznie przez urząd",
+        "title": "Sopot — defibrylatory stacjonarne (sopot.pl, stan X.2021)",
+        "url": "https://www.sopot.pl/aktualnosc/9383/gdzie-w-sopocie-znajdziesz-defibrylator-aed",
+        "format": "HTML (akapity „• nazwa, adres / N szt., godziny, miejsce”)"
+      },
+      "error": "0 pozycji — strona zwróciła błąd albo zmieniła strukturę (poprzednie dane w data/raw zostają)",
+      "errorAt": "2026-11-21T12:34:35.902Z"
+    },
+    {
+      "source": "chelm",
+      "count": 10,
+      "seconds": 0.32,
+      "fetchedAt": "2026-11-21T12:34:31.887Z",
+      "meta": {
+        "coords": "BRAK — geokodowane z adresu (GUGiK UUG, fallback Nominatim)",
+        "license": "brak deklaracji licencji — informacja publiczna urzędu (do potwierdzenia przed publikacją)",
+        "attribution": "Urząd Miasta Chełm",
+        "refresh": "ręcznie przez urząd",
+        "title": "Chełm — defibrylatory AED w miejskiej przestrzeni publicznej (Budżet Obywatelski)",
+        "url": "https://samorzad.gov.pl/web/miasto-chelm/defibrylatory-aed-w-miejskiej-przestrzeni-publicznej",
+        "format": "HTML (lista „osiedle – nazwa, adres”)"
+      }
+    },
+    {
+      "source": "us-edu",
+      "count": 29,
+      "seconds": 0.044,
+      "fetchedAt": "2026-11-21T12:34:31.611Z",
+      "meta": {
+        "coords": "BRAK — geokodowane z adresu (GUGiK UUG, fallback Nominatim)",
+        "license": "brak deklaracji licencji — informacja publiczna urzędu (do potwierdzenia przed publikacją)",
+        "attribution": "Uniwersytet Śląski w Katowicach",
+        "refresh": "ręcznie przez urząd",
+        "title": "Uniwersytet Śląski — defibrylatory AED w budynkach uczelni",
+        "url": "https://us.edu.pl/bezpieczenstwo/defibrylatory-aed/",
+        "format": "HTML (akordeon miast, lista <li>)"
+      }
+    }
+  ]
+}

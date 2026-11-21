@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Logo } from "@/components/brand/Logo";
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -16,8 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Misja AED: dane na ratunek",
-    template: "%s · Misja AED",
+    default: "Minuta Życia — najbliższy AED i instrukcja użycia",
+    template: "%s · Minuta Życia",
   },
   description:
     "Otwarte dane o defibrylatorach AED w Polsce i interaktywna instrukcja użycia AED.",
@@ -45,29 +46,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         <header className="border-b border-border bg-surface">
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-            <Link
-              href="/"
-              className="flex items-center gap-2 font-semibold tracking-tight"
-            >
-              <span
-                aria-hidden="true"
-                className="grid size-8 place-items-center rounded-lg bg-brand text-on-brand"
-              >
-                <svg viewBox="0 0 24 24" className="size-5" fill="currentColor">
-                  <path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.1 5.3 3 1.7-1.9 3.2-3 5.3-3 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21Z" />
-                  <path
-                    d="M13 7.5 9.5 13h2.6l-1.1 4.5 3.9-6h-2.7l.8-4Z"
-                    className="fill-brand"
-                  />
-                </svg>
-              </span>
-              Misja AED
+            <Link href="/" className="-ml-1 flex items-center rounded-lg text-text" aria-label="Minuta Życia — strona główna">
+              <Logo className="h-10 w-auto sm:h-12" />
             </Link>
             <a
               href="tel:112"
               className="rounded-full bg-danger px-4 py-2 text-sm font-semibold text-on-danger hover:opacity-90"
             >
-              Nagły wypadek? Zadzwoń 112
+              <span className="hidden sm:inline">Nagły wypadek? </span>Zadzwoń 112
             </a>
           </div>
         </header>

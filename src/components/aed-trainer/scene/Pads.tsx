@@ -3,11 +3,10 @@
 import { useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { QuadraticBezierLine, RoundedBox } from "@react-three/drei";
-import { Euler, Quaternion, Vector3, type Group } from "three";
+import { Quaternion, Vector3, type Group } from "three";
 import gsap from "gsap";
 import {
   AED_CONNECTOR,
-  PAD_TARGETS,
   PAD_TRAY,
   type PadPose,
   type PadSide,
@@ -19,6 +18,7 @@ type BezierLineHandle = {
 };
 
 type Props = {
+  targets: Record<PadSide, PadPose>;
   placed: PadState;
   showTargets: boolean;
   showCables: boolean;
@@ -28,13 +28,14 @@ type Props = {
 
 const SIDES: PadSide[] = ["right", "left"];
 
-export function Pads({ placed, showTargets, showCables, reducedMotion, onPlace }: Props) {
+export function Pads({ targets, placed, showTargets, showCables, reducedMotion, onPlace }: Props) {
   return (
     <group>
       {SIDES.map((side) => (
         <Pad
           key={side}
           side={side}
+          target={targets[side]}
           placed={placed[side]}
           showTarget={showTargets && !placed[side]}
           showCable={showCables}
@@ -47,11 +48,12 @@ export function Pads({ placed, showTargets, showCables, reducedMotion, onPlace }
 }
 
 function poseQuat(p: PadPose) {
-  return new Quaternion().setFromEuler(new Euler(...p.rotation));
+  return new Quaternion(...p.quaternion);
 }
 
 function Pad({
   side,
+  target,
   placed,
   showTarget,
   showCable,
@@ -59,6 +61,7 @@ function Pad({
   onPlace,
 }: {
   side: PadSide;
+  target: PadPose;
   placed: boolean;
   showTarget: boolean;
   showCable: boolean;
@@ -72,7 +75,6 @@ function Pad({
     () => ({ start: new Vector3(...AED_CONNECTOR), end: new Vector3(), mid: new Vector3() }),
     [],
   );
-  const target = PAD_TARGETS[side];
   const tray = PAD_TRAY[side];
 
   // Lot elektrody po łuku: z AED na klatkę piersiową (lub z powrotem).
@@ -120,7 +122,7 @@ function Pad({
 
   return (
     <>
-      <group ref={padRef} position={tray.position} rotation={tray.rotation}>
+      <group ref={padRef} position={tray.position} quaternion={tray.quaternion}>
         <RoundedBox args={[0.12, 0.006, 0.085]} radius={0.0025} smoothness={2}>
           <meshStandardMaterial color="#f4f4f2" roughness={0.6} />
         </RoundedBox>
@@ -141,7 +143,7 @@ function Pad({
       )}
 
       {showTarget && (
-        <group position={target.position} rotation={target.rotation}>
+        <group position={target.position} quaternion={target.quaternion}>
           <group ref={targetRef}>
             <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.004, 0]}>
               <ringGeometry args={[0.05, 0.062, 40]} />

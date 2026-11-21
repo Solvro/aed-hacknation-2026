@@ -6,13 +6,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "aed:scrape": "node scripts/aed/scrape.mjs",
+    "aed:merge": "node scripts/aed/merge.mjs",
+    "aed": "node scripts/aed/scrape.mjs && node scripts/aed/merge.mjs && node scripts/aed/export-web.mjs",
+    "aed:web": "node scripts/aed/export-web.mjs",
+    "postinstall": "node scripts/copy-maplibre-worker.mjs",
+    "predev": "node scripts/copy-maplibre-worker.mjs",
+    "prebuild": "node scripts/copy-maplibre-worker.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",
     "@react-three/fiber": "^9.8.2",
     "@tanstack/react-query": "^5.108.2",
     "gsap": "^3.15.1",
+    "maplibre-gl": "^6.19.0",
     "next": "16.4.6",
     "react": "19.3.0",
     "react-dom": "19.3.0",

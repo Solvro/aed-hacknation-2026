@@ -1,0 +1,2117 @@
+{
+  "generatedAt": "2026-11-21T12:44:01.245Z",
+  "base": {
+    "source": "openaedmap",
+    "records": 18297,
+    "mobileExcluded": 2296,
+    "mobileSample": [
+      "node/1806319694: W samochodzie pożarniczym W samochodzie pożarniczym",
+      "node/3024202314: AED zlokalizowane w samochodzie OSP Kocierz Moszczanicki w samochodzie",
+      "node/3144781441: Ochotnicza Straż Pożarna w Lgocie Samochód ratowniczo-gaśniczy Samochó",
+      "node/3335936153: Na pojeździe bojowym OSP Na pojeździe bojowym OSP",
+      "node/4434128287: Samochód ratowniczo-gaśniczy. Samochód ratowniczo-gaśniczy.",
+      "node/5809585077: Samochód ratowniczo-gaśniczy 309[T]18 Samochód ratowniczo-gaśniczy 309",
+      "node/5809585078: Samochód ratowniczo-gaśniczy 319[T]14 Samochód ratowniczo-gaśniczy 319",
+      "node/5809585079: Samochód ratowniczo-gaśniczy 309[T]81 Samochód ratowniczo-gaśniczy 309",
+      "node/5809585080: Samochód ratowniczo-gaśniczy 319[T]04 Samochód ratowniczo-gaśniczy 319",
+      "node/6432675613: samochód ratowniczo-gaśniczy samochód ratowniczo-gaśniczy",
+      "node/6893295751: Samochód ratowniczo - gaśniczy OSP Samochód ratowniczo - gaśniczy OSP",
+      "node/7187081535: AED na wyposażeniu jednostki OSP Raduń AED na wyposażeniu jednostki OS",
+      "node/7187081540: Samochód ratowniczo-gaśniczy Samochód ratowniczo-gaśniczy",
+      "node/7187081541: Samochód ratowniczo-gaśniczy Samochód ratowniczo-gaśniczy",
+      "node/7187081542: Samochód ratowniczo-gaśniczy Samochód ratowniczo-gaśniczy"
+    ],
+    "osmDuplicatesMerged": 35,
+    "osmDuplicatesSample": [
+      {
+        "keep": "node/10586732905",
+        "drop": "node/10586733205",
+        "d": 3,
+        "text": "OSP Konstancin Jeziorna OSP Konstancin Jeziorna"
+      },
+      {
+        "keep": "node/11970516869",
+        "drop": "node/11970518169",
+        "d": 3,
+        "text": "Stokrotka Stokrotka"
+      },
+      {
+        "keep": "node/9489490211",
+        "drop": "node/11993616169",
+        "d": 0,
+        "text": ""
+      },
+      {
+        "keep": "node/12063039533",
+        "drop": "node/12063039534",
+        "d": 4,
+        "text": ""
+      },
+      {
+        "keep": "node/12083263369",
+        "drop": "node/12083263370",
+        "d": 0,
+        "text": "Biuro CSU Goodvalley  Biuro CSU Goodvalley "
+      },
+      {
+        "keep": "node/12083263369",
+        "drop": "node/12083263469",
+        "d": 0,
+        "text": "Biuro CSU Goodvalley  Biuro CSU Goodvalley "
+      },
+      {
+        "keep": "node/12083263369",
+        "drop": "node/12083294369",
+        "d": 1,
+        "text": "Biuro CSU Goodvalley  Biuro CSU Goodvalley "
+      },
+      {
+        "keep": "node/12110559802",
+        "drop": "node/12110574801",
+        "d": 3,
+        "text": "Wyganów 38 Wyganów 38"
+      },
+      {
+        "keep": "node/12433924801",
+        "drop": "node/12433928101",
+        "d": 3,
+        "text": "W biurze firmy Wojrat"
+      },
+      {
+        "keep": "node/12441462403",
+        "drop": "node/12441471801",
+        "d": 2,
+        "text": "Budynek OSP Równe  Budynek OSP Równe "
+      },
+      {
+        "keep": "node/12529012805",
+        "drop": "node/12529012806",
+        "d": 1,
+        "text": "AED AED"
+      },
+      {
+        "keep": "node/12529012805",
+        "drop": "node/12529033501",
+        "d": 1,
+        "text": "AED AED"
+      },
+      {
+        "keep": "node/12559594079",
+        "drop": "node/12559594080",
+        "d": 4,
+        "text": "na wyposażeniu JRG na wyposażeniu JRG"
+      },
+      {
+        "keep": "node/12602189024",
+        "drop": "node/12602189025",
+        "d": 5,
+        "text": "na wyposażeniu OSP na wyposażeniu OSP"
+      },
+      {
+        "keep": "node/12615840901",
+        "drop": "node/12615843901",
+        "d": 0,
+        "text": ""
+      }
+    ],
+    "count": 15966
+  },
+  "sources": {
+    "um.warszawa.pl": {
+      "records": 0,
+      "mobileExcluded": [],
+      "matched": 0,
+      "matchedByText": 0,
+      "added": 0,
+      "textMatches": [],
+      "matchDistance_m": null,
+      "addedSample": []
+    },
+    "dane.gov.pl": {
+      "records": 74,
+      "mobileExcluded": [],
+      "matched": 52,
+      "matchedByText": 1,
+      "added": 22,
+      "textMatches": [
+        {
+          "d": 51,
+          "text": 1,
+          "addr": 0,
+          "name": "Wojewódzki Szpital Podkarpacki w Krośnie",
+          "osm": "Wojewódzki Szpital Podkarpacki w Krośnie Wojewódzki Szpital Podkarpacki w Krośni"
+        }
+      ],
+      "matchDistance_m": {
+        "median": 13,
+        "p90": 32,
+        "max": 51
+      },
+      "addedSample": [
+        {
+          "id": "3624:2",
+          "name": "OSP Turaszówka",
+          "address": "ul. Rzeszowska, 38-400 Krosno",
+          "quality": "native"
+        },
+        {
+          "id": "3624:3",
+          "name": "OSP Białobrzegi",
+          "address": "ul. Mikołaja Kopernika 17, 38-400 Krosno",
+          "quality": "native"
+        },
+        {
+          "id": "3624:17",
+          "name": "OSP Suchodół",
+          "address": "ul. Grunwaldzka, 38-400 Krosno",
+          "quality": "native"
+        },
+        {
+          "id": "4955:2",
+          "name": "Szkoła Podstawowa nr 2",
+          "address": "ul. Szkolna 9, 05-270 Marki",
+          "quality": "native"
+        },
+        {
+          "id": "4955:3",
+          "name": "Szkoła Podstawowa nr 2",
+          "address": "ul. Pomnikowa 21, 05-270 Marki",
+          "quality": "native"
+        },
+        {
+          "id": "4955:5",
+          "name": "Zespół Szkół nr im. Jana Pawła II (liceum)",
+          "address": "Al.. Piłsudskiego 96, 05-270 Marki",
+          "quality": "native"
+        },
+        {
+          "id": "4955:6",
+          "name": "Szkoła Podstawowa nr 5",
+          "address": "ul. Wczsowa 5, 05-270 Marki",
+          "quality": "native"
+        },
+        {
+          "id": "4581:6",
+          "name": "Defibrylator (AED 9531) Wybrzeże Ojca Świętego Jana Pawła II",
+          "address": "Wybrzeże Ojca Świętego Jana Pawła II",
+          "quality": "native"
+        },
+        {
+          "id": "4581:7",
+          "name": "Defibrylator (AED 9509) 3 Maja 19 (DH Szpak)",
+          "address": "3 Maja",
+          "quality": "native"
+        },
+        {
+          "id": "4581:10",
+          "name": "Defibrylator (AED 9479) - Przystanek Autobusowy (ul. Jagiellońska / pl. Pileckiego)",
+          "address": "Jagiellońska",
+          "quality": "native"
+        },
+        {
+          "id": "4581:12",
+          "name": "Defibrylator (AED7639) Biblioteka Szkolna (ul. Aleksandra Dworskiego 98)",
+          "address": "Aleksandra Dworskiego",
+          "quality": "native"
+        },
+        {
+          "id": "4581:16",
+          "name": "Defibrylator (AED 7660) Plac Legionów (obok dworca PKP)",
+          "address": "Plac Legionów",
+          "quality": "native"
+        },
+        {
+          "id": "40593/2625221:4",
+          "name": "Komenda Powiatowa Państwowej Straży Pożarnej",
+          "address": "Jagiellońska 71A",
+          "quality": "native"
+        },
+        {
+          "id": "40593/2625221:5",
+          "name": "Ochotnicza Straż Pożarna",
+          "address": "Mickiewicza 11",
+          "quality": "native"
+        },
+        {
+          "id": "40593/2625221:7",
+          "name": "Straż Miejska",
+          "address": "Jagiellońska 26B",
+          "quality": "native"
+        }
+      ]
+    },
+    "krakow.pl": {
+      "records": 78,
+      "mobileExcluded": [
+        "Miejskie Przedsiębiorstwo Komunikacyjne SA w Krakowie – na wyposażeniu radiowozów nadzoru ruchu MPK",
+        "Straż Miejska Miasta Krakowa – na wyposażeniu radiowozu",
+        "Straż Miejska Miasta Krakowa – na wyposażeniu radiowozu"
+      ],
+      "matched": 64,
+      "matchedByText": 23,
+      "added": 11,
+      "textMatches": [
+        {
+          "d": 2,
+          "text": 1,
+          "addr": 1,
+          "name": "Kamienica Hipolitów – ochrona obiektu całodobowo",
+          "osm": "Kamienica Hipolitów – ochrona obiektu całodobowo Kamienica Hipolitów pl. Mariack"
+        },
+        {
+          "d": 7,
+          "text": 1,
+          "addr": 1,
+          "name": "Urząd Miasta Krakowa – hol główny – obok portierni",
+          "osm": "Urząd Miasta Krakowa – hol główny – obok portierni Urząd Miasta Krakowa ul. Kasp"
+        },
+        {
+          "d": 50,
+          "text": 1,
+          "addr": 1,
+          "name": "Wieża Ratuszowa otwarte 9.00 – 18.00 (w okresie kwiecień – październik)",
+          "osm": "Wieża Ratuszowa otwarte 9.00 – 18.00 (w okresie kwiecień – październik) Wieża Ra"
+        },
+        {
+          "d": 55,
+          "text": 1,
+          "addr": 1,
+          "name": "Urząd Miasta Krakowa – pomieszczenie ochrony",
+          "osm": "Urząd Miasta Krakowa – pomieszczenie ochrony Urząd Miasta Krakowa Aleja Powstani"
+        },
+        {
+          "d": 74,
+          "text": 1,
+          "addr": 1,
+          "name": "Rynek Podziemny Muzeum Kraków – ochrona obiektu całodobowo",
+          "osm": "Rynek Podziemny Muzeum Kraków – ochrona obiektu całodobowo Rynek Podziemny Muzeu"
+        },
+        {
+          "d": 80,
+          "text": 0.88,
+          "addr": 1,
+          "name": "Bazylika Mariacka - Parafia pw. Wniebowzięcia Najświętszej Maryi Panny- Zakrystia",
+          "osm": "Bazylika Mariacka - Parafia pw. Wniebowzięcia Najświętszej Maryi Panny- Zakrysti"
+        },
+        {
+          "d": 21,
+          "text": 0.75,
+          "addr": 1,
+          "name": "Urząd Miasta Krakowa – parter – stanowisko ochrony",
+          "osm": "Urząd Miasta Krakowa – parter – stanowisko ochrony Urząd Miasta Krakowa ul. Deke"
+        },
+        {
+          "d": 213,
+          "text": 1,
+          "addr": 1,
+          "name": "Klasztor Sióstr Zgromadzenia Matki Bożej Miłosierdzia",
+          "osm": "Klasztor Sióstr Zgromadzenia Matki Bożej Miłosierdzia Furta ul Siostry Faustyny "
+        },
+        {
+          "d": 1,
+          "text": 1,
+          "addr": 0,
+          "name": "Urząd Miasta Krakowa – portiernia",
+          "osm": "Urząd Miasta Krakowa – portiernia Urząd Miasta Krakowa Portiernia ul. Sarego 4, "
+        },
+        {
+          "d": 3,
+          "text": 1,
+          "addr": 0,
+          "name": "Muzeum im. Emeryka Hutten-Czapskiego – Muzeum Narodowe w Krakowie – hol poziom -1",
+          "osm": "Muzeum im. Emeryka Hutten-Czapskiego – Muzeum Narodowe w Krakowie – hol poziom -"
+        },
+        {
+          "d": 5,
+          "text": 1,
+          "addr": 0,
+          "name": "Zdrowa Huta Sp. z o.o. – przy rejestracji",
+          "osm": "Zdrowa Huta Sp. z o.o. – przy rejestracji Zdrowa Huta ul. Sieroszewskiego 3, 31-"
+        },
+        {
+          "d": 28,
+          "text": 1,
+          "addr": 0,
+          "name": "Zarząd Cmentarzy Komunalnych w Krakowie – portiernia Cmentarza Komunalnego",
+          "osm": "Zarząd Cmentarzy Komunalnych w Krakowie – portiernia Cmentarza Komunalnego Porti"
+        },
+        {
+          "d": 33,
+          "text": 1,
+          "addr": 0,
+          "name": "Ośrodek psychoterapii DDA – hol główny",
+          "osm": "Ośrodek psychoterapii DDA – hol główny Ośrodek Psychoterapii DDA ul. Jerzmanowsk"
+        },
+        {
+          "d": 35,
+          "text": 1,
+          "addr": 0,
+          "name": "Międzynarodowy Port Lotniczy Kraków-Balice – korytarz strefy Schengen",
+          "osm": "Międzynarodowy Port Lotniczy Kraków-Balice – korytarz strefy Schengen Korytarz S"
+        },
+        {
+          "d": 54,
+          "text": 1,
+          "addr": 0,
+          "name": "Międzynarodowy Port Lotniczy Kraków-Balice – Przyloty – punkt INFO",
+          "osm": "Międzynarodowy Port Lotniczy Kraków-Balice – Przyloty – punkt INFO Przyloty- INF"
+        },
+        {
+          "d": 61,
+          "text": 1,
+          "addr": 0,
+          "name": "Międzynarodowy Port Lotniczy Kraków-Balice – Strefa VIP - poziom 0 - Recepcja",
+          "osm": "Międzynarodowy Port Lotniczy Kraków-Balice – Strefa VIP - poziom 0 - Recepcja St"
+        },
+        {
+          "d": 70,
+          "text": 1,
+          "addr": 0,
+          "name": "Nowohuckie Centrum Kultury w Krakowie - pomieszczenie ochrony",
+          "osm": "Nowohuckie Centrum Kultury w Krakowie - pomieszczenie ochrony Pomieszczenie ochr"
+        },
+        {
+          "d": 23,
+          "text": 0.4,
+          "addr": 1,
+          "name": "Centrum Sportu i Kultury „ Sidzina”",
+          "osm": "Centrum Sportu i Kultury „ Sidzina” Przed wejściem od strony placu zabaw. Ul. Dz"
+        },
+        {
+          "d": 83,
+          "text": 0.67,
+          "addr": 0,
+          "name": "Zespół Szkolno-Przedszkolny nr 1",
+          "osm": "Zespół Szkolno-Przedszkolny nr 1 Na zewnątrz przy wejściu do Zespołu Szklono Prz"
+        },
+        {
+          "d": 284,
+          "text": 1,
+          "addr": 0,
+          "name": "Ośrodek psychoterapii Uzależnień i Współuzależnienia – hol główny",
+          "osm": "Ośrodek psychoterapii Uzależnień i Współuzależnienia – hol główny Ośrodek Psycho"
+        },
+        {
+          "d": 179,
+          "text": 0.8,
+          "addr": 0,
+          "name": "Urząd Miasta Krakowa - sala obsługi",
+          "osm": "Urząd Miasta Krakowa - sala obsługi Urzad Miasta sala obsługi na parterze ul. Wa"
+        },
+        {
+          "d": 5,
+          "text": 0,
+          "addr": 0,
+          "name": "Zespół Szkolno-Przedszkolny nr 20",
+          "osm": "Zespół Szkolno-Przedszkolny nr 20 ul. Wrobela 79 Kraków"
+        },
+        {
+          "d": 5,
+          "text": 0,
+          "addr": 0,
+          "name": "Urząd Miasta Krakowa – parter – hol główny",
+          "osm": "Urząd Miasta Krakowa – parter – hol główny Parter – hol główny ul. Stachowicza 1"
+        }
+      ],
+      "matchDistance_m": {
+        "median": 14,
+        "p90": 70,
+        "max": 284
+      },
+      "addedSample": [
+        {
+          "id": "155880",
+          "name": "Dwór Czeczów",
+          "address": "ul. Księdza Popiełuszki 36 Kraków",
+          "quality": "geocoded:gugik-uug:0.605263"
+        },
+        {
+          "id": "33068",
+          "name": "Dworzec Kraków Główny PKP – hol k/Globusa",
+          "address": "Plac Im. Nowaka-Jeziorańskiego 3, 31-154 Kraków",
+          "quality": "geocoded:gugik-uug:0.906977"
+        },
+        {
+          "id": "33069",
+          "name": "Dworzec Kraków Główny PKP – InfoDworzec",
+          "address": "Plac Im. Nowaka-Jeziorańskiego 3, 31-154 Kraków",
+          "quality": "geocoded:gugik-uug:0.906977"
+        },
+        {
+          "id": "126635",
+          "name": "Komenda Miejska Państwowej Straży Pożarnej w Krakowie",
+          "address": "ul. Zarzecze 106, 30-134 Kraków",
+          "quality": "geocoded:nominatim:0.5"
+        },
+        {
+          "id": "144831",
+          "name": "Krakowskie Wodne Ochotnicze Pogotowie Ratunkowe – brama wjazdowa",
+          "address": "ul. Dojazdowa 4, 30-017 Kraków",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "112462",
+          "name": "Muzeum Nowa Huta – ochrona obiektu całodobowo",
+          "address": "os. Centrum E 1 1, 31-934 Kraków",
+          "quality": "geocoded:gugik-uug:0.703704"
+        },
+        {
+          "id": "105041",
+          "name": "Plac Imbramowski 179 – pomieszczenie obsługi i ochrony placu",
+          "address": "Plac Imbramowski 179, 31-212 Kraków",
+          "quality": "geocoded:override:0.6"
+        },
+        {
+          "id": "33076",
+          "name": "Urząd Miasta Krakowa – pomieszczenie ochrony",
+          "address": "Osiedle Zgody 2, 31-949 Kraków",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "105036",
+          "name": "Urząd Skarbowy Kraków – Nowa Huta – sala obsługi",
+          "address": "Osiedle Bohaterów Września 80, 31-621 Kraków",
+          "quality": "geocoded:gugik-uug:0.777778"
+        },
+        {
+          "id": "126638",
+          "name": "Zakrzówek - kąpielisko – zejście główne przy pomostach",
+          "address": "ul. Wyłom 22, 30-373 Kraków",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "126639",
+          "name": "Żłobek samorządowy nr 32",
+          "address": "ul. Wysłouchów 47, 30-611 Kraków",
+          "quality": "geocoded:gugik-uug:0.526316"
+        }
+      ]
+    },
+    "lodz": {
+      "records": 136,
+      "mobileExcluded": [],
+      "matched": 126,
+      "matchedByText": 25,
+      "added": 10,
+      "textMatches": [
+        {
+          "d": 47,
+          "text": 1,
+          "addr": 1,
+          "name": "Holding Łódź - ZOO",
+          "osm": "Holding Łódź - ZOO Holding Łódź - ZOO\nZOO ul. Konstantynowska 8/10\nw budynku głó"
+        },
+        {
+          "d": 49,
+          "text": 1,
+          "addr": 1,
+          "name": "Zespół Szkolno-Przedszkolny nr 2, ul. Jugosłowiańska 2, 92-720 Łódź",
+          "osm": "Zespół Szkolno-Przedszkolny nr 2, ul. Jugosłowiańska 2, 92-720 Łódź Zespół Szkol"
+        },
+        {
+          "d": 54,
+          "text": 1,
+          "addr": 1,
+          "name": "Centralne Muzeum Włókiennictwa Muzeum",
+          "osm": "Centralne Muzeum Włókiennictwa Muzeum Centralne Muzeum Włókiennictwa Muzeum\nul. "
+        },
+        {
+          "d": 78,
+          "text": 1,
+          "addr": 1,
+          "name": "Straż Miejska w Łodzi",
+          "osm": "Straż Miejska w Łodzi Straż Miejska w Łodzi\nPosterunek ul. Wólczańska 121/123\nwe"
+        },
+        {
+          "d": 92,
+          "text": 1,
+          "addr": 1,
+          "name": "MPO Łódź Siedziba MPO - Łódź",
+          "osm": "MPO Łódź Siedziba MPO - Łódź MPO Łódź Siedziba MPO - Łódź\nul. Tokarzewskiego 2\nw"
+        },
+        {
+          "d": 92,
+          "text": 1,
+          "addr": 1,
+          "name": "Centrum Rehabilitacyjno-Opiekuńcze Domu Pomocy Społecznej, ul. Przybyszewskiego 255/267",
+          "osm": "Centrum Rehabilitacyjno-Opiekuńcze Domu Pomocy Społecznej, ul. Przybyszewskiego "
+        },
+        {
+          "d": 108,
+          "text": 1,
+          "addr": 1,
+          "name": "MPK Łódź sp. z o.o.",
+          "osm": "MPK Łódź sp. z o.o. MPK Łódź sp. z o.o.\nZakład Eksploatacji Autobusów nr 1\nul. L"
+        },
+        {
+          "d": 195,
+          "text": 1,
+          "addr": 1,
+          "name": "MPO Łódź Obiekt sortowni",
+          "osm": "MPO Łódź Obiekt sortowni MPO Łódź Obiekt sortowni\nul. Zamiejska 1\nwewnątrz,\npomi"
+        },
+        {
+          "d": 40,
+          "text": 1,
+          "addr": 0,
+          "name": "Miejska Biblioteka Publiczna w Łodzi",
+          "osm": "Miejska Biblioteka Publiczna w Łodzi Miejska Biblioteka Publiczna w Łodzi\nFilia "
+        },
+        {
+          "d": 41,
+          "text": 1,
+          "addr": 0,
+          "name": "XVIII Liceum Ogólnokształcące im. Jędrzeja Śniadeckiego, ul. Perla 11, 94-203 Łódź",
+          "osm": "XVIII Liceum Ogólnokształcące im. Jędrzeja Śniadeckiego, ul. Perla 11, 94-203 Łó"
+        },
+        {
+          "d": 42,
+          "text": 1,
+          "addr": 0,
+          "name": "ZWIK Zakład Wodociągów i Kanalizacji",
+          "osm": "ZWIK Zakład Wodociągów i Kanalizacji ZWIK Zakład Wodociągów i Kanalizacji\nul. Bł"
+        },
+        {
+          "d": 43,
+          "text": 1,
+          "addr": 0,
+          "name": "Szkoła Podstawowa nr 42 im. Stanisława Staszica Szkoła, ul. Przyszkole 42, 93-552 Łódź",
+          "osm": "Szkoła Podstawowa nr 42 im. Stanisława Staszica Szkoła, ul. Przyszkole 42, 93-55"
+        },
+        {
+          "d": 43,
+          "text": 1,
+          "addr": 0,
+          "name": "Szkoła Podstawowa nr 162 im. Jana Nowaka Jeziorańskiego, ul. Powszechna 15, 93-321 Łódź",
+          "osm": "Szkoła Podstawowa nr 162 im. Jana Nowaka Jeziorańskiego, ul. Powszechna 15, 93-3"
+        },
+        {
+          "d": 53,
+          "text": 1,
+          "addr": 0,
+          "name": "OSP Łódź-Andrzejów",
+          "osm": "OSP Łódź-Andrzejów OSP Łódź-Andrzejów Na budynku OSP Rokicińska 335, Łódź Na bud"
+        },
+        {
+          "d": 54,
+          "text": 1,
+          "addr": 0,
+          "name": "Urząd Miasta Łodzi",
+          "osm": "Urząd Miasta Łodzi Urząd Miasta Łodzi\nsiedziba UMŁ \nwewnątrz Piotrkowska 104"
+        },
+        {
+          "d": 61,
+          "text": 1,
+          "addr": 0,
+          "name": "Urząd Miasta Łodzi",
+          "osm": "Urząd Miasta Łodzi Urząd Miasta Łodzi\nsiedziba UMŁ \nwewnątrz ul. Zachodnia 47"
+        },
+        {
+          "d": 66,
+          "text": 1,
+          "addr": 0,
+          "name": "Urząd Miasta Łodzi",
+          "osm": "Urząd Miasta Łodzi Urząd Miasta Łodzi\nsiedziba UMŁ \nwewnątrz al. Piłsudskiego 10"
+        },
+        {
+          "d": 72,
+          "text": 1,
+          "addr": 0,
+          "name": "ZWIK Grupowa Oczyszczalnia Ścieków",
+          "osm": "ZWIK Grupowa Oczyszczalnia Ścieków ZWIK Grupowa Oczyszczalnia Ścieków\nul. Sanita"
+        },
+        {
+          "d": 97,
+          "text": 1,
+          "addr": 0,
+          "name": "ZWIK Zakład Wodociągów i Kanalizacji",
+          "osm": "ZWIK Zakład Wodociągów i Kanalizacji ZWIK Zakład Wodociągów i Kanalizacji\nul. Gr"
+        },
+        {
+          "d": 139,
+          "text": 1,
+          "addr": 0,
+          "name": "Zakład Przewozu Osób Niepełnosprawnych MPK-Łódź, ul. Limanowskiego 147/149",
+          "osm": "Zakład Przewozu Osób Niepełnosprawnych MPK-Łódź, ul. Limanowskiego 147/149 Zakła"
+        },
+        {
+          "d": 70,
+          "text": 0.75,
+          "addr": 0,
+          "name": "MPK Łódź sp. z o.o.",
+          "osm": "MPK Łódź sp. z o.o. UMŁ / MPK Łódź sp. z o.o. Punkt socjalny na krańcówce Krańcó"
+        },
+        {
+          "d": 41,
+          "text": 0.6,
+          "addr": 0,
+          "name": "MPK Łódź sp. z o.o.",
+          "osm": "MPK Łódź sp. z o.o. UMŁ / MPK Łódź sp. z o.o. Punkt socjalny na krańcówce krańcó"
+        },
+        {
+          "d": 42,
+          "text": 0.6,
+          "addr": 0,
+          "name": "Muzeum Tradycji Niepodległościowych",
+          "osm": "Muzeum Tradycji Niepodległościowych Muzeum Tradycji Niepodległościowych w okolic"
+        },
+        {
+          "d": 44,
+          "text": 0.6,
+          "addr": 0,
+          "name": "MPK Łódź sp. z o.o.",
+          "osm": "MPK Łódź sp. z o.o. UMŁ / MPK Łódź sp. z o.o. Punkt socjalny na krańcówce Krańcó"
+        },
+        {
+          "d": 60,
+          "text": 0.6,
+          "addr": 0,
+          "name": "MPK Łódź sp. z o.o.",
+          "osm": "MPK Łódź sp. z o.o. UMŁ / MPK Łódź sp. z o.o. Punkt socjalny na krańcówce Krańcó"
+        }
+      ],
+      "matchDistance_m": {
+        "median": 16,
+        "p90": 54,
+        "max": 195
+      },
+      "addedSample": [
+        {
+          "id": "defibrylator - ul. Spadkowa 4/6, 91-232 Łódź",
+          "name": "Dom Pomocy Społecznej",
+          "address": "ul. Spadkowa 4/6, 91-232 Łódź",
+          "quality": "native"
+        },
+        {
+          "id": "defibrylator - Przychodnia Zdrowia \"Wielkopolska\", ul. Wielkopolska 55, Łódź",
+          "name": "MCM Bałuty Przychodnia Zdrowia \"Wielkopolska\"",
+          "address": "Przychodnia Zdrowia \"Wielkopolska\", ul. Wielkopolska 55, Łódź",
+          "quality": "native"
+        },
+        {
+          "id": "defibrylator - ul. Felińskiego 7, 93-252 Łódź",
+          "name": "MCM Górna",
+          "address": "ul. Felińskiego 7, 93-252 Łódź",
+          "quality": "native"
+        },
+        {
+          "id": "defibrylator - al. Piłsudskiego 138, Łódź",
+          "name": "Miejska Arena Kultury i Sportu",
+          "address": "al. Piłsudskiego 138, Łódź",
+          "quality": "native"
+        },
+        {
+          "id": "defibrylator - Stadion, al. Unii Lubelskiej 2, Łódź",
+          "name": "Miejska Arena Kultury i Sportu",
+          "address": "Stadion, al. Unii Lubelskiej 2, Łódź",
+          "quality": "native"
+        },
+        {
+          "id": "defibrylator - Krańcówka Tramwajowa Retkinia Al. Wyszyńskiego Łódź",
+          "name": "MPK Łódź sp. z o.o.",
+          "address": "Krańcówka Tramwajowa Retkinia Al. Wyszyńskiego Łódź",
+          "quality": "native"
+        },
+        {
+          "id": "defibrylator - ul. Pomorska 406, 92-735 Łódź",
+          "name": "OSP Łódź-Mileszki",
+          "address": "ul. Pomorska 406, 92-735 Łódź",
+          "quality": "native"
+        },
+        {
+          "id": "defibrylator - al. Adama Mickiewicza 15",
+          "name": "Przystanek Piotrkowska Centrum",
+          "address": "al. Adama Mickiewicza 15",
+          "quality": "native"
+        },
+        {
+          "id": "defibrylator - budynek Policji, ul. Stokowska 21/25",
+          "name": "KMP w Łodzi",
+          "address": "budynek Policji, ul. Stokowska 21/25",
+          "quality": "native"
+        },
+        {
+          "id": "defibrylator - ul. Nowogrodzka 2A",
+          "name": "Teatr Powszechny",
+          "address": "ul. Nowogrodzka 2A",
+          "quality": "native"
+        }
+      ]
+    },
+    "gdansk": {
+      "records": 108,
+      "mobileExcluded": [
+        "Ochotnicza Straż Pożarna Świbno"
+      ],
+      "matched": 60,
+      "matchedByText": 18,
+      "added": 47,
+      "textMatches": [
+        {
+          "d": 12,
+          "text": 1,
+          "addr": 1,
+          "name": "SOiT Conradinum",
+          "osm": "SOiT Conradinum Szkoły Okrętowe i Techniczne \"Conradinum\" Urządzenie znajduje si"
+        },
+        {
+          "d": 16,
+          "text": 0.93,
+          "addr": 0,
+          "name": "SP 52",
+          "osm": "SP 52 Szkoła Podstawowa nr 52 w Gdańsku Urządzenie znajduje się po lewej stronie"
+        },
+        {
+          "d": 72,
+          "text": 1,
+          "addr": 0,
+          "name": "ZSO7",
+          "osm": "ZSO7 Zespół Szkół Ogólnokształcących nr 7 w Gdańsku przy trybunach, w holu hali "
+        },
+        {
+          "d": 18,
+          "text": 0.89,
+          "addr": 0,
+          "name": "SP 49",
+          "osm": "SP 49 Szkoła Podstawowa Nr 49 im. Księdza Bronisława Komorowskiego w Gdańsku Urz"
+        },
+        {
+          "d": 72,
+          "text": 0.86,
+          "addr": 0,
+          "name": "SP 12",
+          "osm": "SP 12 Szkoła Podstawowa nr 12 w Gdańsku Urządzenie znajduję się w budynku szkoły"
+        },
+        {
+          "d": 5,
+          "text": 0.71,
+          "addr": 0,
+          "name": "ZSP 4",
+          "osm": "ZSP 4 Zespół Szkolno-Przedszkolny nr 4 Urządzenie znajduje się w portierni szkoł"
+        },
+        {
+          "d": 13,
+          "text": 0.6,
+          "addr": 0,
+          "name": "ZSP 2",
+          "osm": "ZSP 2 Zespół Szkolno-Przedszkolny nr 2 Wewnątrz budynku szkoły przy portierni gł"
+        },
+        {
+          "d": 55,
+          "text": 0.67,
+          "addr": 0,
+          "name": "SP 81",
+          "osm": "SP 81 Szkoła Podstawowa nr 81 Zamontowane na ścianie sali gimnastycznej , wejści"
+        },
+        {
+          "d": 67,
+          "text": 0.67,
+          "addr": 0,
+          "name": "LO8",
+          "osm": "LO8 VIII Liceum Ogólnokształcące im. KEN w Gdańsku parter budynku głównego VIII "
+        },
+        {
+          "d": 68,
+          "text": 0.67,
+          "addr": 0,
+          "name": "przy dworcu PKS",
+          "osm": "przy dworcu PKS WBiZK wolnostojący postument ul.3-go Maja wolnostojący postument"
+        },
+        {
+          "d": 89,
+          "text": 0.67,
+          "addr": 0,
+          "name": "ZSO8",
+          "osm": "ZSO8 Zespół Szkół Ogólnokształcących nr 8 im. Jana Pawła II Urządzanie znajduje "
+        },
+        {
+          "d": 53,
+          "text": 0.6,
+          "addr": 0,
+          "name": "SP1",
+          "osm": "SP1 Szkoła Podstawowa nr 1 w Gdańsku przy portierni głównej szkoly ul. Poli Goja"
+        },
+        {
+          "d": 5,
+          "text": 0.5,
+          "addr": 0,
+          "name": "OSP Świbno",
+          "osm": "OSP Świbno WBiZK elewacja budynku ul. Boguckiego 98 elewacja budynku"
+        },
+        {
+          "d": 10,
+          "text": 0.5,
+          "addr": 0,
+          "name": "I komisariat Policji",
+          "osm": "I komisariat Policji WBiZK elewacja budynku ul. Platynowa 6 F- elewacja budynku"
+        },
+        {
+          "d": 12,
+          "text": 0.5,
+          "addr": 0,
+          "name": "Centrum Interwencji Kryzysowej",
+          "osm": "Centrum Interwencji Kryzysowej WBiZK elewacja budynku ul. Plac Gustkowicza 13 el"
+        },
+        {
+          "d": 12,
+          "text": 0.5,
+          "addr": 0,
+          "name": "IX komisariat policji",
+          "osm": "IX komisariat policji WBiZK elewacja budynku ul. Balcerskiego 35 elewacja budynk"
+        },
+        {
+          "d": 121,
+          "text": 0.67,
+          "addr": 0,
+          "name": "Śródmieście, ul. Plac Solidarności 1",
+          "osm": "Śródmieście, ul. Plac Solidarności 1 WBiZK wolnostojący postument ul. Plac Solid"
+        },
+        {
+          "d": 5,
+          "text": 0,
+          "addr": 0,
+          "name": "DPS\"Orunia\"",
+          "osm": "DPS\"Orunia\" Gdańsk ul. Starogardzka 20"
+        }
+      ],
+      "matchDistance_m": {
+        "median": 17,
+        "p90": 67,
+        "max": 121
+      },
+      "addedSample": [
+        {
+          "id": "2",
+          "name": "deptak przy budynku poczty",
+          "address": "ul. Sztormowa",
+          "quality": "geocoded:nominatim:0.5"
+        },
+        {
+          "id": "3",
+          "name": "zajezdnia przy SKM Przymorze",
+          "address": "ul. Kołobrzeska",
+          "quality": "geocoded:nominatim:0.5"
+        },
+        {
+          "id": "4",
+          "name": "Zielony Rynek",
+          "address": "ul. Czerwony Dwór 33",
+          "quality": "geocoded:gugik-uug:0.517241"
+        },
+        {
+          "id": "6",
+          "name": "przystanek tramwajowy Brzeźno",
+          "address": "ul. Krasickiego/Zdrojowa",
+          "quality": "geocoded:nominatim:0.4"
+        },
+        {
+          "id": "8",
+          "name": "Twierdza Wisłoujście",
+          "address": "ul. Stara Twierdza 1",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "9",
+          "name": "pętla autobusowa dworca PKP Wrzeszcz",
+          "address": "ul. Plac Kołodziejskiego",
+          "quality": "geocoded:nominatim:0.5"
+        },
+        {
+          "id": "11",
+          "name": "pływalnia Stogi",
+          "address": "ul. Stryjewskiego 28",
+          "quality": "geocoded:gugik-uug:0.727273"
+        },
+        {
+          "id": "12",
+          "name": "przystanek tramwaj/ autobus",
+          "address": "ul. Rakoczego",
+          "quality": "geocoded:nominatim:0.5"
+        },
+        {
+          "id": "13",
+          "name": "pętla tramwajowa Siedlce",
+          "address": "ul. Kartuska",
+          "quality": "geocoded:nominatim:0.5"
+        },
+        {
+          "id": "14",
+          "name": "pływalnia LO nr 7",
+          "address": "ul. Chałubińskiego 13",
+          "quality": "geocoded:gugik-uug:0.774194"
+        },
+        {
+          "id": "15",
+          "name": "pętla tramwajowa Łostowice",
+          "address": "ul. Świętokrzyska",
+          "quality": "geocoded:nominatim:0.5"
+        },
+        {
+          "id": "16",
+          "name": "przystanek tramwajowy",
+          "address": "ul. Sikorskiego",
+          "quality": "geocoded:nominatim:0.5"
+        },
+        {
+          "id": "18",
+          "name": "Zespół Szkół Łączności",
+          "address": "ul. Podwale Staromiejskie 51",
+          "quality": "geocoded:gugik-uug:0.62069"
+        },
+        {
+          "id": "19",
+          "name": "przy Krewetce",
+          "address": "ul. Podwale Grodzkie",
+          "quality": "geocoded:nominatim:0.5"
+        },
+        {
+          "id": "20",
+          "name": "Centrum Hewelianum",
+          "address": "ul. Gradowa 6",
+          "quality": "geocoded:gugik-uug:1"
+        }
+      ]
+    },
+    "torun": {
+      "records": 46,
+      "mobileExcluded": [],
+      "matched": 19,
+      "matchedByText": 6,
+      "added": 27,
+      "textMatches": [
+        {
+          "d": 93,
+          "text": 1,
+          "addr": 0,
+          "name": "Szkoła Podstawowa Nr 9",
+          "osm": "Szkoła Podstawowa Nr 9 Ściana przy wejściu głównym od ul. Rzepakowej ul. Rzepako"
+        },
+        {
+          "d": 17,
+          "text": 0.83,
+          "addr": 0,
+          "name": "Centrum Nowoczesności Młyn Wiedzy",
+          "osm": "Centrum Nowoczesności Młyn Wiedzy Urząd Miasta Torunia Defibrylator wewnątrz bud"
+        },
+        {
+          "d": 13,
+          "text": 0.6,
+          "addr": 0,
+          "name": "Urząd Miasta Torunia",
+          "osm": "Urząd Miasta Torunia Urząd Miasta Torunia Defibrylator znajduje się w budynku. u"
+        },
+        {
+          "d": 79,
+          "text": 0.2,
+          "addr": 1,
+          "name": "Muzeum Okręgowe Ratusz Staromiejski",
+          "osm": "Muzeum Okręgowe Ratusz Staromiejski Poczta Polska - UP Toruń 1 wewnątrz placówki"
+        },
+        {
+          "d": 1,
+          "text": 0,
+          "addr": 0,
+          "name": "Szkoła Podstawowa Nr 33",
+          "osm": "Szkoła Podstawowa Nr 33 Przy wejściu do budynku ul. Bolta 14, 87-100 Toruń"
+        },
+        {
+          "d": 2,
+          "text": 0,
+          "addr": 0,
+          "name": "Szkoła Podstawowa Nr 16",
+          "osm": "Szkoła Podstawowa Nr 16 Ściana przy wejściu głównym ul. Dziewulskiego 2, 87-100 "
+        }
+      ],
+      "matchDistance_m": {
+        "median": 17,
+        "p90": 79,
+        "max": 93
+      },
+      "addedSample": [
+        {
+          "id": "3",
+          "name": "Szkoła Podstawowa Nr 3",
+          "address": "ul. Legionów 210, 87-100 Toruń",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "4",
+          "name": "Szkoła Podstawowa Nr 4",
+          "address": "ul. Żwirki i Wigury, 87-100 Toruń",
+          "quality": "geocoded:nominatim:0.5"
+        },
+        {
+          "id": "7",
+          "name": "Szkoła Podstawowa Nr 7",
+          "address": "ul. Bema 66, 87-100 Toruń",
+          "quality": "geocoded:gugik-uug:0.56"
+        },
+        {
+          "id": "8",
+          "name": "Szkoła Podstawowa Nr 8",
+          "address": "ul. Łyskowskiego 28, 87-100 Toruń",
+          "quality": "geocoded:gugik-uug:0.758621"
+        },
+        {
+          "id": "10",
+          "name": "Szkoła Podstawowa Nr 10",
+          "address": "ul. Bażyńskich 10/36, 87-100 Toruń",
+          "quality": "geocoded:nominatim:0.5"
+        },
+        {
+          "id": "11",
+          "name": "Szkoła Podstawowa Nr 11",
+          "address": "ul. Gagarina 36, 87-100 Toruń",
+          "quality": "geocoded:gugik-uug:0.72"
+        },
+        {
+          "id": "12",
+          "name": "Szkoła Podstawowa Nr 13",
+          "address": "ul. Krasińskiego 45/47, 87-100 Toruń",
+          "quality": "geocoded:nominatim:0.5"
+        },
+        {
+          "id": "13",
+          "name": "Szkoła Podstawowa Nr 14",
+          "address": "ul. Hallera 79, 87-100 Toruń",
+          "quality": "geocoded:gugik-uug:0.607143"
+        },
+        {
+          "id": "14",
+          "name": "Szkoła Podstawowa Nr 15",
+          "address": "ul. Paderewskiego 5/11, 87-100 Toruń",
+          "quality": "geocoded:gugik-uug:0.535714"
+        },
+        {
+          "id": "17",
+          "name": "Szkoła Podstawowa Nr 18",
+          "address": "ul. Kard. S. Wyszyńskiego1/5, 87-100 Toruń",
+          "quality": "geocoded:override:0.9"
+        },
+        {
+          "id": "18",
+          "name": "Szkoła Specjalna Nr 19",
+          "address": "ul. Dziewulskiego 41, 87-100 Toruń",
+          "quality": "geocoded:gugik-uug:0.676471"
+        },
+        {
+          "id": "20",
+          "name": "Szkoła Podstawowa Nr 24",
+          "address": "ul. Ogrodowa 3/5, 87-100 Toruń",
+          "quality": "geocoded:gugik-uug:0.571429"
+        },
+        {
+          "id": "21",
+          "name": "Szkoła Podstawowa Specjalna Nr 26",
+          "address": "ul. Fałata 88/90, 87-100 Toruń",
+          "quality": "geocoded:nominatim:0.5"
+        },
+        {
+          "id": "22",
+          "name": "Szkoła Podstawowa Nr 27",
+          "address": "ul. Turystyczna 19, 87-100 Toruń",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "24",
+          "name": "Szkoła Podstawowa Nr 31",
+          "address": "ul. Dziewulskiego 41 B, 87-100 Toruń",
+          "quality": "geocoded:nominatim:0.5"
+        }
+      ]
+    },
+    "lublin": {
+      "records": 47,
+      "mobileExcluded": [],
+      "matched": 20,
+      "matchedByText": 7,
+      "added": 27,
+      "textMatches": [
+        {
+          "d": 20,
+          "text": 1,
+          "addr": 1,
+          "name": "Obiekty sportowe KUL",
+          "osm": "Obiekty sportowe KUL parter - portiernia główna\nobiekty sportowe KUL ul. Konstan"
+        },
+        {
+          "d": 5,
+          "text": 1,
+          "addr": 0,
+          "name": "Szkoła Podstawowa nr 57",
+          "osm": "Szkoła Podstawowa nr 57 Na parterze przy sekretariacie ul. Z. Krasińskiego 7"
+        },
+        {
+          "d": 10,
+          "text": 1,
+          "addr": 0,
+          "name": "Żeński Dom Studencki",
+          "osm": "Żeński Dom Studencki parter portiernia główna\nŻeński Dom Studencki ul. Konstanty"
+        },
+        {
+          "d": 61,
+          "text": 0.86,
+          "addr": 0,
+          "name": "Przy wejściu do Filii nr 2 Miejskiej Biblioteki Publicznej, Centrum Kultury",
+          "osm": "Przy wejściu do Filii nr 2 Miejskiej Biblioteki Publicznej, Centrum Kultury Wewn"
+        },
+        {
+          "d": 35,
+          "text": 0.8,
+          "addr": 0,
+          "name": "Collegium Universum Uniwersytetu Medycznego",
+          "osm": "Collegium Universum Uniwersytetu Medycznego Collegium Universum Uniwersytetu Med"
+        },
+        {
+          "d": 34,
+          "text": 0.67,
+          "addr": 0,
+          "name": "Filharmonia im. H. Wieniawskiego",
+          "osm": "Filharmonia im. H. Wieniawskiego Filharmonia im. H. Wieniawskiego w Lublinie ul."
+        },
+        {
+          "d": 3,
+          "text": 0.5,
+          "addr": 0,
+          "name": "I LO Staszica",
+          "osm": "I LO Staszica I Liceum Ogólnokształcące im. Stanisława Staszica obok wejścia al."
+        }
+      ],
+      "matchDistance_m": {
+        "median": 12,
+        "p90": 46,
+        "max": 61
+      },
+      "addedSample": [
+        {
+          "id": "1",
+          "name": "Ośrodek Medyczny DMP",
+          "address": "ul. Projektowa 5",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "4",
+          "name": "Klinika Okulistyki",
+          "address": "ul. Chmielna 1",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "5",
+          "name": "Biblioteka Uniwersytetu Marii Curie Skłodowskiej Lublin",
+          "address": "ul. Radziszewskiego 11",
+          "quality": "geocoded:gugik-uug:0.866667"
+        },
+        {
+          "id": "6",
+          "name": "Radio Lublin S.A.",
+          "address": "ul. Obrońców Pokoju 2",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "7",
+          "name": "Budynek AGRO II - Centrum Kongresowe",
+          "address": "ul. Akademicka 15",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "9",
+          "name": "MPWiK Sp. z o.o. w Lublinie",
+          "address": "al. Józefa Piłsudskiego 15",
+          "quality": "geocoded:gugik-uug:0.833333"
+        },
+        {
+          "id": "10",
+          "name": "Inergy Automotive Systems Poland",
+          "address": "ul. Budowlana 28",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "11",
+          "name": "Dworzec Lublin: Poziom 0",
+          "address": "ul. Dworcowa 7",
+          "quality": "geocoded:gugik-uug:0.590909"
+        },
+        {
+          "id": "13",
+          "name": "Galeria Felicity",
+          "address": "al. Wincentego Witosa 32",
+          "quality": "geocoded:gugik-uug:0.896552"
+        },
+        {
+          "id": "14",
+          "name": "Galeria Plaza",
+          "address": "ul. Lipowa 13",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "15",
+          "name": "Galeria Lubelska",
+          "address": "al. Wincentego Witosa 6",
+          "quality": "geocoded:gugik-uug:0.892857"
+        },
+        {
+          "id": "21",
+          "name": "CityFit",
+          "address": "al. Spółdzielczości Pracy 26",
+          "quality": "geocoded:gugik-uug:0.842105"
+        },
+        {
+          "id": "22",
+          "name": "Centrum Medyczne Medicover",
+          "address": "ul. Wallenroda 4C",
+          "quality": "geocoded:gugik-uug:0.75"
+        },
+        {
+          "id": "24",
+          "name": "Zakłady Produkcyjne Stock Polska",
+          "address": "ul. Spółdzielcza 6",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "25",
+          "name": "SIPMA S.A.",
+          "address": "ul. Budowlana 19",
+          "quality": "geocoded:gugik-uug:1"
+        }
+      ]
+    },
+    "olsztyn": {
+      "records": 43,
+      "mobileExcluded": [],
+      "matched": 30,
+      "matchedByText": 2,
+      "added": 13,
+      "textMatches": [
+        {
+          "d": 56,
+          "text": 1,
+          "addr": 0,
+          "name": "Sklep sportowy Decathlon",
+          "osm": "Sklep sportowy Decathlon Decathlon Na ścianie przy wejściu ul. Dorantta 3"
+        },
+        {
+          "d": 60,
+          "text": 0.71,
+          "addr": 0,
+          "name": "Urząd Marszałkowski Województwa Warmińsko -Mazurskiego",
+          "osm": "Urząd Marszałkowski Województwa Warmińsko -Mazurskiego Urząd Marszałkowski Wojew"
+        }
+      ],
+      "matchDistance_m": {
+        "median": 9,
+        "p90": 37,
+        "max": 60
+      },
+      "addedSample": [
+        {
+          "id": "Komenda Wojewódzka Policji, ul. Pstrowskiego 3",
+          "name": "Komenda Wojewódzka Policji",
+          "address": "ul. Pstrowskiego 3",
+          "quality": "native"
+        },
+        {
+          "id": "Wojewódzka Stacja Pogotowia Ratunkowego, ul. Pstrowskiego 28 B",
+          "name": "Wojewódzka Stacja Pogotowia Ratunkowego",
+          "address": "ul. Pstrowskiego 28 B",
+          "quality": "native"
+        },
+        {
+          "id": "Warmińsko-Mazurski Oddział Okręgowy PCK, ul. Partyzantów 82",
+          "name": "Warmińsko-Mazurski Oddział Okręgowy PCK",
+          "address": "ul. Partyzantów 82",
+          "quality": "native"
+        },
+        {
+          "id": "Fundacja Inicjatyw Społecznych ul. Kanofojskiego 3",
+          "name": "Fundacja Inicjatyw Społecznych ul. Kanofojskiego 3",
+          "address": "",
+          "quality": "native"
+        },
+        {
+          "id": "„Auchan Olsztyn”, ul. Sikorskiego 2B",
+          "name": "„Auchan Olsztyn”",
+          "address": "ul. Sikorskiego 2B",
+          "quality": "native"
+        },
+        {
+          "id": "Carrefour ul. Krasickiego 1 b",
+          "name": "Carrefour ul. Krasickiego 1 b",
+          "address": "",
+          "quality": "native"
+        },
+        {
+          "id": "Przychodnia Specjalistyczna w Olsztynie, ul. Dworcowa 28",
+          "name": "Przychodnia Specjalistyczna w Olsztynie",
+          "address": "ul. Dworcowa 28",
+          "quality": "native"
+        },
+        {
+          "id": "Galeria Warmińska, ul. Tuwima 26",
+          "name": "Galeria Warmińska",
+          "address": "ul. Tuwima 26",
+          "quality": "native"
+        },
+        {
+          "id": "„Aura Centrum Olsztyna”, ul. Piłsudskiego 16",
+          "name": "„Aura Centrum Olsztyna”",
+          "address": "ul. Piłsudskiego 16",
+          "quality": "native"
+        },
+        {
+          "id": "Sąd Rejonowy w Olsztynie, ul. Dąbrowszczaków 33",
+          "name": "Sąd Rejonowy w Olsztynie",
+          "address": "ul. Dąbrowszczaków 33",
+          "quality": "native"
+        },
+        {
+          "id": "Sąd Okręgowy w Olsztynie, ul. Dąbrowszczaków 44",
+          "name": "Sąd Okręgowy w Olsztynie",
+          "address": "ul. Dąbrowszczaków 44",
+          "quality": "native"
+        },
+        {
+          "id": "Sąd Rejonowy w Olsztynie, ul. Partyzantów 70",
+          "name": "Sąd Rejonowy w Olsztynie",
+          "address": "ul. Partyzantów 70",
+          "quality": "native"
+        },
+        {
+          "id": "Przedsiębiorstwo Wodociągów i Kanalizacji; Biuro Obsługi Klienta, budynek A ul. Oficerska 16A.",
+          "name": "Przedsiębiorstwo Wodociągów i Kanalizacji; Biuro Obsługi Klienta, budynek A ul. Oficerska 16A.",
+          "address": "",
+          "quality": "native"
+        }
+      ]
+    },
+    "koszalin": {
+      "records": 35,
+      "mobileExcluded": [],
+      "matched": 34,
+      "matchedByText": 0,
+      "added": 1,
+      "textMatches": [],
+      "matchDistance_m": {
+        "median": 1,
+        "p90": 8,
+        "max": 28
+      },
+      "addedSample": [
+        {
+          "id": "Punkt Życia #33",
+          "name": "Punkt Życia #33",
+          "quality": "native"
+        }
+      ]
+    },
+    "gliwice-gama": {
+      "records": 95,
+      "mobileExcluded": [],
+      "matched": 34,
+      "matchedByText": 6,
+      "added": 61,
+      "textMatches": [
+        {
+          "d": 41,
+          "text": 1,
+          "addr": 0,
+          "name": "Wydział Budownictwa Politechniki Śląskiej",
+          "osm": "Wydział Budownictwa Politechniki Śląskiej Politechnika Śląska Portiernia przy we"
+        },
+        {
+          "d": 44,
+          "text": 1,
+          "addr": 0,
+          "name": "Kryta pływalnia \"Olimpijczyk\"",
+          "osm": "Kryta pływalnia \"Olimpijczyk\" Gliwicki Ośrodek Sportu Kryta Pływalnia Olimpijczy"
+        },
+        {
+          "d": 55,
+          "text": 1,
+          "addr": 0,
+          "name": "Zespół Szkół Ogólnokształcących Nr 14",
+          "osm": "Zespół Szkół Ogólnokształcących Nr 14 przy wejściu do szkoły przy wejściu do szk"
+        },
+        {
+          "d": 65,
+          "text": 1,
+          "addr": 0,
+          "name": "Future Processing",
+          "osm": "Future Processing Future Processing Future Processing"
+        },
+        {
+          "d": 90,
+          "text": 1,
+          "addr": 0,
+          "name": "Centrum Handlowe Forum",
+          "osm": "Centrum Handlowe Forum Centrum Handlowe Forum Centrum Handlowe Forum"
+        },
+        {
+          "d": 128,
+          "text": 1,
+          "addr": 0,
+          "name": "Stacja Uzdatniania Wody  Przedsiębiorstwo Wodociągów i Kanalizacji (ul. Kanałowa 5)",
+          "osm": "Stacja Uzdatniania Wody  Przedsiębiorstwo Wodociągów i Kanalizacji (ul. Kanałowa"
+        }
+      ],
+      "matchDistance_m": {
+        "median": 21,
+        "p90": 55,
+        "max": 128
+      },
+      "addedSample": [
+        {
+          "id": "5950",
+          "name": "Akademickie Liceum Ogólnokształcące Politechniki Śląskiej",
+          "quality": "native"
+        },
+        {
+          "id": "6056",
+          "name": "Boisko \"Orlik\"",
+          "quality": "native"
+        },
+        {
+          "id": "6031",
+          "name": "Centrum Biotechnologii Politechniki Śląskiej ",
+          "quality": "native"
+        },
+        {
+          "id": "6104",
+          "name": "Centrum Kształcenia Zawodowego i Ustawicznego nr 1 ",
+          "quality": "native"
+        },
+        {
+          "id": "5957",
+          "name": "Centrum Nowych Technologii Politechniki Śląskiej ",
+          "quality": "native"
+        },
+        {
+          "id": "6493",
+          "name": "Dom Pomocy Społecznej \"Opoka\"",
+          "quality": "native"
+        },
+        {
+          "id": "5942",
+          "name": "Gliwice Centrum Przesiadkowe",
+          "quality": "native"
+        },
+        {
+          "id": "6103",
+          "name": "Górnośląskie Centrum Edukacyjne",
+          "quality": "native"
+        },
+        {
+          "id": "6019",
+          "name": "Hala Widowiskowo-Sportowa Sośnica",
+          "quality": "native"
+        },
+        {
+          "id": "8037",
+          "name": "Hirschvogel Components Poland",
+          "quality": "native"
+        },
+        {
+          "id": "8055",
+          "name": "IV Liceum Ogólnokształcące ",
+          "quality": "native"
+        },
+        {
+          "id": "5948",
+          "name": "Jednostka Ratowniczo-Gaśnicza nr 1 Gliwice",
+          "quality": "native"
+        },
+        {
+          "id": "5947",
+          "name": "Jednostka Ratowniczo-Gaśnicza nr 2 w Gliwicach-Łabędach",
+          "quality": "native"
+        },
+        {
+          "id": "5959",
+          "name": "Klub Malucha „Kropka”",
+          "quality": "native"
+        },
+        {
+          "id": "6072",
+          "name": "Kryta pływalnia \"Delfin\"",
+          "quality": "native"
+        }
+      ]
+    },
+    "sopot": {
+      "records": 0,
+      "mobileExcluded": [],
+      "matched": 0,
+      "matchedByText": 0,
+      "added": 0,
+      "textMatches": [],
+      "matchDistance_m": null,
+      "addedSample": []
+    },
+    "chelm": {
+      "records": 10,
+      "mobileExcluded": [],
+      "matched": 9,
+      "matchedByText": 4,
+      "added": 1,
+      "textMatches": [
+        {
+          "d": 4,
+          "text": 1,
+          "addr": 0,
+          "name": "Szkoła Podstawowa Nr 4 w Chełmie",
+          "osm": "Szkoła Podstawowa Nr 4 w Chełmie Szkoła Podstawowa Nr 4 ul. Wyszyńskiego 15 Szko"
+        },
+        {
+          "d": 20,
+          "text": 1,
+          "addr": 0,
+          "name": "Przedszkole Miejskie Nr 15",
+          "osm": "Przedszkole Miejskie Nr 15 Przedszkole Miejskie Nr 15 ul. Wieniawskiego 3 Przeds"
+        },
+        {
+          "d": 30,
+          "text": 1,
+          "addr": 0,
+          "name": "Budynek na targowisku miejskim",
+          "osm": "Budynek na targowisku miejskim Budynek toalet na targowisku miejskim przy al. Ma"
+        },
+        {
+          "d": 36,
+          "text": 1,
+          "addr": 0,
+          "name": "Hala Mosir",
+          "osm": "Hala Mosir Hala MOSiR ul. Graniczna 2a Hala MOSiR"
+        }
+      ],
+      "matchDistance_m": {
+        "median": 20,
+        "p90": 36,
+        "max": 36
+      },
+      "addedSample": [
+        {
+          "id": "6",
+          "name": "Budynek na targowisku miejskim",
+          "address": "ul. Lwowskiej",
+          "quality": "geocoded:override:0.4"
+        }
+      ]
+    },
+    "us-edu": {
+      "records": 29,
+      "mobileExcluded": [],
+      "matched": 1,
+      "matchedByText": 0,
+      "added": 28,
+      "textMatches": [],
+      "matchDistance_m": {
+        "median": 18,
+        "p90": 18,
+        "max": 18
+      },
+      "addedSample": [
+        {
+          "id": "1",
+          "name": "Rektorat",
+          "address": "ul. Bankowa 12",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "2",
+          "name": "Wydział Nauk Społecznych",
+          "address": "ul. Bankowa 11",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "4",
+          "name": "Wydział Prawa i Administracji",
+          "address": "ul. Bankowa 11B",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "5",
+          "name": "Wydział Nauk Przyrodniczych",
+          "address": "ul. Jagiellońska 28",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "6",
+          "name": "Wydział Nauk Przyrodniczych",
+          "address": "ul. Bankowa 9",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "7",
+          "name": "Wydział Nauk Ścisłych i Technicznych",
+          "address": "ul. Bankowa 14",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "8",
+          "name": "Wydział Nauk Ścisłych i Technicznych",
+          "address": "ul. Szkolna 9",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "9",
+          "name": "Wydział Humanistyczny",
+          "address": "ul. Uniwersytecka 4",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "10",
+          "name": "Wydział Nauk Społecznych",
+          "address": "ul. Grażyńskiego 53",
+          "quality": "geocoded:gugik-uug:0.757576"
+        },
+        {
+          "id": "11",
+          "name": "Szkoła Filmowa",
+          "address": "ul. Św. Pawła 3",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "12",
+          "name": "Wydział Teologiczny",
+          "address": "ul. Jordana 18",
+          "quality": "geocoded:gugik-uug:0.714286"
+        },
+        {
+          "id": "13",
+          "name": "SpinPlace",
+          "address": "ul. Bankowa 5",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "14",
+          "name": "Dom Asystenta nr 3 i Dom Studenta nr 5",
+          "address": "ul. Paderewskiego 32",
+          "quality": "geocoded:gugik-uug:0.787879"
+        },
+        {
+          "id": "15",
+          "name": "Osiedle Akademickie w Katowicach-Ligocie",
+          "address": "ul. Studencka 15",
+          "quality": "geocoded:gugik-uug:1"
+        },
+        {
+          "id": "16",
+          "name": "Osiedle Akademickie w Katowicach-Ligocie",
+          "address": "ul. Studencka 17",
+          "quality": "geocoded:gugik-uug:1"
+        }
+      ]
+    },
+    "inpost-aed": {
+      "records": 137,
+      "mobileExcluded": [],
+      "matched": 121,
+      "matchedByText": 0,
+      "added": 16,
+      "textMatches": [],
+      "matchDistance_m": {
+        "median": 4,
+        "p90": 12,
+        "max": 29
+      },
+      "addedSample": [
+        {
+          "id": "WRO18BAPP",
+          "name": "InPost Helpbox WRO18BAPP",
+          "address": "Ramiszów b/n",
+          "quality": "native"
+        },
+        {
+          "id": "WRO194M",
+          "name": "InPost Helpbox WRO194M",
+          "address": "Wałbrzyska 41",
+          "quality": "native"
+        },
+        {
+          "id": "BYC03M",
+          "name": "InPost Helpbox BYC03M",
+          "address": "Piłsudskiego 79",
+          "quality": "native"
+        },
+        {
+          "id": "CWN01M",
+          "name": "InPost Helpbox CWN01M",
+          "address": "Czerwonka 53",
+          "quality": "native"
+        },
+        {
+          "id": "WPN01M",
+          "name": "InPost Helpbox WPN01M",
+          "address": "Solna 32",
+          "quality": "native"
+        },
+        {
+          "id": "GACQ01BAPP",
+          "name": "InPost Helpbox GACQ01BAPP",
+          "address": "Michała Drzymały 27",
+          "quality": "native"
+        },
+        {
+          "id": "WYKA01BAPP",
+          "name": "InPost Helpbox WYKA01BAPP",
+          "address": "Wysoka 15",
+          "quality": "native"
+        },
+        {
+          "id": "ILW01BAPP",
+          "name": "InPost Helpbox ILW01BAPP",
+          "address": "Handlowa 1A",
+          "quality": "native"
+        },
+        {
+          "id": "KKQ01M",
+          "name": "InPost Helpbox KKQ01M",
+          "address": "Krypno Kościelne 3A",
+          "quality": "native"
+        },
+        {
+          "id": "KMT01M",
+          "name": "InPost Helpbox KMT01M",
+          "address": "Klimontów 340",
+          "quality": "native"
+        },
+        {
+          "id": "LIPA01M",
+          "name": "InPost Helpbox LIPA01M",
+          "address": "Stacha Konwy 22",
+          "quality": "native"
+        },
+        {
+          "id": "LIPO01M",
+          "name": "InPost Helpbox LIPO01M",
+          "address": "Lipowa 22d",
+          "quality": "native"
+        },
+        {
+          "id": "LIV01M",
+          "name": "InPost Helpbox LIV01M",
+          "address": "Kozia 12",
+          "quality": "native"
+        },
+        {
+          "id": "NLUB01BAPP",
+          "name": "InPost Helpbox NLUB01BAPP",
+          "address": "Nowy Lubiel 23",
+          "quality": "native"
+        },
+        {
+          "id": "NZMR01BAPP",
+          "name": "InPost Helpbox NZMR01BAPP",
+          "address": "Nieznamierowice 11b",
+          "quality": "native"
+        }
+      ]
+    },
+    "umap-jelenia-gora": {
+      "records": 21,
+      "mobileExcluded": [],
+      "matched": 13,
+      "matchedByText": 0,
+      "added": 8,
+      "textMatches": [],
+      "matchDistance_m": {
+        "median": 6,
+        "p90": 27,
+        "max": 35
+      },
+      "addedSample": [
+        {
+          "id": "AED Castorama, Al. Jana Pawła II 11",
+          "name": "Castorama",
+          "address": "Al. Jana Pawła II 11",
+          "quality": "native"
+        },
+        {
+          "id": "AED Galeria Sudecka, Al. Jana Pawła II 51",
+          "name": "Galeria Sudecka",
+          "address": "Al. Jana Pawła II 51",
+          "quality": "native"
+        },
+        {
+          "id": "AED Sąd Rejonowy w Jeleniej Górze, ul. Bankowa 18",
+          "name": "Sąd Rejonowy w Jeleniej Górze",
+          "address": "ul. Bankowa 18",
+          "quality": "native"
+        },
+        {
+          "id": "AED Sąd Rejonowy w Jeleniej Górze, ul. Mickiewicza 21",
+          "name": "Sąd Rejonowy w Jeleniej Górze",
+          "address": "ul. Mickiewicza 21",
+          "quality": "native"
+        },
+        {
+          "id": "AED Straż Miejska, ul. Armii Krajowej 19",
+          "name": "Straż Miejska",
+          "address": "ul. Armii Krajowej 19",
+          "quality": "native"
+        },
+        {
+          "id": "AED Szkoła Podstawowa nr 6, ul. Cieplicka 74",
+          "name": "Szkoła Podstawowa nr 6",
+          "address": "ul. Cieplicka 74",
+          "quality": "native"
+        },
+        {
+          "id": "AED Urząd Miasta Jelenia Góra, ul. Ptasia 2-3",
+          "name": "Urząd Miasta Jelenia Góra",
+          "address": "ul. Ptasia 2-3",
+          "quality": "native"
+        },
+        {
+          "id": "AED OREW Architekton, ul. Wincentego Pola 25",
+          "name": "OREW Architekton",
+          "address": "ul. Wincentego Pola 25",
+          "quality": "native"
+        }
+      ]
+    },
+    "umap-wejherowo": {
+      "records": 18,
+      "mobileExcluded": [],
+      "matched": 16,
+      "matchedByText": 0,
+      "added": 2,
+      "textMatches": [],
+      "matchDistance_m": {
+        "median": 10,
+        "p90": 19,
+        "max": 19
+      },
+      "addedSample": [
+        {
+          "id": "Ochotnicza straż pożarna w Wejherowie",
+          "name": "Ochotnicza straż pożarna w Wejherowie",
+          "quality": "native"
+        },
+        {
+          "id": "SOR Wejherowo",
+          "name": "SOR Wejherowo",
+          "quality": "native"
+        }
+      ]
+    },
+    "arcgis-mikolow": {
+      "records": 20,
+      "mobileExcluded": [],
+      "matched": 20,
+      "matchedByText": 0,
+      "added": 0,
+      "textMatches": [],
+      "matchDistance_m": {
+        "median": 0,
+        "p90": 0,
+        "max": 0
+      },
+      "addedSample": []
+    },
+    "arcgis-krakow-2022": {
+      "records": 150,
+      "mobileExcluded": [
+        "Straż Miejska Miasta Krakowa",
+        "Komenda Miejska PSP w Krakowie - Jednostka Ratowniczo-Gaśnicza nr 7",
+        "BEMA - Szkoła Pływania",
+        "Oddział Prewencji Policji"
+      ],
+      "matched": 82,
+      "matchedByText": 13,
+      "added": 64,
+      "textMatches": [
+        {
+          "d": 48,
+          "text": 1,
+          "addr": 1,
+          "name": "Uniwersytet Rolniczy im. Hugona Kołłątaja w Krakowie",
+          "osm": "Uniwersytet Rolniczy im. Hugona Kołłątaja w Krakowie Dom Studencki 'Czwórka' /Kr"
+        },
+        {
+          "d": 70,
+          "text": 1,
+          "addr": 1,
+          "name": "Nowohuckie Centrum Kultury",
+          "osm": "Nowohuckie Centrum Kultury w Krakowie - pomieszczenie ochrony Pomieszczenie ochr"
+        },
+        {
+          "d": 93,
+          "text": 0.83,
+          "addr": 1,
+          "name": "Muzeum Narodowe w Krakowie Oddział Galeria Sztuki Polskiej XIX wieku w Sukiennicach",
+          "osm": "Galeria Sztuki Polskiej XIX w. w Sukiennicach – Muzeum Narodowe w Krakowie – pom"
+        },
+        {
+          "d": 213,
+          "text": 1,
+          "addr": 1,
+          "name": "Sanktuarium Miłosierdzia Bożego w Łagiewnikach",
+          "osm": "Klasztor Sióstr Zgromadzenia Matki Bożej Miłosierdzia Furta ul Siostry Faustyny "
+        },
+        {
+          "d": 41,
+          "text": 1,
+          "addr": 0,
+          "name": "Politechnika Krakowska - Wydział Architektury oraz Wydział Fizyki, Matematyki i Informatyki",
+          "osm": "Politechnika Krakowska - Wydział Architektury oraz Wydział Fizyki, Matematyki i "
+        },
+        {
+          "d": 41,
+          "text": 1,
+          "addr": 0,
+          "name": "wydział Farmacji UJCM",
+          "osm": "wydział Farmacji UJCM wydział Farmacji CM UJ, na parterze obok portierni ul. Med"
+        },
+        {
+          "d": 70,
+          "text": 1,
+          "addr": 0,
+          "name": "Komenda Miejska Policji",
+          "osm": "Komenda Miejska Policji Komenda Miejska Policji, recepcja, 24/7 Siemiradzkiego 2"
+        },
+        {
+          "d": 120,
+          "text": 1,
+          "addr": 0,
+          "name": "Centrum Handlowe Galeria Bronowice",
+          "osm": "Centrum Handlowe Galeria Bronowice W budynku Galerii Bronowice ul. Stawowa 61 W "
+        },
+        {
+          "d": 77,
+          "text": 0.9,
+          "addr": 0,
+          "name": "Komenda Wojewdzka Policji, Wydział Ruchu Drogowego KMP",
+          "osm": "Komenda Wojewdzka Policji, Wydział Ruchu Drogowego KMP Komenda Wojewódzka Policj"
+        },
+        {
+          "d": 52,
+          "text": 0.8,
+          "addr": 0,
+          "name": "Urząd Miasta Krakowa",
+          "osm": "Urząd Miasta Krakowa – pomieszczenie ochrony Urząd Miasta Krakowa Aleja Powstani"
+        },
+        {
+          "d": 80,
+          "text": 0.33,
+          "addr": 1,
+          "name": "Bazylika Mariacka (zakrystia)",
+          "osm": "Bazylika Mariacka - Parafia pw. Wniebowzięcia Najświętszej Maryi Panny- Zakrysti"
+        },
+        {
+          "d": 46,
+          "text": 0.67,
+          "addr": 0,
+          "name": "Uniwersytet Rolniczy im. Hugona Kołłątaja w Krakowie",
+          "osm": "Uniwersytet Rolniczy im. Hugona Kołłątaja w Krakowie Gmach główny, obok bocznego"
+        },
+        {
+          "d": 107,
+          "text": 0.75,
+          "addr": 0,
+          "name": "Biurowiec Nafta",
+          "osm": "Biurowiec Nafta Recepcja Centrum Biurowego Lubicz na paterze (Lubicz 23) ul. Lub"
+        }
+      ],
+      "matchDistance_m": {
+        "median": 16,
+        "p90": 52,
+        "max": 213
+      },
+      "addedSample": [
+        {
+          "id": "2",
+          "name": "Pałac Pugetów",
+          "address": "ul. Starowiślna 13-15",
+          "quality": "native"
+        },
+        {
+          "id": "5",
+          "name": "Prokuratura Rejonowa Kraków Podgórze i Nowa Huta",
+          "address": "os. Stalowe 16D",
+          "quality": "native"
+        },
+        {
+          "id": "12",
+          "name": "Bank BPH S.A.",
+          "address": "os. Bohaterów Września 80A",
+          "quality": "native"
+        },
+        {
+          "id": "17",
+          "name": "Kampus Czyżyny PK",
+          "address": "Al. Jana Pawła II 37",
+          "quality": "native"
+        },
+        {
+          "id": "18",
+          "name": "Kampus Czyżyny PK - Wydział Mechaniczny",
+          "address": "Al. Jana Pawła II 37",
+          "quality": "native"
+        },
+        {
+          "id": "21",
+          "name": "Uniwersytet Jagielloński - Biblioteka Jagiellońska",
+          "address": "Al. Mickiewicza 22",
+          "quality": "native"
+        },
+        {
+          "id": "22",
+          "name": "Centrum Handlowe M1",
+          "address": "Al. Pokoju 67",
+          "quality": "native"
+        },
+        {
+          "id": "23",
+          "name": "Małopolskie Centrum Krioterapii",
+          "address": "Al. Pokoju 82",
+          "quality": "native"
+        },
+        {
+          "id": "24",
+          "name": "Krakowski Szkolny Ośrodek Sportowy",
+          "address": "Al. Powstania Warszawskiego 6",
+          "quality": "native"
+        },
+        {
+          "id": "25",
+          "name": "Google Polska",
+          "address": "Rynek Główny 12",
+          "quality": "native"
+        },
+        {
+          "id": "27",
+          "name": "Maltańska Służba Medyczna",
+          "address": "ul. Aleksandry 1",
+          "quality": "native"
+        },
+        {
+          "id": "29",
+          "name": "BBH",
+          "address": "ul. Armii Krajowej 28",
+          "quality": "native"
+        },
+        {
+          "id": "34",
+          "name": "Bank BPH S.A.",
+          "address": "ul. Helców 19",
+          "quality": "native"
+        },
+        {
+          "id": "36",
+          "name": "Citi Bank",
+          "address": "ul. Karmelicka 7",
+          "quality": "native"
+        },
+        {
+          "id": "39",
+          "name": "NZOZ Nowa Rehabilitacja",
+          "address": "ul. Komuny Paryskiej 24",
+          "quality": "native"
+        }
+      ]
+    }
+  },
+  "total": 16304,
+  "multiSource": 681,
+  "mobileTotal": 2304
+}

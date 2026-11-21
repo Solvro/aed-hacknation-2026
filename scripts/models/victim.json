@@ -1,0 +1,29 @@
+{
+  "phenotype": {
+    "gender": 1.0,
+    "age": 0.68,
+    "muscle": 0.5,
+    "weight": 0.58,
+    "height": 0.55,
+    "proportions": 0.6,
+    "race": {
+      "caucasian": 0.9,
+      "african": 0.05,
+      "asian": 0.05
+    }
+  },
+  "skin": "middleage_caucasian_male/middleage_caucasian_male.mhmat",
+  "hair": "short02/short02.mhclo",
+  "eyebrows": "eyebrow001/eyebrow001.mhclo",
+  "clothes": [
+    "male_casualsuit06/male_casualsuit06.mhclo",
+    "shoes01/shoes01.mhclo"
+  ],
+  "split_clothes": {
+    "source": "casualsuit06",
+    "z_threshold": 1.0,
+    "upper_name": "Shirt",
+    "lower_name": "Pants"
+  },
+  "unhide_skin_above_z": 0.97
+}
