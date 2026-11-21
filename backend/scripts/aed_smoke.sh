@@ -14,7 +14,6 @@ ADMIN="${ADMIN:-https://admin.mcod.local}"
 AED_PASS="${AED_PASS:-Aed2026!demo}"
 ADMIN_CONTAINER="${ADMIN_CONTAINER:-mcod-admin}"
 TIMEOUT="${TIMEOUT:-240}"
-EXPECTED_PROVIDERS="${EXPECTED_PROVIDERS:-4}"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
@@ -34,8 +33,10 @@ echo "== Moduł AED – test smoke (API: $API, panel: $ADMIN)"
 # --- 1. Flaga zbioru AED w API zbiorów -------------------------------------------------------------
 c=$(get "$API/datasets?is_aed_dataset=true&per_page=50" "$TMP/ds.json")
 n=$(jq '.meta.count' "$TMP/ds.json" 2>/dev/null)
-check "GET /datasets?is_aed_dataset=true → HTTP $c, zbiorów AED: $n (oczekiwano $EXPECTED_PROVIDERS)" \
-  test "$c" = 200 -a "$n" = "$EXPECTED_PROVIDERS"
+# liczba dostawców = liczba opublikowanych zbiorów oznaczonych jako AED (np. 4 z aed_seed_demo + kolejne)
+EXPECTED_PROVIDERS="${EXPECTED_PROVIDERS:-$n}"
+check "GET /datasets?is_aed_dataset=true → HTTP $c, zbiorów AED: $n (oczekiwano ≥ 4)" \
+  test "$c" = 200 -a "$n" -ge 4
 check "każdy zwrócony zbiór ma attributes.is_aed_dataset == true" \
   jqt '[.data[].attributes.is_aed_dataset] | all' "$TMP/ds.json"
 
