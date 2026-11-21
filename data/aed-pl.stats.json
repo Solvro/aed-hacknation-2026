@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-11-21T11:43:42.313Z",
+  "openaedmap": 18296,
+  "sources": {
+    "dane.gov.pl": {
+      "fetched": 74,
+      "matchedExisting": 59,
+      "addedNew": 15
+    },
+    "um.warszawa.pl": {
+      "fetched": 0,
+      "matchedExisting": 0,
+      "addedNew": 0
+    }
+  },
+  "total": 18311
+}
