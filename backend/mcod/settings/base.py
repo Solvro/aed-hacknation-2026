@@ -570,6 +570,7 @@ SUIT_CONFIG = {
             "label": "Ogólnopolski zbiór AED",
             "app": "aed",
             "models": [
+                {"label": "Sprawdź plik przed publikacją", "url": "/aed/aedimportrun/precheck/"},
                 {"model": "aed.aedimportrun", "label": "Raporty AED"},
                 {"model": "aed.aedrecord", "label": "Urządzenia AED w agregacie"},
             ],

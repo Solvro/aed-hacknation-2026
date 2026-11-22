@@ -1,0 +1,13 @@
+Lp.,id_aed,nazwa obiektu,miejscowość,ulica,nr budynku,kod pocztowy,szerokość,długość,dostęp,wewnątrz budynku,data weryfikacji,ważność elektrod,Uwagi wewnętrzne
+1,KR-001,Urząd Miasta Krosna – hol główny,Krosno,Lwowska,28a,38-400,49.684015,21.771129,publiczny,tak,2026-10-02,2028-01-31,
+2,KR-002,Zespół Krytych Pływalni,Krosno,Jasna,8,38-400,21.720344,49.718809,klienci,tak,2026-09-14,2027-11-30,eksport z GIS
+3,KR-003,Dworzec PKP Krosno,Krosno,Naftowa,,,,,publiczny,tak,2026-08-01,,brak GPS
+4,KR-004,Hala MOSiR,Krosno,Bursaki,29,38-400,"49°41'32""N","21°46'34""E",publiczny,tak,2026-07-20,2027-05-31,
+5,KR-001,Wojewódzki Szpital Podkarpacki – izba przyjęć,Krosno,Korczyńska,57,38-400,49.702302,21.782304,publiczny,tak,2026-10-10,2028-03-31,skopiowany wiersz
+6,KR-006,Państwowa Akademia Nauk Stosowanych,Krosno,Kazimierza Wielkiego,4,38-400,622480.15,758912.40,klienci,tak,2026-06-05,2027-09-30,PUWG 1992
+7,KR-007,Miejskie Przedsiębiorstwo Gospodarki Komunalnej,Krosno,Aleksandra Fredry,12,38-400,,,pracownicy,tak,2026-05-18,2027-12-31,
+8,KR-008,Kampus sportowo-dydaktyczny – portiernia,Krosno,Stanisława Wyspiańskiego,20,38-40,49.719089,21.711336,ogólnodostępny,nie,2026-09-30,2028-02-28,
+9,KR-009,Kamienica przy Grodzkiej,Krosno,Grodzka,25,38-400,49.688011,21.766132,publiczny,może,2026-10-15,2027-08-31,
+10,KR-010,Hala sportowa przy szkole,Krosno,Lwowska,28a,38-400,49.684015,21.771129,publiczny,tak,2023-03-15,2025-06-30,do sprawdzenia
+11,KR-011,Szpital – wejście od parkingu,Krosno,Korczyńska,57,38-400,49.708302,21.778304,publiczny,nie,2026-10-01,2028-06-30,
+12,,Dworzec – kasy biletowe,Krosno,Naftowa,23,38-400,49.695555,21.74739,publiczny,tak,2026-09-01,2027-10-31,

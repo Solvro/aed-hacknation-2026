@@ -1,41 +1,116 @@
-<div class="aed-tab" style="max-width:960px">
+<style>
+  .pc, .at { --navy:#13213c; --blue:#0b5aad; --blue-bg:#eaf2fb; --red:#b42318; --red-bg:#fdf1f0; --amber:#8a5300; --amber-bg:#fdf7e8;
+        --green:#127a3d; --green-bg:#ebf6ef; --ink:#222; --muted:#555; --line:#d5dbe3; --panel:#fff;
+        color: var(--ink); font-size: 14px; line-height: 1.5; max-width: 1180px; }
+  .pc h3, .at h3 { font-size: 16px; margin: 26px 0 10px; font-weight: 700; color: var(--navy); display:flex; align-items:center; gap:10px; }
+  .at h3 { margin-top: 2px; font-size: 17px; }
+  .pc .lead, .at .meta { color: var(--muted); margin: 0 0 14px; }
+  .pc .card, .at .box { background: var(--panel); border: 1px solid var(--line); border-radius: 3px; padding: 14px 16px; margin-bottom: 10px; }
+  .pc .upload { display:grid; grid-template-columns: 1fr auto 1fr auto; gap:14px; align-items:end; }
+  .pc .upload label { display:block; font-weight:700; margin-bottom:6px; color: var(--navy); }
+  .pc .upload .or { color: var(--muted); padding-bottom: 8px; }
+  .pc .upload input[type=url] { width: 100%; box-sizing: border-box; height: 32px; }
+  .pc .hint, .pc .note, .at .muted { color: var(--muted); font-size: 13px; }
+  .pc .status { display:flex; gap:14px; align-items:center; border:1px solid var(--line); border-left-width:6px; border-radius:3px; padding:14px 18px; margin: 4px 0 12px; background: var(--panel); }
+  .pc .status .icon { font-size: 26px; line-height: 1; font-weight: 700; }
+  .pc .status .title { font-size: 18px; font-weight: 700; margin: 0; color: var(--navy); }
+  .pc .status .sub { margin: 2px 0 0; color: var(--ink); }
+  .pc .status.bad { border-left-color: var(--red); background: var(--red-bg); } .pc .status.bad .icon { color: var(--red); }
+  .pc .status.warn { border-left-color: #e8a317; background: var(--amber-bg); } .pc .status.warn .icon { color: var(--amber); }
+  .pc .status.good { border-left-color: var(--green); background: var(--green-bg); } .pc .status.good .icon { color: var(--green); }
+  .pc .tiles, .at .tiles { display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; margin-bottom: 8px; }
+  .pc .tile, .at .tile { background: var(--panel); border:1px solid var(--line); border-top:4px solid var(--blue); border-radius:3px; padding:10px 14px; }
+  .pc .tile .num, .at .tile .n { font-size: 26px; font-weight: 700; line-height: 1.15; color: var(--navy); }
+  .pc .tile .lbl, .at .tile .l { color: var(--muted); font-size: 13px; }
+  .pc .tile.ready, .at .t-add { border-top-color: var(--green); } .pc .tile.ready .num, .at .t-add .n { color: var(--green); }
+  .pc .tile.blocked, .at .t-wd { border-top-color: var(--red); } .pc .tile.blocked .num, .at .t-wd .n { color: var(--red); }
+  .pc .tile.warn { border-top-color: #e8a317; } .pc .tile.warn .num { color: var(--amber); }
+  .pc .tile.auto, .at .t-upd { border-top-color: var(--blue); } .pc .tile.auto .num, .at .t-upd .n { color: var(--blue); }
+  .at .t-same { border-top-color: #98a2b3; } .at .t-same .n { color: var(--muted); }
+  .pc .pill, .at .pill { display:inline-block; border-radius:3px; padding:2px 8px; font-size:12px; font-weight:700; white-space:nowrap; text-transform: uppercase; letter-spacing: .02em; }
+  .pc .pill.red, .at .p-withdrawn { background: var(--red); color:#fff; }
+  .pc .pill.amber { background: #e8a317; color:#2b1d00; }
+  .pc .pill.green, .at .p-added, .at .p-restored { background: var(--green); color:#fff; }
+  .pc .pill.blue, .at .p-updated { background: var(--blue); color:#fff; }
+  .pc .issue { border-left: 4px solid var(--red); }
+  .pc .issue.amber { border-left-color: #e8a317; }
+  .pc .issue .head { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
+  .pc .issue .what { font-weight: 700; margin:0; color: var(--navy); }
+  .pc .issue .rows { color: var(--muted); font-size: 13px; white-space: nowrap; }
+  .pc .fix { margin: 8px 0 0; padding: 8px 10px; background: var(--blue-bg); border-radius: 3px; }
+  .pc .fix b { color: var(--blue); }
+  .pc .example { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+  .pc .example code { background:#f1f3f6; padding:1px 6px; border:1px solid var(--line); border-radius:3px; color: var(--ink); }
+  .pc .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pc ul.auto { list-style: none; margin:0; padding:0; }
+  .pc ul.auto li { padding: 7px 0; border-bottom: 1px solid var(--line); display:flex; justify-content:space-between; gap:10px; }
+  .pc ul.auto li:last-child { border-bottom: 0; }
+  .pc table.map, .pc table.rows { width:100%; border-collapse: collapse; }
+  .pc table.map th, .pc table.map td, .pc table.rows th, .pc table.rows td { text-align:left; vertical-align:top; padding:7px 8px; border-bottom:1px solid var(--line); font-size:13px; }
+  .pc table.map th, .pc table.rows th { color: var(--navy); font-weight:700; background:#f5f7fa; }
+  .pc table.rows td ul { margin:0; padding-left: 18px; }
+  .pc .arrow { color: var(--muted); }
+  .pc .downloads { display:flex; flex-wrap:wrap; gap:8px; }
+  .pc .muted { color: var(--muted); }
+  .at .note { display:flex; gap:10px; align-items:flex-start; background: var(--green-bg); border:1px solid #b7dfc4; border-left:4px solid var(--green); border-radius:3px; padding:9px 12px; margin-bottom:12px; }
+  .at .box { padding: 4px 16px; }
+  .at .chg { display:grid; grid-template-columns:120px 1fr; gap:12px; padding:10px 0; border-bottom:1px solid var(--line); }
+  .at .chg:last-child { border-bottom:0; }
+  .at .name { font-weight:700; color: var(--navy); } .at .uid { color:var(--muted); font-size:12px; margin-left:6px; }
+  .at .diff { margin:4px 0 0; font-size:14px; }
+  .at .old { text-decoration:line-through; color:var(--muted); } .at .new { color:var(--green); font-weight:700; }
+  .at .actions a { margin-right:6px; }
+  @media (max-width: 900px) { .pc .upload, .pc .grid2, .pc .tiles, .at .tiles { grid-template-columns: 1fr 1fr; } }
+</style>
+<div class="aed-tab at">
 {% if not dataset %}
   <p>Zapisz zbiór, aby zobaczyć raport AED.</p>
 {% elif is_aggregate %}
   <h3>To jest Ogólnopolski zbiór AED (agregat)</h3>
-  <p>Zbiór jest budowany automatycznie z danych dostawców. Każdy wiersz wskazuje instytucję odpowiedzialną
-     za rekord (kolumny <code>dostawca</code>, <code>zbior_zrodlowy</code>). Rekordów: <strong>{{ info.records_count }}</strong>,
-     dostawców: <strong>{{ info.providers_count }}</strong>, ostatnia przebudowa: {{ info.last_built|default:"—" }}.</p>
+  <p class="meta">Zbiór jest budowany automatycznie z danych dostawców. Każdy wiersz wskazuje instytucję odpowiedzialną
+     za rekord. Rekordów: <strong>{{ info.records_count }}</strong>, dostawców: <strong>{{ info.providers_count }}</strong>.</p>
 {% elif not dataset.is_aed_dataset and not last_run %}
   <h3>Dołącz do Ogólnopolskiego zbioru AED</h3>
-  <p>Jeżeli ten zbiór zawiera dane o defibrylatorach AED, zaznacz w zakładce <em>Ogólne</em> pole
-     <strong>„zbiór danych o defibrylatorach AED”</strong>. Po zapisaniu portal zwaliduje zasoby względem
-     wzorcowego zakresu danych AED, pokaże raport jakości i włączy poprawne wiersze do ogólnopolskiego zbioru.
-     Zbiór pozostaje własnością Twojej instytucji.</p>
-{% else %}
-  <h3>Raport AED</h3>
-  {% if not dataset.is_aed_dataset %}<p><strong>Flaga AED jest wyłączona – rekordy zbioru zostały wycofane z agregatu.</strong></p>{% endif %}
-  <p>W agregacie: <strong>{{ active }}</strong> aktywnych urządzeń, {{ withdrawn }} wycofanych.</p>
-  {% if last_run %}
-  <table class="table table-bordered table-condensed">
-    <tr><th>Ostatni przebieg</th><td>{{ last_run.finished_at|default:last_run.started_at }} – <strong>{{ last_run.get_status_display }}</strong></td></tr>
-    <tr><th>Zasób źródłowy</th><td>{% if last_run.resource %}#{{ last_run.resource.id }} {{ last_run.resource.title }} ({{ last_run.file_format|upper }}){% else %}—{% endif %}</td></tr>
-    <tr><th>Wiersze</th><td>{{ last_run.rows_total }} w pliku · {{ last_run.rows_accepted }} przyjęte · {{ last_run.rows_rejected }} odrzucone</td></tr>
-    <tr><th>Zmiany w agregacie</th><td>+{{ last_run.added }} dodane · {{ last_run.updated }} zmienione · {{ last_run.withdrawn }} wycofane · {{ last_run.restored }} przywrócone</td></tr>
-    <tr><th>Ocena jakości</th><td><strong>{{ last_run.quality_score }}/100</strong> · błędy krytyczne: {{ last_run.critical_count }} · ostrzeżenia: {{ last_run.warning_count }}</td></tr>
-    <tr><th>Komunikat</th><td>{{ last_run.message }}</td></tr>
-  </table>
-  <p>
-    <a class="btn btn-primary" href="{% url 'admin:aed_aedimportrun_change' last_run.pk %}">Pełny raport (mapowanie kolumn, problemy w wierszach)</a>
+  <p class="meta">Jeżeli ten zbiór zawiera dane o defibrylatorach AED, zaznacz w zakładce <em>Ogólne</em> pole
+     <strong>„zbiór danych o defibrylatorach AED”</strong>. Zbiór pozostaje własnością Twojej instytucji.</p>
+  <p class="actions"><a class="btn btn-primary" href="{% url 'admin:aed_precheck' %}">Sprawdź plik AED przed publikacją</a>
+     <a class="btn" href="{% url 'admin:aed_precheck_schema' %}">Pobierz wzorcowy zakres danych (XLSX)</a></p>
+{% elif last_run %}
+  <h3>Aktualizacja w Ogólnopolskim zbiorze AED</h3>
+  <p class="meta">Wersja z {{ last_run.finished_at|default:last_run.started_at|date:"j E Y, H:i" }} · zasób
+    {% if last_run.resource %}„{{ last_run.resource.title }}” ({{ last_run.file_format|upper }}){% endif %} ·
+    przyjęto {{ last_run.rows_accepted }} z {{ last_run.rows_total }} wierszy · w agregacie: {{ active }} aktywnych urządzeń</p>
+  {% if not dataset.is_aed_dataset %}<p class="pill p-withdrawn">Flaga AED jest wyłączona – rekordy zbioru zostały wycofane z agregatu.</p>{% endif %}
+  <div class="tiles">
+    <div class="tile t-add"><div class="n">+{{ last_run.added|add:last_run.restored }}</div><div class="l">dodane / przywrócone</div></div>
+    <div class="tile t-upd"><div class="n">{{ last_run.updated }}</div><div class="l">zmienione</div></div>
+    <div class="tile t-wd"><div class="n">{{ last_run.withdrawn }}</div><div class="l">wycofane (z historią)</div></div>
+    <div class="tile t-same"><div class="n">{{ last_run.unchanged }}</div><div class="l">bez zmian</div></div>
+  </div>
+  <div class="note"><span aria-hidden="true">✔</span><span>Zmieniły się wyłącznie rekordy Twojej instytucji z tego zbioru – dane pozostałych dostawców w agregacie pozostały nietknięte.</span></div>
+  {% if changes %}
+  <div class="box">
+    {% for c in changes %}
+    <div class="chg">
+      <div><span class="pill p-{{ c.type }}">{{ c.label }}</span></div>
+      <div><span class="name">{{ c.name }}</span><span class="uid">{{ c.uid }}</span>
+        {% for d in c.diff %}<p class="diff">{{ d.field }}: <span class="old">{{ d.old|default:"—" }}</span> → <span class="new">{{ d.new|default:"—" }}</span></p>{% endfor %}
+        {% if c.type == "withdrawn" %}<p class="diff muted">Brak w nowej wersji pliku – urządzenie zniknie z mapy, historia zostaje zachowana.</p>{% endif %}
+        {% if c.type == "added" %}<p class="diff muted">Nowe urządzenie w Ogólnopolskim zbiorze AED.</p>{% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <p class="actions">
+    <a class="btn btn-primary" href="{% url 'admin:aed_aedimportrun_change' last_run.pk %}">Pełny raport</a>
     <a class="btn" href="{% url 'admin:aed_aedimportrun_issues_csv' last_run.pk %}">Pobierz raport CSV</a>
-    <a class="btn" href="{% url 'admin:aed_aedimportrun_reprocess' last_run.pk %}">Przetwórz ponownie</a>
+    <a class="btn" href="{% url 'admin:aed_precheck' %}">Sprawdź nową wersję pliku przed publikacją</a>
   </p>
   {% if runs|length > 1 %}
-  <h4>Poprzednie przebiegi</h4>
-  <ul>{% for r in runs %}<li><a href="{% url 'admin:aed_aedimportrun_change' r.pk %}">{{ r.started_at }}</a> – {{ r.get_status_display }} ({{ r.rows_accepted }}/{{ r.rows_total }})</li>{% endfor %}</ul>
+  <p class="muted">Poprzednie wersje: {% for r in runs|slice:"1:" %}<a href="{% url 'admin:aed_aedimportrun_change' r.pk %}">{{ r.started_at|date:"j.m H:i" }}</a> ({{ r.rows_accepted }}/{{ r.rows_total }}){% if not forloop.last %} · {% endif %}{% endfor %}</p>
   {% endif %}
-  {% else %}
+{% else %}
   <p>Zbiór czeka na przetworzenie – raport pojawi się po walidacji zasobu.</p>
-  {% endif %}
 {% endif %}
 </div>

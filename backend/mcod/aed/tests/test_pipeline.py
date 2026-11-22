@@ -274,3 +274,18 @@ def test_removed_fields_are_not_in_schema():
     for removed in ("godziny_dostepnosci", "zamkniety_w_szafce", "dostepny_dla_niepelnosprawnych"):
         assert removed not in names
     assert schema.computed_fields() == ["teryt_terc", "teryt_simc"]
+
+
+def test_precheck_reports_problems_with_fix_instructions():
+    from mcod.aed.precheck import run_precheck
+
+    path = os.path.join(DEMO, "variants", "krosno_nowa_wersja_z_bledami.csv")
+    result = run_precheck(path, "csv", "krosno.csv", geocode=False)
+    assert result["ok"] and result["rows_total"] == 12
+    assert result["rows_blocked"] == 4  # brak lokalizacji, współrzędne w stopniach, duplikat id, PUWG-1992
+    codes_ = {g["code"] for g in result["critical_groups"]}
+    assert codes_ == {"NO_LOCATION", "INVALID_COORDS", "DUPLICATE_ID", "OUT_OF_POLAND"}
+    assert all(g["how_to_fix"] for g in result["critical_groups"] + result["warning_groups"])
+    assert {"Lp.", "Uwagi wewnętrzne"} <= set(result["unmapped"])
+    assert result["corrected_csv"].splitlines()[0].startswith("id_aed,szerokosc_geogr,dlugosc_geogr")
+    assert "jak_poprawic" in result["issues_csv"].splitlines()[0]

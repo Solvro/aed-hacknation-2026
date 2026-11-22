@@ -3,6 +3,12 @@
 Wszystko jest tylko do odczytu dla redaktorów i pełnomocników, zawężone do instytucji użytkownika.
 """
 import csv
+import os
+import tempfile
+
+import requests
+from django.conf import settings
+from django.http import FileResponse
 
 from django.contrib import admin, messages
 from django.core.exceptions import PermissionDenied
@@ -15,6 +21,7 @@ from django.utils.safestring import mark_safe
 
 from mcod.aed import schema
 from mcod.aed.models import AedImportRun, AedRecord
+from mcod.aed.precheck import load as load_precheck, run_precheck, store as store_precheck
 
 SEVERITY_LABELS = {"critical": "błąd krytyczny", "warning": "ostrzeżenie", "info": "informacja"}
 
@@ -91,6 +98,10 @@ class AedImportRunAdmin(ScopedReadOnlyAdmin):
 
     def get_urls(self):
         custom = [
+            path("precheck/", self.admin_site.admin_view(self.precheck_view), name="aed_precheck"),
+            path("precheck/wzorcowy-zakres.xlsx", self.admin_site.admin_view(self.precheck_schema_xlsx), name="aed_precheck_schema"),
+            path("precheck/<str:token>/", self.admin_site.admin_view(self.precheck_result), name="aed_precheck_result"),
+            path("precheck/<str:token>/<str:kind>.csv", self.admin_site.admin_view(self.precheck_download), name="aed_precheck_download"),
             path("<int:run_id>/issues.csv", self.admin_site.admin_view(self.issues_csv), name="aed_aedimportrun_issues_csv"),
             path("<int:run_id>/reprocess/", self.admin_site.admin_view(self.reprocess), name="aed_aedimportrun_reprocess"),
         ]
@@ -139,6 +150,74 @@ class AedImportRunAdmin(ScopedReadOnlyAdmin):
                     issue.get("value", ""),
                 ]
             )
+        return response
+
+    # --- Sprawdzenie pliku przed publikacją -------------------------------------------------------------
+    def _precheck_context(self, request, **extra):
+        return dict(self.admin_site.each_context(request), opts=self.model._meta, title="Sprawdź plik AED przed publikacją",
+                    has_view_permission=True, **extra)
+
+    def precheck_view(self, request):
+        if not self.has_view_permission(request):
+            raise PermissionDenied
+        error = None
+        if request.method == "POST":
+            upload = request.FILES.get("file")
+            link = (request.POST.get("link") or "").strip()
+            try:
+                if upload:
+                    filename = upload.name
+                    suffix = os.path.splitext(filename)[1].lower() or ".csv"
+                    with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+                        for chunk in upload.chunks():
+                            tmp.write(chunk)
+                        path_ = tmp.name
+                elif link:
+                    filename = link
+                    resp = requests.get(link, timeout=30, headers={"User-Agent": "dane.gov.pl AED precheck"})
+                    resp.raise_for_status()
+                    suffix = os.path.splitext(link.split("?")[0])[1].lower()
+                    if suffix not in (".csv", ".tsv", ".xlsx", ".xls", ".ods", ".json", ".geojson"):
+                        ctype = resp.headers.get("content-type", "")
+                        suffix = ".json" if "json" in ctype else ".csv"
+                    with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+                        tmp.write(resp.content)
+                        path_ = tmp.name
+                else:
+                    raise ValueError("Wybierz plik albo wklej link do danych.")
+                fmt = suffix.strip(".")
+                result = run_precheck(path_, fmt, filename)
+                os.unlink(path_)
+                token = store_precheck(result, request.user.id)
+                return HttpResponseRedirect(reverse("admin:aed_precheck_result", args=[token]))
+            except (ValueError, requests.RequestException) as exc:
+                error = str(exc)
+        return TemplateResponse(request, "admin/aed/precheck.html", self._precheck_context(request, error=error))
+
+    def precheck_result(self, request, token):
+        if not self.has_view_permission(request):
+            raise PermissionDenied
+        result = load_precheck(token, request.user.id)
+        if result is None:
+            messages.warning(request, "Wynik sprawdzenia wygasł lub należy do innego użytkownika – sprawdź plik ponownie.")
+            return HttpResponseRedirect(reverse("admin:aed_precheck"))
+        return TemplateResponse(request, "admin/aed/precheck.html", self._precheck_context(request, result=result, token=token))
+
+    def precheck_download(self, request, token, kind):
+        result = load_precheck(token, request.user.id) if self.has_view_permission(request) else None
+        if result is None or kind not in ("poprawiony", "uwagi"):
+            raise PermissionDenied
+        response = HttpResponse(content_type="text/csv; charset=utf-8")
+        name = "aed_plik_z_poprawkami.csv" if kind == "poprawiony" else "aed_lista_uwag.csv"
+        response["Content-Disposition"] = f'attachment; filename="{name}"'
+        response.write("\ufeff" + (result["corrected_csv"] if kind == "poprawiony" else result["issues_csv"]))
+        return response
+
+    def precheck_schema_xlsx(self, request):
+        if not self.has_view_permission(request):
+            raise PermissionDenied
+        path_ = os.path.join(str(settings.DATA_DIR), "aed", "export", "aed_wzorcowy_zakres.xlsx")
+        response = FileResponse(open(path_, "rb"), as_attachment=True, filename="aed_wzorcowy_zakres.xlsx")
         return response
 
     def reprocess(self, request, run_id):
