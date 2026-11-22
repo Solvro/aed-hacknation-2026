@@ -7,8 +7,8 @@ taki wiersz zostaje z samym adresem, a współrzędne wyliczy portal (GUGiK).
 
 Użycie:
   python przygotuj_dane_przykladowe.py <katalog_data_raw> [arkusz.xlsx]
-Wynik: aed_dane_przykladowe.csv obok skryptu, a gdy podano arkusz – nowa zawartość arkusza „Przykładowe dane”
-i arkusz „Źródła danych”.
+Wynik: aed_dane_przykladowe.csv obok skryptu (z kolumną źródła), a gdy podano arkusz – nowa zawartość arkusza
+„Przykładowe dane” (tylko kolumny wzorca). Opcja --z-zakladka-zrodel dodaje kolumnę i arkusz „Źródła danych”.
 """
 import csv
 from copy import copy
@@ -175,9 +175,10 @@ def convert(raw_dir):
 def write_csv(rows):
     out = os.path.join(HERE, "aed_dane_przykladowe.csv")
     with open(out, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, COLS, extrasaction="ignore")
+        src = {k: pub for k, _, pub, *_ in SOURCES}
+        w = csv.DictWriter(f, COLS + ["zrodlo"], extrasaction="ignore")
         w.writeheader()
-        w.writerows(rows)
+        w.writerows(dict(r, zrodlo=src[r["_zrodlo"]]) for r in rows)
     return out
 
 
@@ -247,9 +248,34 @@ def update_workbook(path, rows, counts):
     wb.save(path)
 
 
+def fill_examples_only(path, rows):
+    """Wpisuje dane wyłącznie do arkusza „Przykładowe dane” – bez nowych arkuszy i kolumn, ze stylem istniejących wierszy."""
+    from openpyxl import load_workbook
+
+    wb = load_workbook(path)
+    ws = wb["Przykładowe dane"]
+    header = [c.value for c in ws[1]]
+    proto = {j: ws.cell(row=2, column=j) for j in range(1, len(header) + 1)}
+    styles = {j: (copy(c.font), copy(c.border), copy(c.fill), copy(c.alignment), c.number_format) for j, c in proto.items()}
+    ws.delete_rows(2, ws.max_row)
+    for i, row in enumerate(rows, 2):
+        for j, col in enumerate(header, 1):
+            v = row.get(col, "") if col else ""
+            cell = ws.cell(row=i, column=j, value=v if v != "" else None)
+            cell.font, cell.border, cell.fill, cell.alignment, cell.number_format = styles[j]
+            if col in ("szerokosc_geogr", "dlugosc_geogr") and v != "":
+                cell.number_format = "0.000000"
+    if ws.auto_filter.ref:
+        ws.auto_filter.ref = f"A1:{ws.cell(row=1, column=len(header)).column_letter}{len(rows) + 1}"
+    wb.save(path)
+
+
 if __name__ == "__main__":
     rows, counts = convert(sys.argv[1])
     print("CSV:", write_csv(rows), "wierszy:", len(rows), counts)
     if len(sys.argv) > 2:
-        update_workbook(sys.argv[2], rows, counts)
+        if "--z-zakladka-zrodel" in sys.argv:
+            update_workbook(sys.argv[2], rows, counts)
+        else:
+            fill_examples_only(sys.argv[2], rows)
         print("arkusz:", sys.argv[2])

@@ -21,7 +21,7 @@ Instrukcja uruchomienia jest w pliku **[URUCHOMIENIE.md](URUCHOMIENIE.md)**.
 | Zebranie w dane.gov.pl danych z wielu rozproszonych źródeł | Moduł przetwarza każdy zbiór oznaczony przez dostawcę flagą „zbiór danych o defibrylatorach AED”. Obsługuje pliki CSV, XLSX, XLS, ODS, GeoJSON, JSON oraz zasób typu API. Kolumny o różnych nazwach są rozpoznawane przez słownik synonimów. |
 | Integracja informacji od wszystkich dysponentów w jednym zbiorze | Agregat to zwykły zbiór portalu z zasobami CSV i GeoJSON o stałych ID. Ma tabelę, mapę i API portalu. Demo łączy prawdziwe zbiory z dane.gov.pl (Krosno, Przemyśl, Marki, Legionowo) oraz dane InPost. |
 | Wskazanie referencyjnego zakresu danych | Każdy plik jest mapowany na wzorcowy zakres i walidowany. Dostawca dostaje raport: rozpoznane kolumny, problemy z numerami wierszy i instrukcję poprawy. |
-| Wzorcowy zakres danych, żeby wszyscy udostępniali dane jednolicie | `wzorcowy-zakres-danych/aed_wzorcowy_zakres_danych.xlsx` (24 pola z opisem, typem, przykładem i obowiązkowością, szablon do wypełnienia, przykładowe dane, słowniki i reguły walidacji), do tego szablon i przykład CSV oraz `aed_schema.json` (Frictionless Table Schema). Szczegóły są niżej, w części „Wzorcowy zbiór danych”. |
+| Wzorcowy zakres danych, żeby wszyscy udostępniali dane jednolicie | `wzorcowy-zakres-danych/aed_wzorcowy_zakres_danych.xlsx` (opis 24 pól z typem, przykładem i obowiązkowością oraz 1006 prawdziwych AED zapisanych według wzorca), do tego szablon i przykład CSV oraz `aed_schema.json` (Frictionless Table Schema). Szczegóły są niżej, w części „Wzorcowy zbiór danych”. |
 | Nazwa akcji, logotyp, księga znaku (kolorystyka, pole ochronne, minimalna wielkość, niedozwolone użycia, opis koncepcji w 3–5 zdaniach) | Akcja „Zdefibryluj Dane”. Pliki są w `akcja-promocyjna/`. Szczegóły są niżej, w części „Kampania”. |
 
 ### Wymagania formalne
@@ -86,12 +86,8 @@ Ta część to 30% oceny, dlatego moduł nie zmienia zasad działania portalu:
 
 ## Część 2. Wzorcowy zbiór danych
 Plik: **[`wzorcowy-zakres-danych/aed_wzorcowy_zakres_danych.xlsx`](wzorcowy-zakres-danych/aed_wzorcowy_zakres_danych.xlsx)**. Ma 24 pola w wersji 1.1, a źródłem jest [`backend/data/aed/aed_schema.json`](backend/data/aed/aed_schema.json). Arkusze:
-- **Informacje:** cel, zasada „współrzędne LUB adres”, format pliku, licencja, kroki publikacji, legenda kolorów.
-- **Zakres danych:** opis każdego pola (typ, format, przykład, obowiązkowość, rozpoznawane nazwy kolumn).
-- **Szablon:** pusty arkusz z kolumnami wzorca, podpowiedziami i walidacją (słownik `dostep`, tak/nie, zakres współrzędnych w Polsce).
-- **Przykładowe dane:** 1006 prawdziwych AED z 16 publicznych wykazów przekształconych do wzorca: zbiory gmin w dane.gov.pl, strony i mapy urzędów miast (m.in. Kraków, Łódź, Gdańsk, Gliwice, Lublin, Toruń), InPost i Uniwersytet Śląski. Bez danych z OpenStreetMap/OpenAEDMap. Ten sam zestaw jest w pliku [`aed_dane_przykladowe.csv`](wzorcowy-zakres-danych/aed_dane_przykladowe.csv).
-- **Źródła danych:** wydawca, adres, status licencji i liczba wierszy z każdego źródła.
-- **Słowniki, Reguły walidacji, Kolumny agregatu.**
+- **Przykładowe dane:** 1006 prawdziwych AED w kolumnach wzorca. Pochodzą z 16 publicznych wykazów: zbiory gmin w dane.gov.pl, strony i mapy urzędów miast (m.in. Kraków, Łódź, Gdańsk, Gliwice, Lublin, Toruń), InPost i Uniwersytet Śląski. Nie ma tu danych z OpenStreetMap ani OpenAEDMap. Te same dane, z kolumną źródła przy każdym wierszu, są w pliku [`aed_dane_przykladowe.csv`](wzorcowy-zakres-danych/aed_dane_przykladowe.csv).
+- **Zakres danych:** opis każdego z 24 pól (typ, format, przykład, obowiązkowość, rozpoznawane nazwy kolumn).
 
 Pierwszą wersję arkusza wygenerował skrypt `wzorcowy-zakres-danych/generuj_arkusz.py`. Dane przykładowe przygotowuje skrypt `przygotuj_dane_przykladowe.py`.
 
