@@ -21,7 +21,7 @@ Instrukcja uruchomienia jest w pliku **[URUCHOMIENIE.md](URUCHOMIENIE.md)**.
 | Zebranie w dane.gov.pl danych z wielu rozproszonych źródeł | Moduł przetwarza każdy zbiór oznaczony przez dostawcę flagą „zbiór danych o defibrylatorach AED”. Obsługuje pliki CSV, XLSX, XLS, ODS, GeoJSON, JSON oraz zasób typu API. Kolumny o różnych nazwach są rozpoznawane przez słownik synonimów. |
 | Integracja informacji od wszystkich dysponentów w jednym zbiorze | Agregat to zwykły zbiór portalu z zasobami CSV i GeoJSON o stałych ID. Ma tabelę, mapę i API portalu. Demo łączy prawdziwe zbiory z dane.gov.pl (Krosno, Przemyśl, Marki, Legionowo) oraz dane InPost. |
 | Wskazanie referencyjnego zakresu danych | Każdy plik jest mapowany na wzorcowy zakres i walidowany. Dostawca dostaje raport: rozpoznane kolumny, problemy z numerami wierszy i instrukcję poprawy. |
-| Wzorcowy zakres danych, żeby wszyscy udostępniali dane jednolicie | `backend/data/aed/export/aed_wzorcowy_zakres.xlsx` (24 pola z opisem, typem, przykładem i obowiązkowością), do tego szablon i przykład CSV oraz `aed_schema.json` (Frictionless Table Schema). Szczegóły są niżej, w części „Wzorcowy zbiór danych”. |
+| Wzorcowy zakres danych, żeby wszyscy udostępniali dane jednolicie | `wzorcowy-zakres-danych/aed_wzorcowy_zakres_danych.xlsx` (24 pola z opisem, typem, przykładem i obowiązkowością, szablon do wypełnienia, przykładowe dane, słowniki i reguły walidacji), do tego szablon i przykład CSV oraz `aed_schema.json` (Frictionless Table Schema). Szczegóły są niżej, w części „Wzorcowy zbiór danych”. |
 | Nazwa akcji, logotyp, księga znaku (kolorystyka, pole ochronne, minimalna wielkość, niedozwolone użycia, opis koncepcji w 3–5 zdaniach) | Akcja „Zdefibryluj Dane”. Pliki są w `akcja-promocyjna/`. Szczegóły są niżej, w części „Kampania”. |
 
 ### Wymagania formalne
@@ -30,7 +30,7 @@ Instrukcja uruchomienia jest w pliku **[URUCHOMIENIE.md](URUCHOMIENIE.md)**.
 | Szczegółowy opis i tytuł projektu | ten plik, opis modułu w [`backend/mcod/aed/README.md`](backend/mcod/aed/README.md) |
 | Prezentacja (min. 5 slajdów ze zrzutami ekranu, opis funkcji i kroków użytkownika, ograniczenia) | `prezentacja/prezentacja-ogolnopolski-zbior-aed.pdf` |
 | Prototyp rozwiązania | fork portalu: `backend/` (Django) i `frontend/` (Angular), uruchomienie opisuje [URUCHOMIENIE.md](URUCHOMIENIE.md) |
-| Plik z wzorcowym zakresem danych (xlsx) | [`backend/data/aed/export/aed_wzorcowy_zakres.xlsx`](backend/data/aed/export/aed_wzorcowy_zakres.xlsx) |
+| Plik z wzorcowym zakresem danych (xlsx) | **[`wzorcowy-zakres-danych/aed_wzorcowy_zakres_danych.xlsx`](wzorcowy-zakres-danych/aed_wzorcowy_zakres_danych.xlsx)** |
 | Kod źródłowy | to repozytorium |
 | Logotyp w .jpg, .png, .pdf i formacie otwartym | [`akcja-promocyjna/logo/`](akcja-promocyjna/logo/): `.jpg`, `.png`, `.pdf` oraz `.svg` (format otwarty) |
 | Księga znaku | [`akcja-promocyjna/ksiega-znaku/ksiega-znaku-zdefibryluj-dane.pdf`](akcja-promocyjna/ksiega-znaku/ksiega-znaku-zdefibryluj-dane.pdf) (PDF) |
@@ -85,7 +85,14 @@ Ta część to 30% oceny, dlatego moduł nie zmienia zasad działania portalu:
 ---
 
 ## Część 2. Wzorcowy zbiór danych
-Plik: [`backend/data/aed/export/aed_wzorcowy_zakres.xlsx`](backend/data/aed/export/aed_wzorcowy_zakres.xlsx). Ma 24 pola w wersji 1.1, a źródłem jest [`backend/data/aed/aed_schema.json`](backend/data/aed/aed_schema.json).
+Plik: **[`wzorcowy-zakres-danych/aed_wzorcowy_zakres_danych.xlsx`](wzorcowy-zakres-danych/aed_wzorcowy_zakres_danych.xlsx)**. Ma 24 pola w wersji 1.1, a źródłem jest [`backend/data/aed/aed_schema.json`](backend/data/aed/aed_schema.json). Arkusze:
+- **Informacje:** cel, zasada „współrzędne LUB adres”, format pliku, licencja, kroki publikacji, legenda kolorów.
+- **Zakres danych:** opis każdego pola (typ, format, przykład, obowiązkowość, rozpoznawane nazwy kolumn).
+- **Szablon:** pusty arkusz z kolumnami wzorca, podpowiedziami i walidacją (słownik `dostep`, tak/nie, zakres współrzędnych w Polsce).
+- **Przykładowe dane:** wiersze z kompletem pól, tylko z adresem i tylko ze współrzędnymi.
+- **Słowniki, Reguły walidacji, Kolumny agregatu.**
+
+Arkusz generuje skrypt `wzorcowy-zakres-danych/generuj_arkusz.py`.
 
 | Grupa | Pola | Status |
 |---|---|---|
@@ -124,6 +131,7 @@ Logo jest w [`akcja-promocyjna/logo/`](akcja-promocyjna/logo/) w formatach SVG, 
 | `backend/data/aed/` | schemat wzorcowego zakresu, pliki eksportu i dane demo (prawdziwe zbiory z dane.gov.pl) |
 | `backend/scripts/aed_smoke.sh` | test end-to-end modułu (curl i jq) |
 | `frontend/` | fork frontendu dane.gov.pl (Angular 18) z sekcją „Dane według dostawców” |
+| `wzorcowy-zakres-danych/` | arkusz Excel z wzorcowym zakresem danych i skrypt, który go generuje |
 | `akcja-promocyjna/` | logo i księga znaku kampanii |
 | `prezentacja/` | prezentacja projektu (PDF) |
 
