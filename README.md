@@ -89,10 +89,11 @@ Plik: **[`wzorcowy-zakres-danych/aed_wzorcowy_zakres_danych.xlsx`](wzorcowy-zakr
 - **Informacje:** cel, zasada „współrzędne LUB adres”, format pliku, licencja, kroki publikacji, legenda kolorów.
 - **Zakres danych:** opis każdego pola (typ, format, przykład, obowiązkowość, rozpoznawane nazwy kolumn).
 - **Szablon:** pusty arkusz z kolumnami wzorca, podpowiedziami i walidacją (słownik `dostep`, tak/nie, zakres współrzędnych w Polsce).
-- **Przykładowe dane:** wiersze z kompletem pól, tylko z adresem i tylko ze współrzędnymi.
+- **Przykładowe dane:** 1006 prawdziwych AED z 16 publicznych wykazów przekształconych do wzorca: zbiory gmin w dane.gov.pl, strony i mapy urzędów miast (m.in. Kraków, Łódź, Gdańsk, Gliwice, Lublin, Toruń), InPost i Uniwersytet Śląski. Bez danych z OpenStreetMap/OpenAEDMap. Ten sam zestaw jest w pliku [`aed_dane_przykladowe.csv`](wzorcowy-zakres-danych/aed_dane_przykladowe.csv).
+- **Źródła danych:** wydawca, adres, status licencji i liczba wierszy z każdego źródła.
 - **Słowniki, Reguły walidacji, Kolumny agregatu.**
 
-Arkusz generuje skrypt `wzorcowy-zakres-danych/generuj_arkusz.py`.
+Pierwszą wersję arkusza wygenerował skrypt `wzorcowy-zakres-danych/generuj_arkusz.py`. Dane przykładowe przygotowuje skrypt `przygotuj_dane_przykladowe.py`.
 
 | Grupa | Pola | Status |
 |---|---|---|
